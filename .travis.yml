@@ -4,23 +4,23 @@ language: cpp
 compiler:
   - gcc
 
-fast_finish: true
-include:
-  - os: linux
-    addons:
-      apt:
-        sources:
-          - ubuntu-toolchain-r-test
-        packages:
-          - g++-7
-
-jobs:
-  - MATRIX_EVAL="CC=gcc-7 && CXX=g++-7" TEST_CASE=tests/onenet TARGET=uhdm/verilator/test-ast
-  - MATRIX_EVAL="CC=gcc-7 && CXX=g++-7" TEST_CASE=tests/onenet TARGET=uhdm/yosys/test-ast
+matrix:
+  fast_finish: true
+  include:
+    - os: linux
+      addons:
+        apt:
+          sources:
+            - ubuntu-toolchain-r-test
+          packages:
+            - g++-7
+      env:
+        - TEST_CASE=tests/onenet TARGET=uhdm/verilator/test-ast
+        - TEST_CASE=tests/onenet TARGET=uhdm/yosys/test-ast
 
 
 before_install:
-  - eval "${MATRIX_EVAL}"
+  - eval "CC=gcc-7 && CXX=g++-7"
   # UHDM dependencies
   - sudo apt-get install build-essential tclsh
   # Surelog dependencies
