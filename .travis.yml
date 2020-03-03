@@ -1,0 +1,33 @@
+sudo: required
+
+# Enable C++ support
+language: cpp
+# Compiler selection
+compiler:
+  - gcc
+
+matrix:
+  fast_finish: true
+  include:
+    - os: linux
+      addons:
+        apt:
+          sources:
+            - ubuntu-toolchain-r-test
+          packages:
+            - g++-7
+      env:
+        - MATRIX_EVAL="CC=gcc-7 && CXX=g++-7" TEST_CASE=tests/onenet TARGET=uhdm/verilator/test-ast
+        - MATRIX_EVAL="CC=gcc-7 && CXX=g++-7" TEST_CASE=tests/onenet TARGET=uhdm/yosys/test-ast
+
+
+before_install:
+  - eval "${MATRIX_EVAL}"
+  # UHDM dependencies
+  - sudo apt-get install build-essential tclsh
+  # Surelog dependencies
+  - sudo apt install ant default-jre swig google-perftools libgoogle-perftools-dev python3 python3-dev
+  - git submodule update --init --recursive
+
+script:
+  - make TEST=$TEST_CASE $TARGET
