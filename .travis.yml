@@ -1,3 +1,4 @@
+os: linux
 # Enable C++ support
 language: cpp
 # Compiler selection
@@ -8,7 +9,6 @@ jobs:
   fast_finish: true
   include:
     - &test_body
-      os: linux
       env:
         - TEST_CASE=tests/onenet TARGET=uhdm/verilator/test-ast
       addons:
