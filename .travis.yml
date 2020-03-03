@@ -14,10 +14,9 @@ matrix:
             - ubuntu-toolchain-r-test
           packages:
             - g++-7
-
-env:
-  - TEST_CASE=tests/onenet TARGET=uhdm/verilator/test-ast
-  - TEST_CASE=tests/onenet TARGET=uhdm/yosys/test-ast
+  env:
+    - TEST_CASE=tests/onenet TARGET=uhdm/verilator/test-ast
+    - TEST_CASE=tests/onenet TARGET=uhdm/yosys/test-ast
 
 
 before_install:
