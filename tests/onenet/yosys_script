@@ -1,0 +1,5 @@
+read_uhdm top.uhdm
+write_json
+prep -top \work_top
+write_verilog
+sim -clock a -rstlen 10 -vcd dump.vcd
