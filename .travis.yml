@@ -4,28 +4,29 @@ language: cpp
 compiler:
   - gcc
 
-matrix:
+jobs:
   fast_finish: true
   include:
-    - os: linux
+    - &test_body
+      os: linux
+      env:
+        - TEST_CASE=tests/onenet TARGET=uhdm/verilator/test-ast
       addons:
         apt:
           sources:
             - ubuntu-toolchain-r-test
           packages:
             - g++-7
-  env:
-    - TEST_CASE=tests/onenet TARGET=uhdm/verilator/test-ast
-    - TEST_CASE=tests/onenet TARGET=uhdm/yosys/test-ast
+      before_install:
+        - eval "CC=gcc-7 && CXX=g++-7"
+        # UHDM dependencies
+        - sudo apt-get install build-essential tclsh
+        # Surelog dependencies
+        - sudo apt install ant default-jre swig google-perftools libgoogle-perftools-dev python3 python3-dev
+        - git submodule update --init --recursive
+      script:
+        - make TEST=$TEST_CASE $TARGET
 
-
-before_install:
-  - eval "CC=gcc-7 && CXX=g++-7"
-  # UHDM dependencies
-  - sudo apt-get install build-essential tclsh
-  # Surelog dependencies
-  - sudo apt install ant default-jre swig google-perftools libgoogle-perftools-dev python3 python3-dev
-  - git submodule update --init --recursive
-
-script:
-  - make TEST=$TEST_CASE $TARGET
+    - <<: *test_body
+      env:
+        - TEST_CASE=tests/onenet TARGET=uhdm/yosys/test-ast
