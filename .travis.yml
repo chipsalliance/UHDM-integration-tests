@@ -6,7 +6,7 @@ language: cpp
 compiler:
   - gcc
 
-matrix:
+env:
   fast_finish: true
   include:
     - os: linux
@@ -16,7 +16,7 @@ matrix:
             - ubuntu-toolchain-r-test
           packages:
             - g++-7
-      env:
+      matrix:
         - MATRIX_EVAL="CC=gcc-7 && CXX=g++-7" TEST_CASE=tests/onenet TARGET=uhdm/verilator/test-ast
         - MATRIX_EVAL="CC=gcc-7 && CXX=g++-7" TEST_CASE=tests/onenet TARGET=uhdm/yosys/test-ast
 
