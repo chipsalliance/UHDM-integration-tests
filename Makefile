@@ -80,13 +80,13 @@ uhdm/verilator/get-ast: uhdm/verilator/build
 uhdm/verilator/ast-xml: uhdm/verilator/build surelog/parse
 	mkdir -p build
 	(cd build && \
-		../image/bin/verilator --uhdm-ast --cc ../$(TEST)/top.uhdm \
+		../image/bin/verilator --uhdm-ast --cc ./top.uhdm \
 			--exe ../$(TEST)/main.cpp --xml-only --debug)
 
 uhdm/verilator/test-ast: uhdm/verilator/build surelog/parse
 	mkdir -p build
 	(cd build && \
-		../image/bin/verilator --uhdm-ast --cc ../$(TEST)/top.uhdm \
+		../image/bin/verilator --uhdm-ast --cc ./top.uhdm \
 			--exe ../$(TEST)/main.cpp --trace && \
 		 make -j -C obj_dir -f Vtop.mk Vtop && \
 		 obj_dir/Vtop)
