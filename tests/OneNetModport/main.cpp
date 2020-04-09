@@ -35,7 +35,7 @@ int main (int argc, char **argv) {
     if (main_time == 66)
       top->a = 0;
     std::cout << "time: " << main_time
-      << " a: " << (top->a?1:0)
+      << " a: " << (top->a ? 1 : 0)
       << " b: " << (top->b?1:0)
       << std::endl;
   }

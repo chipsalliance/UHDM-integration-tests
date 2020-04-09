@@ -1,6 +1,8 @@
 TESTS = $(shell find tests -name *.sv | cut -d\/ -f2 | sort)
 TEST ?= tests/onenet
 
+include $(TEST)/Makefile.in
+
 all:
 	@echo "Available tests: $(TESTS)"
 
@@ -44,7 +46,7 @@ Surelog/build/dist/Release/hellosureworld:
 surelog/parse: surelog
 	mkdir -p build
 	(cd build && \
-		../Surelog/build/dist/Release/hellosureworld -parse ../$(TEST)/top.sv)
+		../Surelog/build/dist/Release/hellosureworld -parse ../$(TOP_FILE))
 	cp build/slpp_all/surelog.uhdm build/top.uhdm
 
 # ------------ UHDM ------------ 
@@ -74,24 +76,26 @@ uhdm/verilator/build: uhdm/build image/bin/verilator
 uhdm/verilator/get-ast: uhdm/verilator/build
 	mkdir -p build
 	(cd build && \
-		../image/bin/verilator --cc ../$(TEST)/top.sv \
-			--exe ../$(TEST)/main.cpp --xml-only)
+		../image/bin/verilator --cc ../$(TOP_FILE) \
+			--exe ../$(MAIN_FILE) --xml-only)
 
 uhdm/verilator/ast-xml: uhdm/verilator/build surelog/parse
 	mkdir -p build
 	(cd build && \
 		../image/bin/verilator --uhdm-ast --cc ./top.uhdm \
-			--exe ../$(TEST)/main.cpp --xml-only --debug)
+			--top-module $(TOP_MODULE) \
+			--exe ../$(MAIN_FILE) --xml-only --debug)
 
 uhdm/verilator/test-ast: uhdm/verilator/build surelog/parse
 	mkdir -p build
 	(cd build && \
 		../image/bin/verilator --uhdm-ast --cc ./top.uhdm \
-			--exe ../$(TEST)/main.cpp --trace && \
-		 make -j -C obj_dir -f Vtop.mk Vtop && \
-		 obj_dir/Vtop)
+			--top-module $(TOP_MODULE) \
+			--exe ../$(MAIN_FILE) --trace && \
+		 make -j -C obj_dir -f $(TOP_MAKEFILE) $(VERILATED_BIN) && \
+		 obj_dir/$(VERILATED_BIN))
 
 uhdm/yosys/test-ast: yosys/yosys surelog/parse
 	mkdir -p build
 	(cd build && \
-		../yosys/yosys -s ../$(TEST)/yosys_script)
+		../yosys/yosys -s ../$(YOSYS_SCRIPT))
