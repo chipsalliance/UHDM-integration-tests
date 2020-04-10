@@ -37,6 +37,9 @@ build-verilator:
 
 veri: build-verilator image/bin/verilator
 
+vcddiff/vcddiff:
+	cd vcddiff && make
+
 # ------------ Surelog ------------ 
 surelog: Surelog/build/dist/Release/hellosureworld
 
@@ -60,6 +63,7 @@ uhdm/cleanall: uhdm/clean
 	(cd verilator && make clean)
 	(cd Surelog && make clean)
 	(cd yosys && make clean)
+	(cd vcddiff && make clean)
 
 uhdm/build:
 	mkdir -p UHDM/build
@@ -99,3 +103,19 @@ uhdm/yosys/test-ast: yosys/yosys surelog/parse
 	mkdir -p build
 	(cd build && \
 		../yosys/yosys -s ../$(YOSYS_SCRIPT))
+
+uhdm/yosys/verilate-ast: uhdm/yosys/test-ast uhdm/verilator/build
+	(cd build && \
+		../image/bin/verilator --cc ./yosys.sv \
+			--top-module \$(TOP_MODULE) \
+			--exe ../$(MAIN_FILE) --trace && \
+		 make -j -C obj_dir -f $(TOP_MAKEFILE) $(VERILATED_BIN) && \
+		 obj_dir/$(VERILATED_BIN))
+
+uhdm/vcddiff: vcddiff/vcddiff
+	make uhdm/verilator/test-ast
+	mv build/dump.vcd build/dump_verilator.vcd
+	rm -rf build/obj_dir
+	make uhdm/yosys/verilate-ast
+	mv build/dump.vcd build/dump_yosys.vcd
+	vcddiff/vcddiff build/dump_yosys.vcd build/dump_verilator.vcd

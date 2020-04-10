@@ -1,6 +1,6 @@
 read_uhdm top.uhdm
 write_json
-write_verilog \work_top
 prep -top \work_top
 write_verilog
+write_verilog yosys.sv
 sim -clock conntb.drive -rstlen 10 -vcd dump.vcd
