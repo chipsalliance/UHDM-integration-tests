@@ -116,6 +116,6 @@ uhdm/vcddiff: vcddiff/vcddiff
 	make uhdm/verilator/test-ast
 	mv build/dump.vcd build/dump_verilator.vcd
 	rm -rf build/obj_dir
-	make uhdm/yosys/verilate-ast
+	make -j uhdm/yosys/verilate-ast
 	mv build/dump.vcd build/dump_yosys.vcd
 	vcddiff/vcddiff build/dump_yosys.vcd build/dump_verilator.vcd
