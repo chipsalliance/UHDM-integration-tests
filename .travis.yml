@@ -33,10 +33,6 @@ jobs:
 
     - <<: *test_body
       env:
-        - TEST_CASE=tests/onenet TARGET=uhdm/vcddiff
-
-    - <<: *test_body
-      env:
         - TEST_CASE=tests/OneNetModport TARGET=uhdm/verilator/test-ast
 
     - <<: *test_body
@@ -45,4 +41,4 @@ jobs:
 
     - <<: *test_body
       env:
-        - TEST_CASE=tests/OneNetModport TARGET=uhdm/vcddiff
+        - TEST_CASE=tests/OneFF TARGET=uhdm/verilator/test-ast
