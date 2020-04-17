@@ -42,3 +42,7 @@ jobs:
     - <<: *test_body
       env:
         - TEST_CASE=tests/OneFF TARGET=uhdm/verilator/test-ast
+
+    - <<: *test_body
+      env:
+        - TEST_CASE=tests/OneFF TARGET=uhdm/yosys/test-ast
