@@ -1,0 +1,6 @@
+TOP_FILE := Surelog/tests/OneNetRange/dut.v
+MAIN_FILE := tests/OneNetRange/main.cpp
+YOSYS_SCRIPT := tests/OneNetRange/yosys_script
+TOP_MODULE := work_dut
+VERILATED_BIN := V$(TOP_MODULE)
+TOP_MAKEFILE := $(VERILATED_BIN).mk

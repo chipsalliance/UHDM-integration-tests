@@ -62,3 +62,7 @@ jobs:
     - <<: *test_body
       env:
         - TEST_CASE=tests/OneDivider TARGET=uhdm/yosys/test-ast
+
+    - <<: *test_body
+      env:
+        - TEST_CASE=tests/OneNetRange TARGET=uhdm/verilator/test-ast
