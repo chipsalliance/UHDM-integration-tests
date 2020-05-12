@@ -83,7 +83,19 @@ jobs:
 
     - <<: *test_body
       env:
+        - TEST_CASE=tests/OneNetInterf TARGET=uhdm/verilator/test-ast
+
+    - <<: *test_body
+      env:
+        - TEST_CASE=tests/OneNetInterf TARGET=uhdm/yosys/test-ast
+
+    - <<: *test_body
+      env:
         - TEST_CASE=tests/OneNetRange TARGET=uhdm/verilator/test-ast
+
+    - <<: *test_body
+      env:
+        - TEST_CASE=tests/OneNetRange TARGET=uhdm/yosys/test-ast
 
     - <<: *test_body
       env:
