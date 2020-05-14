@@ -107,6 +107,10 @@ jobs:
 
     - <<: *test_body
       env:
+        - TEST_CASE=tests/fsm_using_always TARGET=uhdm/verilator/test-ast
+
+    - <<: *test_body
+      env:
         # This is not a well-written test (model does not converge in Verilator)
         # but the XML can be generated, so keep it to check for regressions
         - TEST_CASE=tests/FSMBsp13 TARGET=uhdm/verilator/ast-xml
