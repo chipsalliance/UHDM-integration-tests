@@ -13,3 +13,6 @@
 [submodule "vcddiff"]
 	path = vcddiff
 	url = https://github.com/veripool/vcddiff
+[submodule "tests/ibex/ibex"]
+	path = tests/ibex/ibex
+	url = https://github.com/lowRISC/ibex.git

@@ -99,6 +99,10 @@ jobs:
 
     - <<: *test_body
       env:
+        - TEST_CASE=tests/OneConcat TARGET=uhdm/verilator/test-ast
+
+    - <<: *test_body
+      env:
         - TEST_CASE=tests/fsm_single_always TARGET=uhdm/verilator/test-ast
 
     - <<: *test_body
