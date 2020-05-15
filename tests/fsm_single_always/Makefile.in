@@ -1,0 +1,6 @@
+TOP_FILE := tests/fsm_single_always/dut.v
+MAIN_FILE := tests/fsm_single_always/main.cpp
+YOSYS_SCRIPT := tests/fsm_single_always/yosys_script
+TOP_MODULE := work_fsm_using_single_always
+VERILATED_BIN := V$(TOP_MODULE)
+TOP_MAKEFILE := $(VERILATED_BIN).mk

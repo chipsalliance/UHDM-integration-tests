@@ -15,16 +15,34 @@ jobs:
         apt:
           sources:
             - ubuntu-toolchain-r-test
+            - sourceline: "ppa:ubuntu-toolchain-r/test"
+            - sourceline: 'deb https://apt.kitware.com/ubuntu/ xenial main'
+              key_url: 'https://apt.kitware.com/keys/kitware-archive-latest.asc'
+
           packages:
             - g++-7
+            - cmake
+            # UHDM dependencies
+            - build-essential
+            - tclsh
+            # Surelog dependencies
+            - ant
+            - default-jre
+            - swig
+            - google-perftools
+            - libgoogle-perftools-dev
+            - python3
+            - python3-dev
+
       before_install:
         - eval "CC=gcc-7 && CXX=g++-7"
-        # UHDM dependencies
-        - sudo apt-get install build-essential tclsh
-        # Surelog dependencies
-        - sudo apt install ant default-jre swig google-perftools libgoogle-perftools-dev python3 python3-dev
         - git submodule update --init --recursive
+
+      install:
+        - export PATH=/usr/bin:$PATH
+
       script:
+        - cmake --version
         - make TEST=$TEST_CASE $TARGET
 
     - <<: *test_body
@@ -62,3 +80,37 @@ jobs:
     - <<: *test_body
       env:
         - TEST_CASE=tests/OneDivider TARGET=uhdm/yosys/test-ast
+
+    - <<: *test_body
+      env:
+        - TEST_CASE=tests/OneNetInterf TARGET=uhdm/verilator/test-ast
+
+    - <<: *test_body
+      env:
+        - TEST_CASE=tests/OneNetInterf TARGET=uhdm/yosys/test-ast
+
+    - <<: *test_body
+      env:
+        - TEST_CASE=tests/OneNetRange TARGET=uhdm/verilator/test-ast
+
+    - <<: *test_body
+      env:
+        - TEST_CASE=tests/OneNetRange TARGET=uhdm/yosys/test-ast
+
+    - <<: *test_body
+      env:
+        - TEST_CASE=tests/fsm_single_always TARGET=uhdm/verilator/test-ast
+
+    - <<: *test_body
+      env:
+        - TEST_CASE=tests/fsm_using_function TARGET=uhdm/verilator/test-ast
+
+    - <<: *test_body
+      env:
+        - TEST_CASE=tests/fsm_using_always TARGET=uhdm/verilator/test-ast
+
+    - <<: *test_body
+      env:
+        # This is not a well-written test (model does not converge in Verilator)
+        # but the XML can be generated, so keep it to check for regressions
+        - TEST_CASE=tests/FSMBsp13 TARGET=uhdm/verilator/ast-xml
