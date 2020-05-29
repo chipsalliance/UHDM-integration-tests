@@ -49,7 +49,7 @@ Surelog/build/dist/Release/hellosureworld:
 surelog/parse: surelog
 	mkdir -p build
 	(cd build && \
-		../Surelog/build/dist/Release/hellosureworld -parse ../$(TOP_FILE))
+		../Surelog/build/bin/hellosureworld -parse -sverilog ../$(TOP_FILE))
 	cp build/slpp_all/surelog.uhdm build/top.uhdm
 
 # ------------ UHDM ------------ 
