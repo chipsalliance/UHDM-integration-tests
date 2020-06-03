@@ -99,6 +99,30 @@ jobs:
 
     - <<: *test_body
       env:
+        - TEST_CASE=tests/OneConcat TARGET=uhdm/verilator/test-ast
+
+    - <<: *test_body
+      env:
+        - TEST_CASE=tests/OneReplicate TARGET=uhdm/verilator/test-ast
+
+    - <<: *test_body
+      env:
+        - TEST_CASE=tests/OneAlwaysComb TARGET=uhdm/verilator/test-ast
+
+    - <<: *test_body
+      env:
+        - TEST_CASE=tests/OneShift TARGET=uhdm/verilator/test-ast
+
+    - <<: *test_body
+      env:
+        - TEST_CASE=tests/OneArithShift TARGET=uhdm/verilator/test-ast
+
+    - <<: *test_body
+      env:
+        - TEST_CASE=tests/OneSysFunc TARGET=uhdm/verilator/test-ast
+
+    - <<: *test_body
+      env:
         - TEST_CASE=tests/fsm_single_always TARGET=uhdm/verilator/test-ast
 
     - <<: *test_body
@@ -114,3 +138,7 @@ jobs:
         # This is not a well-written test (model does not converge in Verilator)
         # but the XML can be generated, so keep it to check for regressions
         - TEST_CASE=tests/FSMBsp13 TARGET=uhdm/verilator/ast-xml
+
+    - <<: *test_body
+      env:
+        - TEST_CASE=tests/AluOps TARGET=uhdm/verilator/test-ast

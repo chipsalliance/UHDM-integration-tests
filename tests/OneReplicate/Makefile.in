@@ -1,0 +1,6 @@
+TOP_FILE := tests/OneReplicate/dut.v
+MAIN_FILE := tests/OneReplicate/main.cpp
+YOSYS_SCRIPT := tests/OneReplicate/yosys_script
+TOP_MODULE := work_dut
+VERILATED_BIN := V$(TOP_MODULE)
+TOP_MAKEFILE := $(VERILATED_BIN).mk
