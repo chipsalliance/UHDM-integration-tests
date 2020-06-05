@@ -7,9 +7,11 @@
 [submodule "verilator"]
 	path = verilator
 	url = https://github.com/antmicro/verilator.git
+	branch = uhdm-verilator
 [submodule "yosys"]
 	path = yosys
 	url = https://github.com/antmicro/yosys.git
+	branch = uhdm-yosys
 [submodule "vcddiff"]
 	path = vcddiff
 	url = https://github.com/veripool/vcddiff
