@@ -1,6 +1,6 @@
 read_uhdm top.uhdm
 write_json
-prep -top \work_dut
+prep -top \work_fsm_using_always
 write_verilog
 write_verilog yosys.sv
-#sim -clock clk -rstlen 10 -vcd dump.vcd
+sim -clock clock -rstlen 10 -vcd dump.vcd
