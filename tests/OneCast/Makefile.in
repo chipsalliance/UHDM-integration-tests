@@ -1,0 +1,6 @@
+TOP_FILE := tests/OneCast/dut.v
+MAIN_FILE := tests/OneCast/main.cpp
+YOSYS_SCRIPT := tests/OneCast/yosys_script
+TOP_MODULE := work_dut
+VERILATED_BIN := V$(TOP_MODULE)
+TOP_MAKEFILE := $(VERILATED_BIN).mk
