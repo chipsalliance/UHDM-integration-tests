@@ -47,6 +47,10 @@ jobs:
 
     - <<: *test_body
       env:
+        - TARGET=surelog/regression
+
+    - <<: *test_body
+      env:
         - TEST_CASE=tests/onenet TARGET=uhdm/yosys/test-ast
 
     - <<: *test_body

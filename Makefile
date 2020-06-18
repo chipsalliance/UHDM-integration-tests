@@ -40,11 +40,14 @@ veri: build-verilator image/bin/verilator
 vcddiff/vcddiff:
 	cd vcddiff && make
 
-# ------------ Surelog ------------ 
+# ------------ Surelog ------------
 surelog: Surelog/build/dist/Release/hellosureworld
 
 Surelog/build/dist/Release/hellosureworld:
 	(cd Surelog && make PREFIX=$(PWD)/image && make install)
+
+surelog/regression: surelog
+	$(MAKE) -C Surelog regression
 
 surelog/parse: surelog
 	mkdir -p build
@@ -52,7 +55,7 @@ surelog/parse: surelog
 		../Surelog/build/bin/hellosureworld -parse -sverilog ../$(TOP_FILE))
 	cp build/slpp_all/surelog.uhdm build/top.uhdm
 
-# ------------ UHDM ------------ 
+# ------------ UHDM ------------
 
 uhdm/clean:
 	rm -rf obj_dir slpp_all build
