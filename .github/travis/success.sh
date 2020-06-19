@@ -8,7 +8,8 @@ git config --local user.email "surelog@googlegroups.com"
 
 case $MODE in
     surelog-uhdm)
-        # TODO: copy *.chk.html files to pages
+	# Copy coverage HTML to be ready for github pages.
+	./.github/travis/surelog-coverage-pages.sh
         ;;
 
     test)
