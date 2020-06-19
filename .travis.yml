@@ -50,7 +50,7 @@ jobs:
     - <<: *test_body
       env:
         - MODE=surelog-uhdm
-	# ΤODO: add deploy with provider:pages local_dir=/tmp/pages
+        # ΤODO: add deploy with provider:pages local_dir=/tmp/pages
 
     - <<: *test_body
       env:
