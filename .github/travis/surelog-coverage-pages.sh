@@ -4,6 +4,8 @@ COV_DIR=/tmp/pages/surelog-coverage
 rm -rf $COV_DIR
 mkdir -p $COV_DIR
 
+echo "Prepare coverage HTML pages for github pages"
+
 for f in $(find Surelog/build/tests -name "surelog.uhdm.chk") ; do
     PROJECT_NAME=$(echo $f | awk -F/ '{print $4}')
     COV=$(awk '/Overall coverage/ {print $3}' $f)

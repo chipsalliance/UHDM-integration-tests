@@ -3,6 +3,9 @@
 set -x
 set -e
 
+# Default is to run tests.
+MODE=${MODE:-test}
+
 case $MODE in
     surelog-uhdm)
 	make surelog/regression

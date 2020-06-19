@@ -54,110 +54,110 @@ jobs:
 
     - <<: *test_body
       env:
-        - MODE=test TEST_CASE=tests/onenet TARGET=uhdm/yosys/test-ast
+        - TEST_CASE=tests/onenet TARGET=uhdm/yosys/test-ast
 
     - <<: *test_body
       env:
-        - MODE=test TEST_CASE=tests/OneNetModport TARGET=uhdm/verilator/test-ast
+        - TEST_CASE=tests/OneNetModport TARGET=uhdm/verilator/test-ast
 
     - <<: *test_body
       env:
-        - MODE=test TEST_CASE=tests/OneNetModport TARGET=uhdm/yosys/test-ast
+        - TEST_CASE=tests/OneNetModport TARGET=uhdm/yosys/test-ast
 
     - <<: *test_body
       env:
-        - MODE=test TEST_CASE=tests/OneFF TARGET=uhdm/verilator/test-ast
+        - TEST_CASE=tests/OneFF TARGET=uhdm/verilator/test-ast
 
     - <<: *test_body
       env:
-        - MODE=test TEST_CASE=tests/OneFF TARGET=uhdm/yosys/test-ast
+        - TEST_CASE=tests/OneFF TARGET=uhdm/yosys/test-ast
 
     - <<: *test_body
       env:
-        - MODE=test TEST_CASE=tests/OneAnd TARGET=uhdm/verilator/test-ast
+        - TEST_CASE=tests/OneAnd TARGET=uhdm/verilator/test-ast
 
     - <<: *test_body
       env:
-        - MODE=test TEST_CASE=tests/OneAnd TARGET=uhdm/yosys/test-ast
+        - TEST_CASE=tests/OneAnd TARGET=uhdm/yosys/test-ast
 
     - <<: *test_body
       env:
-        - MODE=test TEST_CASE=tests/OneDivider TARGET=uhdm/verilator/test-ast
+        - TEST_CASE=tests/OneDivider TARGET=uhdm/verilator/test-ast
 
     - <<: *test_body
       env:
-        - MODE=test TEST_CASE=tests/OneDivider TARGET=uhdm/yosys/test-ast
+        - TEST_CASE=tests/OneDivider TARGET=uhdm/yosys/test-ast
 
     - <<: *test_body
       env:
-        - MODE=test TEST_CASE=tests/OneNetInterf TARGET=uhdm/verilator/test-ast
+        - TEST_CASE=tests/OneNetInterf TARGET=uhdm/verilator/test-ast
 
     - <<: *test_body
       env:
-        - MODE=test TEST_CASE=tests/OneNetInterf TARGET=uhdm/yosys/test-ast
+        - TEST_CASE=tests/OneNetInterf TARGET=uhdm/yosys/test-ast
 
     - <<: *test_body
       env:
-        - MODE=test TEST_CASE=tests/OneNetRange TARGET=uhdm/verilator/test-ast
+        - TEST_CASE=tests/OneNetRange TARGET=uhdm/verilator/test-ast
 
     - <<: *test_body
       env:
-        - MODE=test TEST_CASE=tests/OneNetRange TARGET=uhdm/yosys/test-ast
+        - TEST_CASE=tests/OneNetRange TARGET=uhdm/yosys/test-ast
 
     - <<: *test_body
       env:
-        - MODE=test TEST_CASE=tests/OneConcat TARGET=uhdm/verilator/test-ast
+        - TEST_CASE=tests/OneConcat TARGET=uhdm/verilator/test-ast
 
     - <<: *test_body
       env:
-        - MODE=test TEST_CASE=tests/OneReplicate TARGET=uhdm/verilator/test-ast
+        - TEST_CASE=tests/OneReplicate TARGET=uhdm/verilator/test-ast
 
     - <<: *test_body
       env:
-        - MODE=test TEST_CASE=tests/OneAlwaysComb TARGET=uhdm/verilator/test-ast
+        - TEST_CASE=tests/OneAlwaysComb TARGET=uhdm/verilator/test-ast
 
     - <<: *test_body
       env:
-        - MODE=test TEST_CASE=tests/OneShift TARGET=uhdm/verilator/test-ast
+        - TEST_CASE=tests/OneShift TARGET=uhdm/verilator/test-ast
 
     - <<: *test_body
       env:
-        - MODE=test TEST_CASE=tests/OneArithShift TARGET=uhdm/verilator/test-ast
+        - TEST_CASE=tests/OneArithShift TARGET=uhdm/verilator/test-ast
 
     - <<: *test_body
       env:
-        - MODE=test TEST_CASE=tests/OneSysFunc TARGET=uhdm/verilator/test-ast
+        - TEST_CASE=tests/OneSysFunc TARGET=uhdm/verilator/test-ast
 
     - <<: *test_body
       env:
-        - MODE=test TEST_CASE=tests/OneInside TARGET=uhdm/verilator/test-ast
+        - TEST_CASE=tests/OneInside TARGET=uhdm/verilator/test-ast
 
     - <<: *test_body
       env:
-        - MODE=test TEST_CASE=tests/OneCast TARGET=uhdm/verilator/test-ast
+        - TEST_CASE=tests/OneCast TARGET=uhdm/verilator/test-ast
 
     - <<: *test_body
       env:
-        - MODE=test TEST_CASE=tests/OnePackage TARGET=uhdm/verilator/test-ast
+        - TEST_CASE=tests/OnePackage TARGET=uhdm/verilator/test-ast
 
     - <<: *test_body
       env:
-        - MODE=test TEST_CASE=tests/fsm_single_always TARGET=uhdm/verilator/test-ast
+        - TEST_CASE=tests/fsm_single_always TARGET=uhdm/verilator/test-ast
 
     - <<: *test_body
       env:
-        - MODE=test TEST_CASE=tests/fsm_using_function TARGET=uhdm/verilator/test-ast
+        - TEST_CASE=tests/fsm_using_function TARGET=uhdm/verilator/test-ast
 
     - <<: *test_body
       env:
-        - MODE=test TEST_CASE=tests/fsm_using_always TARGET=uhdm/verilator/test-ast
+        - TEST_CASE=tests/fsm_using_always TARGET=uhdm/verilator/test-ast
 
     - <<: *test_body
       env:
         # This is not a well-written test (model does not converge in Verilator)
         # but the XML can be generated, so keep it to check for regressions
-        - MODE=test TEST_CASE=tests/FSMBsp13 TARGET=uhdm/verilator/ast-xml
+        - TEST_CASE=tests/FSMBsp13 TARGET=uhdm/verilator/ast-xml
 
     - <<: *test_body
       env:
-        - MODE=test TEST_CASE=tests/AluOps TARGET=uhdm/verilator/test-ast
+        - TEST_CASE=tests/AluOps TARGET=uhdm/verilator/test-ast
