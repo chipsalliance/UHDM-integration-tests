@@ -42,8 +42,15 @@ jobs:
         - export PATH=/usr/bin:$PATH
 
       script:
-        - cmake --version
-        - make TEST=$TEST_CASE $TARGET
+        - ./.github/travis/script.sh
+
+      after_success:
+        - ./.github/travis/success.sh
+
+    - <<: *test_body
+      env:
+        - MODE=surelog-uhdm
+        # ΤODO: add deploy with provider:pages local_dir=/tmp/pages
 
     - <<: *test_body
       env:
