@@ -70,6 +70,7 @@ uhdm/cleanall: uhdm/clean
 
 uhdm/build:
 	mkdir -p UHDM/build
+	-(cd UHDM && git apply ../UHDM.patch)
 	(cd UHDM/build && cmake \
 		-DCMAKE_INSTALL_PREFIX=$(PWD)/image \
 		-D_GLIBCXX_DEBUG=1 \
