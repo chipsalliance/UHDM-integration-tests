@@ -8,11 +8,11 @@ MODE=${MODE:-test}
 
 case $MODE in
     surelog-uhdm)
-	make surelog/regression
+	make -j $(nproc) surelog/regression
 	;;
 
     test)
-	make TEST=$TEST_CASE $TARGET
+	make -j $(nproc) TEST=$TEST_CASE $TARGET
 	;;
 
     *)
