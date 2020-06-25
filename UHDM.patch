@@ -1,13 +1,13 @@
 diff --git a/templates/vpi_visitor.cpp b/templates/vpi_visitor.cpp
-index ac06b03..a099abf 100644
+index 2956f3e..b83bf99 100644
 --- a/templates/vpi_visitor.cpp
 +++ b/templates/vpi_visitor.cpp
-@@ -104,7 +104,7 @@ static std::ostream &stream_indent(std::ostream &out, int indent) {
+@@ -455,7 +455,7 @@ static std::ostream &stream_indent(std::ostream &out, int indent) {
    return out;
  }
  
--static void visit_object (vpiHandle obj_h, int indent, const char *relation, std::set<const BaseClass*>* visited, std::ostream& out) {
-+void visit_object (vpiHandle obj_h, int indent, const char *relation, std::set<const BaseClass*>* visited, std::ostream& out) {
-   static constexpr int kLevelIndent = 2;
- 
-   unsigned int subobject_indent = indent + kLevelIndent;
+-static void visit_object (vpiHandle obj_h, int indent, const char *relation, VisitedContainer* visited, std::ostream& out) {
++void visit_object (vpiHandle obj_h, int indent, const char *relation, VisitedContainer* visited, std::ostream& out) {
+   if (!obj_h)
+     return;
+ #ifdef STANDARD_VPI
