@@ -13,13 +13,13 @@ verilator/Makefile: verilator/configure
 	(cd verilator && ./configure --prefix=$(PWD)/image)
 
 verilator/bin/verilator_bin: verilator/Makefile
-	(cd verilator && make -j`nproc`)
+	$(MAKE) -C verilator
 
 image/bin/verilator: verilator/bin/verilator_bin
-	(cd verilator && make install)
+	$(MAKE) -C verilator install
 
 yosys/yosys: yosys/Makefile uhdm/build
-	(cd yosys && make -j`nproc`)
+	$(MAKE) -C yosys
 
 prep: image/bin/verilator yosys/yosys
 
@@ -38,7 +38,7 @@ build-verilator:
 veri: build-verilator image/bin/verilator
 
 vcddiff/vcddiff:
-	cd vcddiff && make
+	$(MAKE) -C vcddiff
 
 # ------------ Surelog ------------
 surelog: Surelog/build/dist/Release/hellosureworld
@@ -62,11 +62,11 @@ uhdm/clean:
 
 uhdm/cleanall: uhdm/clean
 	rm -rf ./image
-	(cd UHDM && make clean)
-	(cd verilator && make clean)
-	(cd Surelog && make clean)
-	(cd yosys && make clean)
-	(cd vcddiff && make clean)
+	$(MAKE) -C UHDM clean
+	$(MAKE) -C verilator clean
+	$(MAKE) -C Surelog clean
+	$(MAKE) -C yosys clean
+	$(MAKE) -C vcddiff clean
 
 uhdm/build:
 	mkdir -p UHDM/build
@@ -77,7 +77,7 @@ uhdm/build:
 		-DCMAKE_BUILD_TYPE=Release \
 		-DCMAKE_CXX_FLAGS='-D_GLIBCXX_USE_CXX11_ABI=1 -DWITH_LIBCXX=Off' \
 		../)
-	(cd UHDM && make install)
+	$(MAKE) -C UHDM install
 
 uhdm/verilator/build: uhdm/build image/bin/verilator
 
@@ -117,9 +117,9 @@ uhdm/yosys/verilate-ast: uhdm/yosys/test-ast uhdm/verilator/build
 		 obj_dir/$(VERILATED_BIN))
 
 uhdm/vcddiff: vcddiff/vcddiff
-	make uhdm/verilator/test-ast
+	$(MAKE) uhdm/verilator/test-ast
 	mv build/dump.vcd build/dump_verilator.vcd
 	rm -rf build/obj_dir
-	make uhdm/yosys/verilate-ast
+	$(MAKE) uhdm/yosys/verilate-ast
 	mv build/dump.vcd build/dump_yosys.vcd
 	vcddiff/vcddiff build/dump_yosys.vcd build/dump_verilator.vcd
