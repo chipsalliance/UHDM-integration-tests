@@ -164,4 +164,4 @@ jobs:
 
     - <<: *test_body
       env:
-        - TARGET=uhdm/verilator/coverage
+        - TEST_CASE=tests/onenet TARGET=uhdm/verilator/coverage
