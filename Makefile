@@ -52,10 +52,17 @@ surelog/regression: surelog
 surelog/parse: surelog
 	mkdir -p build
 	(cd build && \
-		../Surelog/build/bin/hellosureworld -parse -sverilog ../$(TOP_FILE))
+		../Surelog/build/bin/hellosureworld -parse -sverilog -d coveruhdm ../$(TOP_FILE))
 	cp build/slpp_all/surelog.uhdm build/top.uhdm
 
-# ------------ UHDM ------------
+surelog/ibex-current: surelog
+	mkdir -p build
+	(cd Surelog/third_party/tests/Earlgrey_0_1/sim-icarus && \
+		../../../../../image/bin/surelog -f Earlgrey_0_1.sl \
+	)
+	cp Surelog/third_party/tests/Earlgrey_0_1/sim-icarus/slpp_all/surelog.uhdm build/top.uhdm
+
+# ------------ UHDM ------------ 
 
 uhdm/clean:
 	rm -rf obj_dir slpp_all build
@@ -102,6 +109,15 @@ uhdm/verilator/test-ast: uhdm/verilator/build surelog/parse
 			--exe ../$(MAIN_FILE) --trace && \
 		 make -j -C obj_dir -f $(TOP_MAKEFILE) $(VERILATED_BIN) && \
 		 obj_dir/$(VERILATED_BIN))
+
+uhdm/verilator/coverage: uhdm/verilator/build surelog/ibex-current
+	mkdir -p build
+	-(cd build && \
+		../image/bin/verilator --uhdm-ast --cc ./top.uhdm \
+			--uhdm-cov uhdm.cov \
+			--xml-only)
+	python3 gen_coverage_report.py --verilator-uhdm build/uhdm.cov \
+		--output-file build/coverage.out
 
 uhdm/yosys/test-ast: yosys/yosys surelog/parse
 	mkdir -p build
