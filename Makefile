@@ -132,6 +132,11 @@ uhdm/yosys/verilate-ast: uhdm/yosys/test-ast uhdm/verilator/build
 		 make -j -C obj_dir -f $(TOP_MAKEFILE) $(VERILATED_BIN) && \
 		 obj_dir/$(VERILATED_BIN))
 
+uhdm/yosys/coverage: yosys/yosys surelog/ibex-current
+	mkdir -p build
+	-(cd build && \
+		../yosys/yosys -p "read_uhdm -report ./coverage ./top.uhdm")
+
 uhdm/vcddiff: vcddiff/vcddiff
 	$(MAKE) uhdm/verilator/test-ast
 	mv build/dump.vcd build/dump_verilator.vcd
