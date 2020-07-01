@@ -164,4 +164,8 @@ jobs:
 
     - <<: *test_body
       env:
+        - TEST_CASE=tests/UnitForLoop TARGET=uhdm/verilator/test-ast
+
+    - <<: *test_body
+      env:
         - TEST_CASE=tests/onenet TARGET=uhdm/verilator/coverage
