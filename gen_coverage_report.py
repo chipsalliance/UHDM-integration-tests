@@ -33,5 +33,9 @@ with open(args.output_file, 'w') as outfile:
     outfile.write("Visited: " + str(len(visited_by_frontend)) + '\n')
     outfile.write("Overall coverage: " + str(len(visited_by_frontend)/len(present_in_uhdm)*100) + "%\n")
     outfile.write("\nMissing node count per type:\n")
-    for node in sorted(unhandled_node_frequency, key=unhandled_node_frequency.get, reverse=True):
-        outfile.write("  Type: " + str(node) + "\tCount: " + str(unhandled_node_frequency[node]) + '\n')
+    types = set()
+    for node in not_visited:
+        node_type = node.split(':')[-1][:-1]
+        types.add(node_type)
+    for t in types:
+        outfile.write("  Type: " + str(t) + "\tCount: " + str(unhandled_node_frequency[t]) + '\n')
