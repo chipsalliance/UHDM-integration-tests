@@ -134,8 +134,9 @@ uhdm/yosys/verilate-ast: uhdm/yosys/test-ast uhdm/verilator/build
 
 uhdm/yosys/coverage: yosys/yosys surelog/ibex-current
 	mkdir -p build
-	-(cd build && \
-		../yosys/yosys -p "read_uhdm -report ./coverage ./top.uhdm")
+	-(cd Surelog/third_party/tests/Earlgrey_0_1/sim-icarus && \
+		../../../../../yosys/yosys -p \
+		"read_uhdm -report ../../../../../build/coverage ../../../../../build/top.uhdm")
 
 uhdm/vcddiff: vcddiff/vcddiff
 	$(MAKE) uhdm/verilator/test-ast
