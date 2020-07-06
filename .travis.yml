@@ -168,4 +168,8 @@ jobs:
 
     - <<: *test_body
       env:
+        - TEST_CASE=tests/GenerateAssigns TARGET=uhdm/verilator/test-ast
+
+    - <<: *test_body
+      env:
         - TEST_CASE=tests/onenet TARGET=uhdm/verilator/coverage
