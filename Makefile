@@ -41,10 +41,8 @@ vcddiff/vcddiff:
 	$(MAKE) -C vcddiff
 
 # ------------ Surelog ------------
-surelog: Surelog/build/dist/Release/hellosureworld
-
-Surelog/build/dist/Release/hellosureworld:
-	(cd Surelog && make PREFIX=$(PWD)/image && make install)
+surelog:
+	(cd Surelog && make PREFIX=$(PWD)/image install)
 
 surelog/regression: surelog
 	$(MAKE) -C Surelog regression
@@ -52,7 +50,7 @@ surelog/regression: surelog
 surelog/parse: surelog
 	mkdir -p build
 	(cd build && \
-		../Surelog/build/bin/hellosureworld -parse -sverilog -d coveruhdm ../$(TOP_FILE))
+		../image/bin/surelog -parse -sverilog -d coveruhdm ../$(TOP_FILE))
 	cp build/slpp_all/surelog.uhdm build/top.uhdm
 
 surelog/ibex-current: surelog
