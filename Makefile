@@ -42,7 +42,7 @@ vcddiff/vcddiff:
 
 # ------------ Surelog ------------
 surelog:
-	(cd Surelog && make PREFIX=$(PWD)/image install)
+	(cd Surelog && make PREFIX=$(PWD)/image release install)
 
 surelog/regression: surelog
 	$(MAKE) -C Surelog regression
@@ -97,6 +97,7 @@ uhdm/verilator/ast-xml: uhdm/verilator/build surelog/parse
 	(cd build && \
 		../image/bin/verilator --uhdm-ast --cc ./top.uhdm \
 			--top-module $(TOP_MODULE) \
+			--dump-uhdm \
 			--exe ../$(MAIN_FILE) --xml-only --debug)
 
 uhdm/verilator/test-ast: uhdm/verilator/build surelog/parse
@@ -104,6 +105,7 @@ uhdm/verilator/test-ast: uhdm/verilator/build surelog/parse
 	(cd build && \
 		../image/bin/verilator --uhdm-ast --cc ./top.uhdm \
 			--top-module $(TOP_MODULE) \
+			--dump-uhdm \
 			--exe ../$(MAIN_FILE) --trace && \
 		 make -j -C obj_dir -f $(TOP_MAKEFILE) $(VERILATED_BIN) && \
 		 obj_dir/$(VERILATED_BIN))
