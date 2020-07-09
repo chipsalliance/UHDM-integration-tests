@@ -41,10 +41,8 @@ vcddiff/vcddiff:
 	$(MAKE) -C vcddiff
 
 # ------------ Surelog ------------
-surelog: Surelog/build/dist/Release/hellosureworld
-
-Surelog/build/dist/Release/hellosureworld:
-	(cd Surelog && make PREFIX=$(PWD)/image && make install)
+surelog:
+	(cd Surelog && make PREFIX=$(PWD)/image release install)
 
 surelog/regression: surelog
 	$(MAKE) -C Surelog regression
@@ -52,7 +50,7 @@ surelog/regression: surelog
 surelog/parse: surelog
 	mkdir -p build
 	(cd build && \
-		../Surelog/build/bin/hellosureworld -parse -sverilog -d coveruhdm ../$(TOP_FILE))
+		../image/bin/surelog -parse -sverilog -d coveruhdm ../$(TOP_FILE))
 	cp build/slpp_all/surelog.uhdm build/top.uhdm
 
 surelog/ibex-current: surelog
@@ -99,6 +97,7 @@ uhdm/verilator/ast-xml: uhdm/verilator/build surelog/parse
 	(cd build && \
 		../image/bin/verilator --uhdm-ast --cc ./top.uhdm \
 			--top-module $(TOP_MODULE) \
+			--dump-uhdm \
 			--exe ../$(MAIN_FILE) --xml-only --debug)
 
 uhdm/verilator/test-ast: uhdm/verilator/build surelog/parse
@@ -106,6 +105,7 @@ uhdm/verilator/test-ast: uhdm/verilator/build surelog/parse
 	(cd build && \
 		../image/bin/verilator --uhdm-ast --cc ./top.uhdm \
 			--top-module $(TOP_MODULE) \
+			--dump-uhdm \
 			--exe ../$(MAIN_FILE) --trace && \
 		 make -j -C obj_dir -f $(TOP_MAKEFILE) $(VERILATED_BIN) && \
 		 obj_dir/$(VERILATED_BIN))
