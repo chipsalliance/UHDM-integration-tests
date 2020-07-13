@@ -110,7 +110,15 @@ jobs:
 
     - <<: *test_body
       env:
+        - TEST_CASE=tests/OneConcat TARGET=uhdm/yosys/test-ast
+
+    - <<: *test_body
+      env:
         - TEST_CASE=tests/OneReplicate TARGET=uhdm/verilator/test-ast
+
+    - <<: *test_body
+      env:
+        - TEST_CASE=tests/OneReplicate TARGET=uhdm/yosys/test-ast
 
     - <<: *test_body
       env:
@@ -118,7 +126,15 @@ jobs:
 
     - <<: *test_body
       env:
+        - TEST_CASE=tests/OneAlwaysComb TARGET=uhdm/yosys/test-ast
+
+    - <<: *test_body
+      env:
         - TEST_CASE=tests/OneShift TARGET=uhdm/verilator/test-ast
+
+    - <<: *test_body
+      env:
+        - TEST_CASE=tests/OneShift TARGET=uhdm/yosys/test-ast
 
     - <<: *test_body
       env:
@@ -126,7 +142,15 @@ jobs:
 
     - <<: *test_body
       env:
+        - TEST_CASE=tests/OneArithShift TARGET=uhdm/yosys/test-ast
+
+    - <<: *test_body
+      env:
         - TEST_CASE=tests/OneSysFunc TARGET=uhdm/verilator/test-ast
+
+    - <<: *test_body
+      env:
+        - TEST_CASE=tests/OneSysFunc TARGET=uhdm/yosys/test-ast
 
     - <<: *test_body
       env:
@@ -134,7 +158,15 @@ jobs:
 
     - <<: *test_body
       env:
+        - TEST_CASE=tests/OneInside TARGET=uhdm/yosys/test-ast
+
+    - <<: *test_body
+      env:
         - TEST_CASE=tests/OneCast TARGET=uhdm/verilator/test-ast
+
+    - <<: *test_body
+      env:
+        - TEST_CASE=tests/OneCast TARGET=uhdm/yosys/test-ast
 
     - <<: *test_body
       env:
@@ -142,7 +174,15 @@ jobs:
 
     - <<: *test_body
       env:
+        - TEST_CASE=tests/OnePackage TARGET=uhdm/yosys/test-ast
+
+    - <<: *test_body
+      env:
         - TEST_CASE=tests/fsm_single_always TARGET=uhdm/verilator/test-ast
+
+    - <<: *test_body
+      env:
+        - TEST_CASE=tests/fsm_single_always TARGET=uhdm/yosys/test-ast
 
     - <<: *test_body
       env:
@@ -150,7 +190,15 @@ jobs:
 
     - <<: *test_body
       env:
+        - TEST_CASE=tests/fsm_using_function TARGET=uhdm/yosys/test-ast
+
+    - <<: *test_body
+      env:
         - TEST_CASE=tests/fsm_using_always TARGET=uhdm/verilator/test-ast
+
+    - <<: *test_body
+      env:
+        - TEST_CASE=tests/fsm_using_always TARGET=uhdm/yosys/test-ast
 
     - <<: *test_body
       env:
@@ -160,7 +208,15 @@ jobs:
 
     - <<: *test_body
       env:
+        - TEST_CASE=tests/FSMBsp13 TARGET=uhdm/yosys/test-ast
+
+    - <<: *test_body
+      env:
         - TEST_CASE=tests/AluOps TARGET=uhdm/verilator/test-ast
+
+    - <<: *test_body
+      env:
+        - TEST_CASE=tests/AluOps TARGET=uhdm/yosys/test-ast
 
     - <<: *test_body
       env:
@@ -168,7 +224,15 @@ jobs:
 
     - <<: *test_body
       env:
+        - TEST_CASE=tests/UnitForLoop TARGET=uhdm/yosys/test-ast
+
+    - <<: *test_body
+      env:
         - TEST_CASE=tests/GenerateAssigns TARGET=uhdm/verilator/test-ast
+
+    - <<: *test_body
+      env:
+        - TEST_CASE=tests/GenerateAssigns TARGET=uhdm/yosys/test-ast
 
     - <<: *test_body
       env:
