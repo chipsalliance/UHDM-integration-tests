@@ -1,4 +1,4 @@
-TESTS = $(shell find tests -name *.sv | cut -d\/ -f2 | sort)
+TESTS = $(shell find tests -name *.sv | cut -d\/ -f2 | sort -u)
 TEST ?= tests/onenet
 
 include $(TEST)/Makefile.in
@@ -60,7 +60,7 @@ surelog/ibex-current: surelog
 	)
 	cp Surelog/third_party/tests/Earlgrey_0_1/sim-icarus/slpp_all/surelog.uhdm build/top.uhdm
 
-# ------------ UHDM ------------ 
+# ------------ UHDM ------------
 
 uhdm/clean:
 	rm -rf obj_dir slpp_all build
