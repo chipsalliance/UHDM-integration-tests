@@ -1,4 +1,4 @@
-read_uhdm top.uhdm
+read_uhdm -debug top.uhdm
 write_json
 prep -top \work_fsm_using_function
 write_verilog
