@@ -10,7 +10,6 @@ args = parser.parse_args()
 
 present_in_uhdm = set()
 visited_by_frontend = set()
-unhandled_node_frequency = dict()
 
 with open(args.verilator_report, 'r') as f:
     target = present_in_uhdm
@@ -21,9 +20,6 @@ with open(args.verilator_report, 'r') as f:
             target = visited_by_frontend
         else:
             target.add(line)
-            # Update occurrences count for node type, remove endline from name
-            node_type = line.split(':')[-1][:-1]
-            unhandled_node_frequency[node_type] = unhandled_node_frequency.get(node_type, 0) + 1
 
 with open(args.output_file, 'w') as outfile:
     not_visited = present_in_uhdm - visited_by_frontend
@@ -34,8 +30,10 @@ with open(args.output_file, 'w') as outfile:
     outfile.write("Overall coverage: " + str(len(visited_by_frontend)/len(present_in_uhdm)*100) + "%\n")
     outfile.write("\nMissing node count per type:\n")
     types = set()
+    missed_nodes = dict()
     for node in not_visited:
         node_type = node.split(':')[-1][:-1]
         types.add(node_type)
+        missed_nodes[node_type] = missed_nodes.get(node_type, 0) + 1
     for t in types:
-        outfile.write("  Type: " + str(t) + "\tCount: " + str(unhandled_node_frequency[t]) + '\n')
+        outfile.write("  Type: " + str(t) + "\tCount: " + str(missed_nodes[t]) + '\n')
