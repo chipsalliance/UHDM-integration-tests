@@ -42,7 +42,7 @@ vcddiff/vcddiff:
 
 # ------------ Surelog ------------
 surelog:
-	(cd Surelog && make PREFIX=$(PWD)/image release install)
+	make -C Surelog PREFIX=$(PWD)/image release install
 
 surelog/regression: surelog
 	$(MAKE) -C Surelog regression
