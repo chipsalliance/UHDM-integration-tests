@@ -73,9 +73,11 @@ uhdm/cleanall: uhdm/clean
 	$(MAKE) -C yosys clean
 	$(MAKE) -C vcddiff clean
 
-uhdm/build:
-	mkdir -p UHDM/build
+uhdm/patch: surelog # Needed to prevent overwriting the patched UHDM libs by Surelog
 	-(cd UHDM && git apply ../UHDM.patch)
+
+uhdm/build: uhdm/patch
+	mkdir -p UHDM/build
 	(cd UHDM/build && cmake \
 		-DCMAKE_INSTALL_PREFIX=$(PWD)/image \
 		-D_GLIBCXX_DEBUG=1 \
