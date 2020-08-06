@@ -12,7 +12,7 @@ verilator/configure: verilator/configure.ac
 verilator/Makefile: verilator/configure
 	(cd verilator && ./configure --prefix=$(PWD)/image)
 
-verilator/bin/verilator_bin: verilator/Makefile
+verilator/bin/verilator_bin: verilator/Makefile uhdm/build
 	$(MAKE) -C verilator
 
 image/bin/verilator: verilator/bin/verilator_bin
