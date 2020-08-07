@@ -12,7 +12,7 @@ verilator/configure: verilator/configure.ac
 verilator/Makefile: verilator/configure
 	(cd verilator && ./configure --prefix=$(PWD)/image)
 
-verilator/bin/verilator_bin: verilator/Makefile
+verilator/bin/verilator_bin: verilator/Makefile uhdm/build
 	$(MAKE) -C verilator
 
 image/bin/verilator: verilator/bin/verilator_bin
@@ -42,7 +42,7 @@ vcddiff/vcddiff:
 
 # ------------ Surelog ------------
 surelog:
-	(cd Surelog && make PREFIX=$(PWD)/image release install)
+	make -C Surelog PREFIX=$(PWD)/image release install
 
 surelog/regression: surelog
 	$(MAKE) -C Surelog regression
@@ -73,9 +73,11 @@ uhdm/cleanall: uhdm/clean
 	$(MAKE) -C yosys clean
 	$(MAKE) -C vcddiff clean
 
-uhdm/build:
-	mkdir -p UHDM/build
+uhdm/patch: surelog # Needed to prevent overwriting the patched UHDM libs by Surelog
 	-(cd UHDM && git apply ../UHDM.patch)
+
+uhdm/build: uhdm/patch
+	mkdir -p UHDM/build
 	(cd UHDM/build && cmake \
 		-DCMAKE_INSTALL_PREFIX=$(PWD)/image \
 		-D_GLIBCXX_DEBUG=1 \
