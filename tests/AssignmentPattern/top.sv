@@ -1,4 +1,4 @@
-module top;
+module top(output [3:0] b);
     typedef struct packed {
         logic first;
         logic second;

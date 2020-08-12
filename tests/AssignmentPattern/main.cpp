@@ -22,20 +22,13 @@ int main (int argc, char **argv) {
   top->trace(tfp, 99);
   tfp->open("dump.vcd");
 
-  top->a = 0;
   while (!Verilated::gotFinish() && (main_time < 100)) {
     top->eval();
     tfp->dump(main_time);
 
     main_time += 1;
 
-    if (main_time == 12)
-      top->a = 1;
-
-    if (main_time == 66)
-      top->a = 0;
     std::cout << "time: " << main_time
-      << " a: " << (top->a?1:0)
       << " b: " << (top->b?1:0)
       << std::endl;
   }
