@@ -282,6 +282,7 @@ jobs:
       env:
         - TEST_CASE=tests/VarSelect TARGET=uhdm/yosys/test-ast
 
-    - <<: *test_body
-      env:
-        - TEST_CASE=tests/onenet TARGET=uhdm/verilator/coverage
+    # This exceeds Travis log size limit
+    #- <<: *test_body
+    #  env:
+    #    - TEST_CASE=tests/onenet TARGET=uhdm/verilator/coverage
