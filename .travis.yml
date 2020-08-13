@@ -244,7 +244,15 @@ jobs:
 
     - <<: *test_body
       env:
+        - TEST_CASE=tests/AssignmentPattern TARGET=uhdm/verilator/test-ast
+
+    - <<: *test_body
+      env:
         - TEST_CASE=tests/AssignmentPattern TARGET=uhdm/yosys/test-ast
+
+    - <<: *test_body
+      env:
+        - TEST_CASE=tests/MultipleCells TARGET=uhdm/verilator/test-ast
 
     - <<: *test_body
       env:
@@ -252,11 +260,23 @@ jobs:
 
     - <<: *test_body
       env:
+        - TEST_CASE=tests/IndexedPartSelect TARGET=uhdm/verilator/test-ast
+
+    - <<: *test_body
+      env:
         - TEST_CASE=tests/IndexedPartSelect TARGET=uhdm/yosys/test-ast
 
     - <<: *test_body
       env:
+        - TEST_CASE=tests/PartSelect TARGET=uhdm/verilator/test-ast
+
+    - <<: *test_body
+      env:
         - TEST_CASE=tests/PartSelect TARGET=uhdm/yosys/test-ast
+
+    - <<: *test_body
+      env:
+        - TEST_CASE=tests/VarSelect TARGET=uhdm/verilator/test-ast
 
     - <<: *test_body
       env:
