@@ -60,7 +60,22 @@ surelog/ibex-current: surelog
 	)
 	cp Surelog/third_party/tests/Earlgrey_0_1/sim-icarus/slpp_all/surelog.uhdm build/top.uhdm
 
-# ------------ UHDM ------------
+surelog/ibex-verilator: surelog
+	mkdir -p build
+	-(cd Surelog/third_party/tests/Earlgrey_Verilator_0_1/sim-verilator && \
+		../../../../../image/bin/surelog -f Earlgrey_Verilator_0_1.sl \
+	)
+	cp Surelog/third_party/tests/Earlgrey_Verilator_0_1/sim-verilator/slpp_all/surelog.uhdm build/top.uhdm
+
+surelog/ibex-simplesystem: surelog
+	mkdir -p build
+	(cd tests/ibex/ibex/build/lowrisc_ibex_ibex_simple_system_0/sim-verilator \
+		../../../../../../image/bin/surelog +define+VERILATOR \
+			-f lowrisc_ibex_ibex_simple_system_0.vc \
+			-parse -d coveruhdm -verbose \
+	)
+	cp tests/ibex/ibex/build/lowrisc_ibex_ibex_simple_system_0/sim-verilator/slpp_all/surelog.uhdm build/top.uhdm
+# ------------ UHDM ------------ 
 
 uhdm/clean:
 	rm -rf obj_dir slpp_all build
@@ -112,7 +127,7 @@ uhdm/verilator/test-ast: uhdm/verilator/build surelog/parse
 		 make -j -C obj_dir -f $(TOP_MAKEFILE) $(VERILATED_BIN) && \
 		 obj_dir/$(VERILATED_BIN))
 
-uhdm/verilator/coverage: uhdm/verilator/build surelog/ibex-current
+uhdm/verilator/coverage: uhdm/verilator/build
 	mkdir -p build
 	-(cd build && \
 		../image/bin/verilator --uhdm-ast --cc ./top.uhdm \
