@@ -19,7 +19,7 @@ image/bin/verilator: verilator/bin/verilator_bin
 	$(MAKE) -C verilator install
 
 yosys/yosys: yosys/Makefile uhdm/build
-	$(MAKE) -C yosys yosys
+	$(MAKE) -C yosys
 
 prep: image/bin/verilator yosys/yosys
 

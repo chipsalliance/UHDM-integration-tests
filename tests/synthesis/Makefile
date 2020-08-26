@@ -99,10 +99,7 @@ $(PWD)/../../UHDM/CMakeLists.txt:
 $(PWD)/../../yosys/Makefile:
 	(cd ../../ && git submodule update --init --recursive yosys && touch $@)
 
-.yosys.patch: $(PWD)/../../yosys/Makefile
-	(cd ../../yosys && git apply < $(PWD)/yosys.patch) && touch $@
-
-yosys/yosys: .yosys.patch
+yosys/yosys:
 	$(MAKE) -C $(PWD)/../../yosys -j`nproc`
 
 .yosys: yosys/yosys
