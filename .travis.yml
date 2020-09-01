@@ -20,7 +20,7 @@ jobs:
               key_url: 'https://apt.kitware.com/keys/kitware-archive-latest.asc'
 
           packages:
-            - g++-7
+            - g++-9
             - cmake
             # UHDM dependencies
             - build-essential
@@ -35,7 +35,7 @@ jobs:
             - python3-dev
 
       before_install:
-        - eval "CC=gcc-7 && CXX=g++-7"
+        - eval "CC=gcc-9 && CXX=g++-9"
         - git submodule update --init --recursive
 
       install:
