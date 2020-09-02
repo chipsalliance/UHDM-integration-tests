@@ -1,10 +1,12 @@
-TESTS = $(shell find tests -name *.sv | cut -d\/ -f2 | sort -u)
+TESTS = $(shell find tests -maxdepth 2 -name Makefile.in | cut -d\/ -f2 | sort -u)
 TEST ?= tests/onenet
 
 include $(TEST)/Makefile.in
 
-all:
-	@echo "Available tests: $(TESTS)"
+list:
+	@echo "Available tests:"
+	@for TEST in $(TESTS); do echo "- tests/$$TEST"; done
+	@echo "Please specify the TEST variable."
 
 verilator/configure: verilator/configure.ac
 	(cd verilator && autoconf)
