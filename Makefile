@@ -196,3 +196,60 @@ uhdm/vcddiff: vcddiff/vcddiff
 	$(MAKE) uhdm/yosys/verilate-ast
 	mv build/dump.vcd build/dump_yosys.vcd
 	vcddiff/vcddiff build/dump_yosys.vcd build/dump_verilator.vcd
+
+
+#############################
+####      SYNTHESIS      ####
+#############################
+
+uhdm/yosys/synth-ibex: yosys/yosys surelog/parse-ibex
+	mkdir -p build
+	-(cd Surelog/third_party/tests/Earlgrey_0_1/sim-icarus && \
+		../../../../../yosys/yosys -p \
+		"read_uhdm -debug -report ../../../../../build/coverage ../../../../../build/top.uhdm" \
+		-p 'synth_xilinx -top \work_ibex_core -iopad -family xc7' \
+		-p 'write_edif -top \work_ibex_core -pvector bra ../../../../../build/top.edif' )
+
+IBEX_DIR := ../tests/ibex/ibex/rtl
+EARLGREY_DIR := ../Surelog/third_party/tests/Earlgrey_0_1/src
+SYNTH_FILE ?= ibex_alu.sv
+SYNTH_FILES := $(IBEX_DIR)/$(SYNTH_FILE)
+ifeq ($(SYNTH_FILE),ibex_alu.sv)
+	SYNTH_FILES := $(SYNTH_FILES) $(IBEX_DIR)/ibex_pkg.sv
+else ifeq ($(SYNTH_FILE),ibex_core.sv)
+	SYNTH_FILES := $(SYNTH_FILES) $(IBEX_DIR)/ibex_pkg.sv
+else ifeq ($(SYNTH_FILE),ibex_core_tracing.sv)
+	SYNTH_FILES := $(SYNTH_FILES)  $(IBEX_DIR)/ibex_pkg.sv $(IBEX_DIR)/ibex_tracer.sv
+else ifeq ($(SYNTH_FILE),ibex_cs_registers.sv)
+	SYNTH_FILES := $(SYNTH_FILES)  $(IBEX_DIR)/ibex_pkg.sv $(IBEX_DIR)/ibex_counter.sv
+else ifeq ($(SYNTH_FILE),ibex_decoder.sv)
+	SYNTH_FILES := $(SYNTH_FILES)  $(IBEX_DIR)/ibex_pkg.sv
+else ifeq ($(SYNTH_FILE),ibex_dummy_instr.sv)
+	SYNTH_FILES := $(SYNTH_FILES) $(EARLGREY_DIR)/lowrisc_prim_all_0.1/rtl/prim_lfsr.sv
+else ifeq ($(SYNTH_FILE),ibex_ex_block.sv)
+	SYNTH_FILES := $(SYNTH_FILES) $(IBEX_DIR)/ibex_pkg.sv $(IBEX_DIR)/ibex_multdiv_fast.sv $(IBEX_DIR)/ibex_alu.sv
+else ifeq ($(SYNTH_FILE),ibex_icache.sv)
+	SYNTH_FILES := $(SYNTH_FILES) $(EARLGREY_DIR)/lowrisc_prim_abstract_ram_1p_0/prim_ram_1p.sv $(EARLGREY_DIR)/lowrisc_prim_abstract_prim_pkg_0.1/prim_pkg.sv
+else ifeq ($(SYNTH_FILE),ibex_id_stage.sv)
+	SYNTH_FILES := $(SYNTH_FILES) $(IBEX_DIR)/ibex_pkg.sv
+else ifeq ($(SYNTH_FILE),ibex_if_stage.sv)
+	SYNTH_FILES := $(SYNTH_FILES) $(IBEX_DIR)/ibex_compressed_decoder.sv $(IBEX_DIR)/ibex_fetch_fifo.sv $(IBEX_DIR)/ibex_prefetch_buffer.sv
+else ifeq ($(SYNTH_FILE),ibex_multdiv_fast.sv)
+	SYNTH_FILES := $(SYNTH_FILES) $(IBEX_DIR)/ibex_pkg.sv
+else ifeq ($(SYNTH_FILE),ibex_prefetch_buffer.sv)
+	SYNTH_FILES := $(SYNTH_FILES) $(IBEX_DIR)/ibex_fetch_fifo.sv
+endif
+
+surelog/parse-$(SYNTH_FILE): surelog
+	mkdir -p build
+	(cd build && \
+		../image/bin/surelog -parse -sverilog \
+			-Itests/ibex/ibex/rtl \
+			$(SYNTH_FILES))
+	cp build/slpp_all/surelog.uhdm build/top.uhdm
+
+uhdm/yosys/test-synth: surelog/parse-$(SYNTH_FILE) yosys/yosys
+	yosys/yosys \
+		-p 'read_uhdm -debug build/top.uhdm' \
+		-p 'synth_xilinx -iopad -family xc7' \
+		-p 'write_edif -pvector bra build/top.edif'
