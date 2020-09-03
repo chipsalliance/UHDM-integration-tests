@@ -55,7 +55,7 @@ surelog/parse: surelog
 		../image/bin/surelog -parse -sverilog -d coveruhdm ../$(TOP_FILE))
 	cp build/slpp_all/surelog.uhdm build/top.uhdm
 
-surelog/ibex-current: surelog
+surelog/parse-earlgrey: surelog
 	mkdir -p build
 	(cd Surelog/third_party/tests/Earlgrey_0_1/sim-icarus && \
 		../../../../../image/bin/surelog -f Earlgrey_0_1.sl \
@@ -151,7 +151,7 @@ uhdm/yosys/verilate-ast: uhdm/yosys/test-ast uhdm/verilator/build
 		 make -j -C obj_dir -f $(TOP_MAKEFILE) $(VERILATED_BIN) && \
 		 obj_dir/$(VERILATED_BIN))
 
-uhdm/yosys/coverage: yosys/yosys surelog/ibex-current
+uhdm/yosys/coverage: yosys/yosys surelog/parse-earlgrey
 	mkdir -p build
 	-(cd Surelog/third_party/tests/Earlgrey_0_1/sim-icarus && \
 		../../../../../yosys/yosys -p \
