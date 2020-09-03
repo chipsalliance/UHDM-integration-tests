@@ -55,6 +55,38 @@ surelog/parse: surelog
 		../image/bin/surelog -parse -sverilog -d coveruhdm ../$(TOP_FILE))
 	cp build/slpp_all/surelog.uhdm build/top.uhdm
 
+surelog/parse-ibex: surelog
+	mkdir -p build
+	(cd Surelog/third_party/tests/Earlgrey_0_1/sim-icarus && \
+		../../../../../image/bin/surelog -parse -sverilog \
+			-I../src/lowrisc_prim_assert_0.1/rtl \
+			-I../src/lowrisc_prim_util_0.1/rtl \
+			-I../src/lowrisc_prim_util_memload_0/rtl \
+			../src/lowrisc_ibex_ibex_pkg_0.1/rtl/ibex_pkg.sv \
+			../src/lowrisc_prim_generic_clock_gating_0/rtl/prim_generic_clock_gating.sv \
+			../src/lowrisc_prim_abstract_clock_gating_0/prim_clock_gating.sv \
+			../src/lowrisc_ibex_ibex_core_0.1/rtl/ibex_alu.sv \
+			../src/lowrisc_ibex_ibex_core_0.1/rtl/ibex_compressed_decoder.sv \
+			../src/lowrisc_ibex_ibex_core_0.1/rtl/ibex_controller.sv \
+			../src/lowrisc_ibex_ibex_core_0.1/rtl/ibex_cs_registers.sv \
+			../src/lowrisc_ibex_ibex_core_0.1/rtl/ibex_counter.sv \
+			../src/lowrisc_ibex_ibex_core_0.1/rtl/ibex_decoder.sv \
+			../src/lowrisc_ibex_ibex_core_0.1/rtl/ibex_ex_block.sv \
+			../src/lowrisc_ibex_ibex_core_0.1/rtl/ibex_fetch_fifo.sv \
+			../src/lowrisc_ibex_ibex_core_0.1/rtl/ibex_id_stage.sv \
+			../src/lowrisc_ibex_ibex_core_0.1/rtl/ibex_if_stage.sv \
+			../src/lowrisc_ibex_ibex_core_0.1/rtl/ibex_load_store_unit.sv \
+			../src/lowrisc_ibex_ibex_core_0.1/rtl/ibex_multdiv_fast.sv \
+			../src/lowrisc_ibex_ibex_core_0.1/rtl/ibex_multdiv_slow.sv \
+			../src/lowrisc_ibex_ibex_core_0.1/rtl/ibex_prefetch_buffer.sv \
+			../src/lowrisc_ibex_ibex_core_0.1/rtl/ibex_pmp.sv \
+			../src/lowrisc_ibex_ibex_core_0.1/rtl/ibex_wb_stage.sv \
+			../src/lowrisc_ibex_ibex_core_0.1/rtl/ibex_dummy_instr.sv \
+			../src/lowrisc_ibex_ibex_core_0.1/rtl/ibex_register_file_ff.sv \
+			../src/lowrisc_ibex_ibex_core_0.1/rtl/ibex_core.sv \
+	)
+	cp Surelog/third_party/tests/Earlgrey_0_1/sim-icarus/slpp_all/surelog.uhdm build/top.uhdm
+
 surelog/parse-earlgrey: surelog
 	mkdir -p build
 	(cd Surelog/third_party/tests/Earlgrey_0_1/sim-icarus && \
