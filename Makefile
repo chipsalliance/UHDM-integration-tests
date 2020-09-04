@@ -255,3 +255,37 @@ uhdm/yosys/test-synth: surelog/parse-synth yosys/yosys
 		-p 'read_uhdm -debug build/top.uhdm' \
 		-p 'synth_xilinx -iopad -family xc7' \
 		-p 'write_edif -pvector bra build/top.edif'
+
+#############################
+#### SIMULATION  (YOSYS) ####
+#############################
+
+IBEX_TOP_DIR := ../tests/ibex/top
+SIM_FILE ?= ibex_alu.sv
+SIM_FILES := $(IBEX_DIR)/$(SIM_FILE)
+ifeq ($(SIM_FILE),ibex_alu.sv)
+	SIM_FILES := $(SIM_FILES) $(IBEX_TOP_DIR)/ibex_alu_top.sv $(IBEX_DIR)/ibex_pkg.sv
+endif
+
+surelog/parse-sim: surelog
+	mkdir -p build
+	(cd build && \
+		../image/bin/surelog -parse -sverilog \
+			-I../tests/ibex/ibex/rtl \
+			$(SIM_FILES) \
+	)
+	cp build/slpp_all/surelog.uhdm build/top.uhdm
+
+surelog/parse-sim: surelog
+	mkdir -p build
+	(cd build && \
+		../image/bin/surelog -parse -sverilog \
+			-I../tests/ibex/ibex/rtl \
+			$(SIM_FILES))
+	cp build/slpp_all/surelog.uhdm build/top.uhdm
+
+uhdm/yosys/test-sim: surelog/parse-sim yosys/yosys
+	yosys/yosys \
+		-p 'read_uhdm -debug build/top.uhdm' \
+		-p 'prep -auto-top' \
+		-p 'sim -clock clk -rstlen 10 -vcd dump.vcd'
