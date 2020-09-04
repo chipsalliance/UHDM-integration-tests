@@ -1,10 +1,12 @@
-TESTS = $(shell find tests -name *.sv | cut -d\/ -f2 | sort -u)
+TESTS = $(shell find tests -maxdepth 2 -name Makefile.in | cut -d\/ -f2 | sort -u)
 TEST ?= tests/onenet
 
 include $(TEST)/Makefile.in
 
-all:
-	@echo "Available tests: $(TESTS)"
+list:
+	@echo "Available tests:"
+	@for TEST in $(TESTS); do echo "- tests/$$TEST"; done
+	@echo "Please specify the TEST variable."
 
 verilator/configure: verilator/configure.ac
 	(cd verilator && autoconf)
@@ -53,7 +55,39 @@ surelog/parse: surelog
 		../image/bin/surelog -parse -sverilog -d coveruhdm ../$(TOP_FILE))
 	cp build/slpp_all/surelog.uhdm build/top.uhdm
 
-surelog/ibex-current: surelog
+surelog/parse-ibex: surelog
+	mkdir -p build
+	(cd Surelog/third_party/tests/Earlgrey_0_1/sim-icarus && \
+		../../../../../image/bin/surelog -parse -sverilog \
+			-I../src/lowrisc_prim_assert_0.1/rtl \
+			-I../src/lowrisc_prim_util_0.1/rtl \
+			-I../src/lowrisc_prim_util_memload_0/rtl \
+			../src/lowrisc_ibex_ibex_pkg_0.1/rtl/ibex_pkg.sv \
+			../src/lowrisc_prim_generic_clock_gating_0/rtl/prim_generic_clock_gating.sv \
+			../src/lowrisc_prim_abstract_clock_gating_0/prim_clock_gating.sv \
+			../src/lowrisc_ibex_ibex_core_0.1/rtl/ibex_alu.sv \
+			../src/lowrisc_ibex_ibex_core_0.1/rtl/ibex_compressed_decoder.sv \
+			../src/lowrisc_ibex_ibex_core_0.1/rtl/ibex_controller.sv \
+			../src/lowrisc_ibex_ibex_core_0.1/rtl/ibex_cs_registers.sv \
+			../src/lowrisc_ibex_ibex_core_0.1/rtl/ibex_counter.sv \
+			../src/lowrisc_ibex_ibex_core_0.1/rtl/ibex_decoder.sv \
+			../src/lowrisc_ibex_ibex_core_0.1/rtl/ibex_ex_block.sv \
+			../src/lowrisc_ibex_ibex_core_0.1/rtl/ibex_fetch_fifo.sv \
+			../src/lowrisc_ibex_ibex_core_0.1/rtl/ibex_id_stage.sv \
+			../src/lowrisc_ibex_ibex_core_0.1/rtl/ibex_if_stage.sv \
+			../src/lowrisc_ibex_ibex_core_0.1/rtl/ibex_load_store_unit.sv \
+			../src/lowrisc_ibex_ibex_core_0.1/rtl/ibex_multdiv_fast.sv \
+			../src/lowrisc_ibex_ibex_core_0.1/rtl/ibex_multdiv_slow.sv \
+			../src/lowrisc_ibex_ibex_core_0.1/rtl/ibex_prefetch_buffer.sv \
+			../src/lowrisc_ibex_ibex_core_0.1/rtl/ibex_pmp.sv \
+			../src/lowrisc_ibex_ibex_core_0.1/rtl/ibex_wb_stage.sv \
+			../src/lowrisc_ibex_ibex_core_0.1/rtl/ibex_dummy_instr.sv \
+			../src/lowrisc_ibex_ibex_core_0.1/rtl/ibex_register_file_ff.sv \
+			../src/lowrisc_ibex_ibex_core_0.1/rtl/ibex_core.sv \
+	)
+	cp Surelog/third_party/tests/Earlgrey_0_1/sim-icarus/slpp_all/surelog.uhdm build/top.uhdm
+
+surelog/parse-earlgrey: surelog
 	mkdir -p build
 	(cd Surelog/third_party/tests/Earlgrey_0_1/sim-icarus && \
 		../../../../../image/bin/surelog -f Earlgrey_0_1.sl \
@@ -149,7 +183,7 @@ uhdm/yosys/verilate-ast: uhdm/yosys/test-ast uhdm/verilator/build
 		 make -j -C obj_dir -f $(TOP_MAKEFILE) $(VERILATED_BIN) && \
 		 obj_dir/$(VERILATED_BIN))
 
-uhdm/yosys/coverage: yosys/yosys surelog/ibex-current
+uhdm/yosys/coverage: yosys/yosys surelog/parse-earlgrey
 	mkdir -p build
 	-(cd Surelog/third_party/tests/Earlgrey_0_1/sim-icarus && \
 		../../../../../yosys/yosys -p \
@@ -162,3 +196,96 @@ uhdm/vcddiff: vcddiff/vcddiff
 	$(MAKE) uhdm/yosys/verilate-ast
 	mv build/dump.vcd build/dump_yosys.vcd
 	vcddiff/vcddiff build/dump_yosys.vcd build/dump_verilator.vcd
+
+
+#############################
+####      SYNTHESIS      ####
+#############################
+
+uhdm/yosys/synth-ibex: yosys/yosys surelog/parse-ibex
+	mkdir -p build
+	-(cd Surelog/third_party/tests/Earlgrey_0_1/sim-icarus && \
+		../../../../../yosys/yosys -p \
+		"read_uhdm -debug -report ../../../../../build/coverage ../../../../../build/top.uhdm" \
+		-p 'synth_xilinx -top \work_ibex_core -iopad -family xc7' \
+		-p 'write_edif -top \work_ibex_core -pvector bra ../../../../../build/top.edif' )
+
+IBEX_DIR := ../tests/ibex/ibex/rtl
+EARLGREY_DIR := ../Surelog/third_party/tests/Earlgrey_0_1/src
+SYNTH_FILE ?= ibex_alu.sv
+SYNTH_FILES := $(IBEX_DIR)/$(SYNTH_FILE)
+ifeq ($(SYNTH_FILE),ibex_alu.sv)
+	SYNTH_FILES := $(SYNTH_FILES) $(IBEX_DIR)/ibex_pkg.sv
+else ifeq ($(SYNTH_FILE),ibex_controller.sv)
+	SYNTH_FILES := $(SYNTH_FILES)  $(IBEX_DIR)/ibex_pkg.sv
+else ifeq ($(SYNTH_FILE),ibex_core.sv)
+	SYNTH_FILES := $(SYNTH_FILES) $(IBEX_DIR)/ibex_pkg.sv
+else ifeq ($(SYNTH_FILE),ibex_core_tracing.sv)
+	SYNTH_FILES := $(SYNTH_FILES)  $(IBEX_DIR)/ibex_pkg.sv $(IBEX_DIR)/ibex_tracer.sv
+else ifeq ($(SYNTH_FILE),ibex_cs_registers.sv)
+	SYNTH_FILES := $(SYNTH_FILES)  $(IBEX_DIR)/ibex_pkg.sv $(IBEX_DIR)/ibex_counter.sv
+else ifeq ($(SYNTH_FILE),ibex_decoder.sv)
+	SYNTH_FILES := $(SYNTH_FILES)  $(IBEX_DIR)/ibex_pkg.sv
+else ifeq ($(SYNTH_FILE),ibex_dummy_instr.sv)
+	SYNTH_FILES := $(SYNTH_FILES) $(EARLGREY_DIR)/lowrisc_prim_all_0.1/rtl/prim_lfsr.sv
+else ifeq ($(SYNTH_FILE),ibex_ex_block.sv)
+	SYNTH_FILES := $(SYNTH_FILES) $(IBEX_DIR)/ibex_pkg.sv $(IBEX_DIR)/ibex_multdiv_fast.sv $(IBEX_DIR)/ibex_alu.sv
+else ifeq ($(SYNTH_FILE),ibex_icache.sv)
+	SYNTH_FILES := $(SYNTH_FILES) $(EARLGREY_DIR)/lowrisc_prim_abstract_ram_1p_0/prim_ram_1p.sv $(EARLGREY_DIR)/lowrisc_prim_abstract_prim_pkg_0.1/prim_pkg.sv
+else ifeq ($(SYNTH_FILE),ibex_id_stage.sv)
+	SYNTH_FILES := $(SYNTH_FILES) $(IBEX_DIR)/ibex_pkg.sv
+else ifeq ($(SYNTH_FILE),ibex_if_stage.sv)
+	SYNTH_FILES := $(SYNTH_FILES) $(IBEX_DIR)/ibex_compressed_decoder.sv $(IBEX_DIR)/ibex_fetch_fifo.sv $(IBEX_DIR)/ibex_prefetch_buffer.sv
+else ifeq ($(SYNTH_FILE),ibex_multdiv_fast.sv)
+	SYNTH_FILES := $(SYNTH_FILES) $(IBEX_DIR)/ibex_pkg.sv
+else ifeq ($(SYNTH_FILE),ibex_prefetch_buffer.sv)
+	SYNTH_FILES := $(SYNTH_FILES) $(IBEX_DIR)/ibex_fetch_fifo.sv
+endif
+
+surelog/parse-synth: surelog
+	mkdir -p build
+	(cd build && \
+		../image/bin/surelog -parse -sverilog \
+			-I../tests/ibex/ibex/rtl \
+			$(SYNTH_FILES))
+	cp build/slpp_all/surelog.uhdm build/top.uhdm
+
+uhdm/yosys/test-synth: surelog/parse-synth yosys/yosys
+	yosys/yosys \
+		-p 'read_uhdm -debug build/top.uhdm' \
+		-p 'synth_xilinx -iopad -family xc7' \
+		-p 'write_edif -pvector bra build/top.edif'
+
+#############################
+#### SIMULATION  (YOSYS) ####
+#############################
+
+IBEX_TOP_DIR := ../tests/ibex/top
+SIM_FILE ?= ibex_alu.sv
+SIM_FILES := $(IBEX_DIR)/$(SIM_FILE)
+ifeq ($(SIM_FILE),ibex_alu.sv)
+	SIM_FILES := $(SIM_FILES) $(IBEX_TOP_DIR)/ibex_alu_top.sv $(IBEX_DIR)/ibex_pkg.sv
+endif
+
+surelog/parse-sim: surelog
+	mkdir -p build
+	(cd build && \
+		../image/bin/surelog -parse -sverilog \
+			-I../tests/ibex/ibex/rtl \
+			$(SIM_FILES) \
+	)
+	cp build/slpp_all/surelog.uhdm build/top.uhdm
+
+surelog/parse-sim: surelog
+	mkdir -p build
+	(cd build && \
+		../image/bin/surelog -parse -sverilog \
+			-I../tests/ibex/ibex/rtl \
+			$(SIM_FILES))
+	cp build/slpp_all/surelog.uhdm build/top.uhdm
+
+uhdm/yosys/test-sim: surelog/parse-sim yosys/yosys
+	yosys/yosys \
+		-p 'read_uhdm -debug build/top.uhdm' \
+		-p 'prep -auto-top' \
+		-p 'sim -clock clk -rstlen 10 -vcd dump.vcd'
