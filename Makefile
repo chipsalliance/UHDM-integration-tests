@@ -216,6 +216,8 @@ SYNTH_FILE ?= ibex_alu.sv
 SYNTH_FILES := $(IBEX_DIR)/$(SYNTH_FILE)
 ifeq ($(SYNTH_FILE),ibex_alu.sv)
 	SYNTH_FILES := $(SYNTH_FILES) $(IBEX_DIR)/ibex_pkg.sv
+else ifeq ($(SYNTH_FILE),ibex_controller.sv)
+	SYNTH_FILES := $(SYNTH_FILES)  $(IBEX_DIR)/ibex_pkg.sv
 else ifeq ($(SYNTH_FILE),ibex_core.sv)
 	SYNTH_FILES := $(SYNTH_FILES) $(IBEX_DIR)/ibex_pkg.sv
 else ifeq ($(SYNTH_FILE),ibex_core_tracing.sv)
