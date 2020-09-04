@@ -242,15 +242,15 @@ else ifeq ($(SYNTH_FILE),ibex_prefetch_buffer.sv)
 	SYNTH_FILES := $(SYNTH_FILES) $(IBEX_DIR)/ibex_fetch_fifo.sv
 endif
 
-surelog/parse-$(SYNTH_FILE): surelog
+surelog/parse-synth: surelog
 	mkdir -p build
 	(cd build && \
 		../image/bin/surelog -parse -sverilog \
-			-Itests/ibex/ibex/rtl \
+			-I../tests/ibex/ibex/rtl \
 			$(SYNTH_FILES))
 	cp build/slpp_all/surelog.uhdm build/top.uhdm
 
-uhdm/yosys/test-synth: surelog/parse-$(SYNTH_FILE) yosys/yosys
+uhdm/yosys/test-synth: surelog/parse-synth yosys/yosys
 	yosys/yosys \
 		-p 'read_uhdm -debug build/top.uhdm' \
 		-p 'synth_xilinx -iopad -family xc7' \
