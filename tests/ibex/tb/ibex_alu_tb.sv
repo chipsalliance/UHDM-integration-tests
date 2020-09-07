@@ -1,4 +1,4 @@
-module ibex_alu_top (
+module ibex_alu_tb (
     input  logic        clk,
     output logic [31:0] adder_result,
     output logic [33:0] adder_result_ext,
