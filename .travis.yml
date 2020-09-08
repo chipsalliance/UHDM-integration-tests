@@ -1,9 +1,15 @@
 os: linux
 # Enable C++ support
 language: cpp
+# Enable ccache
+cache: ccache
 # Compiler selection
 compiler:
   - gcc
+
+env:
+  global:
+    - ENABLE_CCACHE=1
 
 jobs:
   fast_finish: true
