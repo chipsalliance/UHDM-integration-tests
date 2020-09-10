@@ -14,7 +14,20 @@ env:
 jobs:
   fast_finish: true
   include:
+    - stage: warm-up-cache
+      env:
+        - MODE=warm-up-cache-surelog
+      script:
+        - ./.github/travis/script.sh
+
+    - stage: warm-up-cache
+      env:
+        - MODE=warm-up-cache-yosys
+      script:
+        - ./.github/travis/script.sh
+
     - &test_body
+      stage: test
       env:
         - TEST_CASE=tests/onenet TARGET=uhdm/verilator/test-ast
       addons:

@@ -1,0 +1,22 @@
+diff --git a/CMakeLists.txt b/CMakeLists.txt
+index 6daf9b10..b2708417 100644
+--- a/CMakeLists.txt
++++ b/CMakeLists.txt
+@@ -79,6 +79,17 @@ if(NOT NO_TCMALLOC)
+   endif()
+ endif()
+ 
++if(DEFINED ENV{ENABLE_CCACHE})
++  if($ENV{ENABLE_CCACHE} EQUAL 1)
++    find_program(CCACHE_PROGRAM ccache)
++    if(CCACHE_PROGRAM)
++      set_property(GLOBAL PROPERTY RULE_LAUNCH_COMPILE "${CCACHE_PROGRAM}")
++    else()
++      message(FATAL_ERROR "ENABLE_CCACHE is set to 1, but ccache was not found on the system!")
++    endif()
++  endif()
++endif()
++
+ set(CMAKE_CXX_FLAGS
+     "${CMAKE_CXX_FLAGS} ${TCMALLOC_COMPILE_OPTIONS} ${MY_CXX_WARNING_FLAGS}")
+ 
