@@ -44,6 +44,7 @@ vcddiff/vcddiff:
 
 # ------------ Surelog ------------
 surelog:
+	-(cd Surelog/third_party/UHDM && git apply ../../../UHDM.patch)
 	make -C Surelog PREFIX=$(PWD)/image release install
 
 surelog/regression: surelog
@@ -122,10 +123,8 @@ uhdm/cleanall: uhdm/clean
 	$(MAKE) -C yosys clean
 	$(MAKE) -C vcddiff clean
 
-uhdm/patch: surelog # Needed to prevent overwriting the patched UHDM libs by Surelog
+uhdm/build:
 	-(cd UHDM && git apply ../UHDM.patch)
-
-uhdm/build: uhdm/patch
 	mkdir -p UHDM/build
 	(cd UHDM/build && cmake \
 		-DCMAKE_INSTALL_PREFIX=$(PWD)/image \
