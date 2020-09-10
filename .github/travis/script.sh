@@ -6,10 +6,6 @@ set -e
 # Default is to run tests.
 MODE=${MODE:-test}
 
-cd Surelog
-git apply ../Surelog.patch
-cd ..
-
 case $MODE in
     surelog-uhdm)
 	make -j $(nproc) surelog/regression
