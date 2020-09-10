@@ -22,6 +22,7 @@ image/bin/verilator: verilator/bin/verilator_bin
 
 yosys/yosys: yosys/Makefile uhdm/build
 	$(MAKE) -C yosys yosys
+	-@([ "$(ENABLE_CCACHE)" = 1 ] && ccache -s)
 
 prep: image/bin/verilator yosys/yosys
 
@@ -46,6 +47,7 @@ vcddiff/vcddiff:
 surelog:
 	-(cd Surelog/third_party/UHDM && git apply ../../../UHDM.patch)
 	make -C Surelog PREFIX=$(PWD)/image release install
+	-@([ "$(ENABLE_CCACHE)" = 1 ] && ccache -s)
 
 surelog/regression: surelog
 	$(MAKE) -C Surelog regression
