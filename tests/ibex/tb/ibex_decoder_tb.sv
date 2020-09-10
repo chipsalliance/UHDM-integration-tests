@@ -89,12 +89,12 @@ module ibex_decoder_tb (
             4: instr_rdata_i = '{7'b0000001, 5'd12, 5'd11, 3'b100, 5'd10, OPCODE_OP}; // DIV
             5:                 //    imm,   rs1, funct3,    rd,      opcode
                instr_rdata_i = '{12'h00F, 5'd14, 3'b000, 5'd13, OPCODE_LOAD}; // LB
-            7: instr_rdata_i = '{12'h0F0, 5'd16, 3'b100, 5'd15, OPCODE_LOAD}; // LH
+            7: instr_rdata_i = '{12'h0F0, 5'd16, 3'b001, 5'd15, OPCODE_LOAD}; // LH
             8: instr_rdata_i = '{12'hF00, 5'd18, 3'b010, 5'd17, OPCODE_LOAD}; // LW
             9:                 //  imm 11:5,  rs2,    rs1,  funct3,  imm 4:0,        opcode
-               instr_rdata_i = '{7'b0000000, 5'd19, 5'd18,  3'b000, 5'd01111,  OPCODE_STORE}; // SB
-           10: instr_rdata_i = '{7'b0000111, 5'd21, 5'd20,  3'b001, 5'd10000,  OPCODE_STORE}; // SH
-           11: instr_rdata_i = '{7'b1111000, 5'd23, 5'd22,  3'b010, 5'd00000,  OPCODE_STORE}; // SH
+               instr_rdata_i = '{7'b0000000, 5'd19, 5'd18,  3'b000, 5'b01111,  OPCODE_STORE}; // SB
+           10: instr_rdata_i = '{7'b0000111, 5'd21, 5'd20,  3'b001, 5'b10000,  OPCODE_STORE}; // SH
+           11: instr_rdata_i = '{7'b1111000, 5'd23, 5'd22,  3'b010, 5'b00000,  OPCODE_STORE}; // SW
         endcase;
     end
 
