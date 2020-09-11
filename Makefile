@@ -44,6 +44,7 @@ vcddiff/vcddiff:
 
 # ------------ Surelog ------------
 surelog:
+	-(cd Surelog/third_party/UHDM && git apply ../../../UHDM.patch)
 	make -C Surelog PREFIX=$(PWD)/image release install
 
 surelog/regression: surelog
@@ -122,10 +123,8 @@ uhdm/cleanall: uhdm/clean
 	$(MAKE) -C yosys clean
 	$(MAKE) -C vcddiff clean
 
-uhdm/patch: surelog # Needed to prevent overwriting the patched UHDM libs by Surelog
-	-(cd UHDM && git apply ../UHDM.patch)
-
 uhdm/build: uhdm/patch
+	-(cd UHDM && git apply ../UHDM.patch)
 	mkdir -p UHDM/build
 	(cd UHDM/build && cmake \
 		-DCMAKE_INSTALL_PREFIX=$(PWD)/image \
@@ -266,15 +265,6 @@ SIM_FILES := $(IBEX_DIR)/$(SIM_FILE)
 ifeq ($(SIM_FILE),ibex_alu.sv)
 	SIM_FILES := $(SIM_FILES) $(IBEX_TOP_DIR)/ibex_alu_top.sv $(IBEX_DIR)/ibex_pkg.sv
 endif
-
-surelog/parse-sim: surelog
-	mkdir -p build
-	(cd build && \
-		../image/bin/surelog -parse -sverilog \
-			-I../tests/ibex/ibex/rtl \
-			$(SIM_FILES) \
-	)
-	cp build/slpp_all/surelog.uhdm build/top.uhdm
 
 surelog/parse-sim: surelog
 	mkdir -p build
