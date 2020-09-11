@@ -47,6 +47,7 @@ jobs:
         - eval "CC=gcc-9 && CXX=g++-9"
         - git submodule update --init --recursive
         - cd Surelog; git apply ../Surelog.patch; cd ..
+        - echo "compiler_check = none" >> /home/travis/.ccache/ccache.conf
 
       install:
         - export PATH=/usr/bin:$PATH
