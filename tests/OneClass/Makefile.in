@@ -1,0 +1,6 @@
+TOP_FILE := tests/OneClass/top.sv
+MAIN_FILE := tests/OneClass/main.cpp
+YOSYS_SCRIPT := tests/OneClass/yosys_script
+TOP_MODULE := work_top
+VERILATED_BIN := V$(TOP_MODULE)
+TOP_MAKEFILE := $(VERILATED_BIN).mk
