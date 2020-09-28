@@ -123,7 +123,7 @@ uhdm/cleanall: uhdm/clean
 	$(MAKE) -C yosys clean
 	$(MAKE) -C vcddiff clean
 
-uhdm/build: uhdm/patch
+uhdm/build:
 	-(cd UHDM && git apply ../UHDM.patch)
 	mkdir -p UHDM/build
 	(cd UHDM/build && cmake \
