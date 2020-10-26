@@ -181,7 +181,7 @@ uhdm/yosys/verilate-ast: uhdm/yosys/test-ast uhdm/verilator/build
 		 make -j -C obj_dir -f $(TOP_MAKEFILE) $(VERILATED_BIN) && \
 		 obj_dir/$(VERILATED_BIN))
 
-uhdm/yosys/coverage: yosys/yosys surelog/parse-earlgrey
+uhdm/yosys/coverage: yosys/yosys surelog/parse-ibex
 	mkdir -p build
 	-(cd Surelog/third_party/tests/Earlgrey_0_1/sim-icarus && \
 		../../../../../yosys/yosys -p \
