@@ -80,7 +80,13 @@ IBEX_SOURCES = \
         $(IBEX_PKG_SOURCES) \
         $(shell \
                 cat ${IBEX_BUILD}/synth-vivado/lowrisc_ibex_top_artya7_0.1.tcl | \
-                grep read_verilog | cut -d' ' -f3 | grep -v _pkg.sv | grep -v xilinx | \
+                grep read_verilog | cut -d' ' -f3 | grep -v _pkg.sv | \
+		grep -v xilinx | \
+		grep -v ibex_id_stage.sv | \
+		grep -v ibex_multdiv_slow.sv | \
+		grep -v prim_lfsr.sv | \
+		grep -v ibex_cs_registers.sv | \
+		grep -v ibex_icache.sv | \
                 sed 's@^..@${IBEX_BUILD}@')
 
 surelog/parse-ibex: surelog
@@ -194,9 +200,7 @@ uhdm/yosys/coverage: yosys/yosys surelog/parse-ibex
 	mkdir -p build
 	-(cd ${IBEX}/slpp_all && \
 		${YOSYS_BIN} \
-		-p "read_uhdm -report ${COVARAGE_REPORT} ${TOP_UHDM}" \
-		-p "chparam -set FPGA_XILINX 1 top_artya7" \
-		-p "chparam -set PRIM_DEFAULT_IMPL prim_pkg::ImplXilinx top_artya7")
+		-p "read_uhdm -debug -report ${COVARAGE_REPORT} ${TOP_UHDM}")
 
 uhdm/vcddiff: vcddiff/vcddiff
 	$(MAKE) uhdm/verilator/test-ast
