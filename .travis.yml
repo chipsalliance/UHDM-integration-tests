@@ -294,6 +294,11 @@ jobs:
       env:
         - TEST_CASE=tests/StructInPackage TARGET=uhdm/yosys/test-ast
 
+    # Not supported yet
+    #- <<: *test_body
+    #  env:
+    #    - TEST_CASE=tests/OneThis TARGET=uhdm/verilator/test-ast
+    #
     # This exceeds Travis log size limit
     #- <<: *test_body
     #  env:
