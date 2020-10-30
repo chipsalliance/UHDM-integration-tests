@@ -1,14 +1,14 @@
 TESTS = $(shell find tests -maxdepth 2 -name Makefile.in | cut -d\/ -f2 | sort -u)
 TEST ?= tests/onenet
 
-current_dir:=$(shell dirname $(realpath $(firstword $(MAKEFILE_LIST))))
-IBEX = ${current_dir}/Surelog/third_party/tests/Ibex
+root_dir:=$(shell dirname $(realpath $(firstword $(MAKEFILE_LIST))))
+IBEX = ${root_dir}/tests/ibex/ibex
 IBEX_BUILD = ${IBEX}/build/lowrisc_ibex_top_artya7_0.1
 
-SURELOG_BIN = ${current_dir}/image/bin/surelog
-YOSYS_BIN = ${current_dir}/yosys/yosys
-COVARAGE_REPORT = ${current_dir}/build/coverage
-TOP_UHDM = ${current_dir}/build/top.uhdm
+SURELOG_BIN = ${root_dir}/image/bin/surelog
+YOSYS_BIN = ${root_dir}/yosys/yosys
+COVARAGE_REPORT = ${root_dir}/build/coverage
+TOP_UHDM = ${root_dir}/build/top.uhdm
 
 include $(TEST)/Makefile.in
 
@@ -75,31 +75,33 @@ IBEX_PKG_SOURCES = \
                 grep read_verilog | cut -d' ' -f3  | grep _pkg.sv | \
                 sed 's@^..@${IBEX_BUILD}@')
 
-# TODO: parsing xilinx files makes build to be killed by OOM (it is using more then 32 GB of ram), check if this suppose to happend
+#Sources that will be skipped by Surelog uhdm
+SKIP_SOURCES=ibex_if_stage.sv\|ibex_id_stage.sv\|ibex_ex_block.sv\|ibex_cs_registers.sv\|ram_1p.sv\|clkgen_xil7series.sv\|ibex_alu.sv\|prim_lfsr.sv\|ibex_fetch_fifo.sv\|ibex_decoder.sv\|ibex_prefetch_buffer.sv\|ibex_pmp.sv\|ibex_core.sv\|top_artya7.sv
+
 IBEX_SOURCES = \
-        $(IBEX_PKG_SOURCES) \
         $(shell \
                 cat ${IBEX_BUILD}/synth-vivado/lowrisc_ibex_top_artya7_0.1.tcl | \
                 grep read_verilog | cut -d' ' -f3 | grep -v _pkg.sv | \
-		grep -v xilinx | \
-		grep -v ibex_id_stage.sv | \
-		grep -v ibex_multdiv_slow.sv | \
-		grep -v prim_lfsr.sv | \
-		grep -v ibex_cs_registers.sv | \
-		grep -v ibex_icache.sv | \
+		grep -v '${SKIP_SOURCES}' | \
+                sed 's@^..@${IBEX_BUILD}@')
+
+IBEX_SOURCES_SKIPPED = \
+        $(shell \
+                cat ${IBEX_BUILD}/synth-vivado/lowrisc_ibex_top_artya7_0.1.tcl | \
+                grep read_verilog | cut -d' ' -f3 | grep -v _pkg.sv | \
+		grep '${SKIP_SOURCES}' | \
                 sed 's@^..@${IBEX_BUILD}@')
 
 surelog/parse-ibex: surelog
 	mkdir -p build
 	virtualenv venv-ibex
-	(source venv-ibex/bin/activate && \
-		cd $(IBEX) && pip install -r python-requirements.txt && \
+	(source ${root_dir}/venv-ibex/bin/activate && \
+		cd ${IBEX} && pip install -r python-requirements.txt && \
 		fusesoc --cores-root=. run --target=synth --setup lowrisc:ibex:top_artya7 --part xc7a35ticsg324-1L && \
-		${current_dir}/image/bin/surelog -parse -sverilog \
-			$(IBEX_INCLUDE) \
-			$(IBEX_SOURCES) \
-	)
-	cp ${IBEX}/slpp_all/surelog.uhdm ${current_dir}/build/top.uhdm
+	${root_dir}/image/bin/surelog -parse -sverilog \
+		$(IBEX_INCLUDE) \
+		$(IBEX_SOURCES) ${IBEX_PKG_SOURCES} && \
+	cp ${IBEX}/slpp_all/surelog.uhdm ${root_dir}/build/top.uhdm)
 
 surelog/parse-earlgrey: surelog
 	mkdir -p build
@@ -137,11 +139,11 @@ uhdm/cleanall: uhdm/clean
 	$(MAKE) -C vcddiff clean
 
 uhdm/patch: surelog # Needed to prevent overwriting the patched UHDM libs by Surelog
-	-(cd ${current_dir}/UHDM && git apply ${current_dir}/UHDM.patch)
+	-(cd ${root_dir}/UHDM && git apply ${root_dir}/UHDM.patch)
 
 uhdm/build: uhdm/patch
-	mkdir -p ${current_dir}/UHDM/build
-	(cd ${current_dir}/UHDM/build && cmake \
+	mkdir -p ${root_dir}/UHDM/build
+	(cd ${root_dir}/UHDM/build && cmake \
 		-DCMAKE_INSTALL_PREFIX=$(PWD)/image \
 		-DCMAKE_BUILD_TYPE=Release \
 		-DCMAKE_CXX_FLAGS='-D_GLIBCXX_USE_CXX11_ABI=1 -DWITH_LIBCXX=Off' \
@@ -200,7 +202,7 @@ uhdm/yosys/coverage: yosys/yosys surelog/parse-ibex
 	mkdir -p build
 	-(cd ${IBEX}/slpp_all && \
 		${YOSYS_BIN} \
-		-p "read_uhdm -debug -report ${COVARAGE_REPORT} ${TOP_UHDM}")
+		-p "read_uhdm -report ${COVARAGE_REPORT} ${TOP_UHDM}")
 
 uhdm/vcddiff: vcddiff/vcddiff
 	$(MAKE) uhdm/verilator/test-ast
@@ -214,66 +216,24 @@ uhdm/vcddiff: vcddiff/vcddiff
 #############################
 ####      SYNTHESIS      ####
 #############################
-
 uhdm/yosys/synth-ibex: yosys/yosys surelog/parse-ibex
-	mkdir -p build
-	-(cd  && \
-		${YOSYS_BIN} -p \
-		"read_uhdm -debug -report ${COVARAGE_REPORT} ${TOP_UHDM}" \
-		-p 'synth_xilinx -top \work_ibex_core -iopad -family xc7' \
-		-p 'write_edif -top \work_ibex_core -pvector bra ../../../../../build/top.edif' )
-
-IBEX_DIR := ../tests/ibex/ibex/rtl
-EARLGREY_DIR := ../Surelog/third_party/tests/Earlgrey_0_1/src
-SYNTH_FILE ?= ibex_alu.sv
-SYNTH_FILES := $(IBEX_DIR)/$(SYNTH_FILE)
-ifeq ($(SYNTH_FILE),ibex_alu.sv)
-	SYNTH_FILES := $(SYNTH_FILES) $(IBEX_DIR)/ibex_pkg.sv
-else ifeq ($(SYNTH_FILE),ibex_controller.sv)
-	SYNTH_FILES := $(SYNTH_FILES)  $(IBEX_DIR)/ibex_pkg.sv
-else ifeq ($(SYNTH_FILE),ibex_core.sv)
-	SYNTH_FILES := $(SYNTH_FILES) $(IBEX_DIR)/ibex_pkg.sv
-else ifeq ($(SYNTH_FILE),ibex_core_tracing.sv)
-	SYNTH_FILES := $(SYNTH_FILES)  $(IBEX_DIR)/ibex_pkg.sv $(IBEX_DIR)/ibex_tracer.sv
-else ifeq ($(SYNTH_FILE),ibex_cs_registers.sv)
-	SYNTH_FILES := $(SYNTH_FILES)  $(IBEX_DIR)/ibex_pkg.sv $(IBEX_DIR)/ibex_counter.sv
-else ifeq ($(SYNTH_FILE),ibex_decoder.sv)
-	SYNTH_FILES := $(SYNTH_FILES)  $(IBEX_DIR)/ibex_pkg.sv
-else ifeq ($(SYNTH_FILE),ibex_dummy_instr.sv)
-	SYNTH_FILES := $(SYNTH_FILES) $(EARLGREY_DIR)/lowrisc_prim_all_0.1/rtl/prim_lfsr.sv
-else ifeq ($(SYNTH_FILE),ibex_ex_block.sv)
-	SYNTH_FILES := $(SYNTH_FILES) $(IBEX_DIR)/ibex_pkg.sv $(IBEX_DIR)/ibex_multdiv_fast.sv $(IBEX_DIR)/ibex_alu.sv
-else ifeq ($(SYNTH_FILE),ibex_icache.sv)
-	SYNTH_FILES := $(SYNTH_FILES) $(EARLGREY_DIR)/lowrisc_prim_abstract_ram_1p_0/prim_ram_1p.sv $(EARLGREY_DIR)/lowrisc_prim_abstract_prim_pkg_0.1/prim_pkg.sv
-else ifeq ($(SYNTH_FILE),ibex_id_stage.sv)
-	SYNTH_FILES := $(SYNTH_FILES) $(IBEX_DIR)/ibex_pkg.sv
-else ifeq ($(SYNTH_FILE),ibex_if_stage.sv)
-	SYNTH_FILES := $(SYNTH_FILES) $(IBEX_DIR)/ibex_compressed_decoder.sv $(IBEX_DIR)/ibex_fetch_fifo.sv $(IBEX_DIR)/ibex_prefetch_buffer.sv
-else ifeq ($(SYNTH_FILE),ibex_multdiv_fast.sv)
-	SYNTH_FILES := $(SYNTH_FILES) $(IBEX_DIR)/ibex_pkg.sv
-else ifeq ($(SYNTH_FILE),ibex_prefetch_buffer.sv)
-	SYNTH_FILES := $(SYNTH_FILES) $(IBEX_DIR)/ibex_fetch_fifo.sv
-endif
-
-surelog/parse-synth: surelog
-	mkdir -p build
-	(cd build && \
-		${SURELOG_BIN} -parse -sverilog \
-			-I../tests/ibex/ibex/rtl \
-			$(SYNTH_FILES))
-	cp build/slpp_all/surelog.uhdm build/top.uhdm
-
-uhdm/yosys/test-synth: surelog/parse-synth yosys/yosys
+	mkdir -p ${root_dir}/build
+	(cd ${root_dir}/build && \
 	${YOSYS_BIN} \
-		-p 'read_uhdm -debug build/top.uhdm' \
-		-p 'synth_xilinx -iopad -family xc7' \
-		-p 'write_edif -pvector bra build/top.edif'
+		     -p 'read_uhdm -debug ${TOP_UHDM}' \
+		     -p 'read_verilog ${IBEX_INCLUDE} -sv ${IBEX_SOURCES_SKIPPED}' \
+		     -p 'chparam -set SRAMInitFile "${root_dir}/led.vmem" top_artya7' \
+		     -p 'synth_xilinx -iopad -family xc7' \
+		     -p 'write_edif -pvector bra ${root_dir}/build/top_artya7.edif' \
+		     -p 'write_json ${root_dir}/top.json')
+	#vivado -nojournal -log ${root_dir}/top.log -mode batch -source ${root_dir}/build.tcl
+
 
 #############################
 #### SIMULATION  (YOSYS) ####
 #############################
 
-IBEX_TOP_DIR := ../tests/ibex/top
+IBEX_TOP_DIR := ${root_dir}/tests/ibex/top
 SIM_FILE ?= ibex_alu.sv
 SIM_FILES := $(IBEX_DIR)/$(SIM_FILE)
 ifeq ($(SIM_FILE),ibex_alu.sv)
@@ -284,7 +244,7 @@ surelog/parse-sim: surelog
 	mkdir -p build
 	(cd build && \
 		${SURELOG_BIN} -parse -sverilog \
-			-I../tests/ibex/ibex/rtl \
+			-I${root_dir}/tests/ibex/ibex/rtl \
 			$(SIM_FILES) \
 	)
 	cp build/slpp_all/surelog.uhdm build/top.uhdm
@@ -293,7 +253,7 @@ surelog/parse-sim: surelog
 	mkdir -p build
 	(cd build && \
 		${SURELOG_BIN} -parse -sverilog \
-			-I../tests/ibex/ibex/rtl \
+			-I${root_dir}/tests/ibex/ibex/rtl \
 			$(SIM_FILES))
 	cp build/slpp_all/surelog.uhdm build/top.uhdm
 
