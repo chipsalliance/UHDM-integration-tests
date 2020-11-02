@@ -52,7 +52,7 @@ uhdm/yosys/synth-ibex: yosys/yosys surelog/parse-ibex
 	mkdir -p ${root_dir}/build
 	(cd ${root_dir}/build && \
 	${YOSYS_BIN} \
-		     -p 'read_uhdm -debug ${TOP_UHDM}' \
+		     -p 'read_uhdm ${TOP_UHDM}' \
 		     -p 'read_verilog ${IBEX_INCLUDE} -sv ${IBEX_SOURCES_SKIPPED}' \
 		     -p 'chparam -set SRAMInitFile "${root_dir}/led.vmem" top_artya7' \
 		     -p 'synth_xilinx -iopad -family xc7' \

@@ -121,7 +121,7 @@ uhdm/verilator/ast-xml: uhdm/verilator/build surelog/parse
 	mkdir -p build
 	(cd build && \
 		../image/bin/verilator --uhdm-ast --cc ./top.uhdm \
-			--top-module $(TOP_MODULE) \
+			--top-module work_$(TOP_MODULE) \
 			--dump-uhdm \
 			--exe ../$(MAIN_FILE) --xml-only --debug)
 
@@ -129,7 +129,7 @@ uhdm/verilator/test-ast: uhdm/verilator/build surelog/parse
 	mkdir -p build
 	(cd build && \
 		../image/bin/verilator --uhdm-ast --cc ./top.uhdm \
-			--top-module $(TOP_MODULE) \
+			--top-module work_$(TOP_MODULE) \
 			--dump-uhdm \
 			--exe ../$(MAIN_FILE) --trace && \
 		 make -j -C obj_dir -f $(TOP_MAKEFILE) $(VERILATED_BIN) && \
