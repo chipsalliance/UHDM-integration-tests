@@ -14,6 +14,8 @@ jobs:
       matrix:
         TEST_CASE: [tests/onenet, tests/OneNetModport, tests/OneFF, tests/OneAnd, tests/OneDivider, tests/OneNetInterf, tests/OneNetRange, tests/OneConcat, tests/OneReplicate, tests/OneAlwaysComb, tests/OneShift, tests/OneArithShift, tests/OneSysFunc, tests/OneInside, tests/OneImport, tests/OneCast, tests/OnePackage, tests/OneStruct, tests/fsm_single_always, tests/fsm_using_function, tests/fsm_using_always, tests/FSMBsp13, tests/AluOps, tests/UnitForLoop, tests/GenerateAssigns, tests/AssignmentPattern, tests/MultipleCells, tests/IndexedPartSelect, tests/PartSelect, tests/VarSelect, tests/EnumInPackage, tests/StructInPackage]
         TARGET: [uhdm/yosys/test-ast, uhdm/verilator/test-ast]
+      fail-fast:
+        false
 
     steps:
     - name: Install dependencies
@@ -51,6 +53,8 @@ jobs:
     strategy:
       matrix:
         MODE: [surelog-uhdm]
+      fail-fast:
+        false
 
     steps:
     - name: Install dependencies
@@ -87,6 +91,8 @@ jobs:
     strategy:
       matrix:
         TARGET: [uhdm/yosys/synth-ibex]
+      fail-fast:
+        false
 
     steps:
     - name: Install dependencies
