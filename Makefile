@@ -2,8 +2,6 @@ TESTS = $(shell find tests -maxdepth 2 -name Makefile.in | cut -d\/ -f2 | sort -
 TEST ?= tests/onenet
 
 root_dir:=$(shell dirname $(realpath $(firstword $(MAKEFILE_LIST))))
-IBEX = ${root_dir}/tests/ibex/ibex
-IBEX_BUILD = ${IBEX}/build/lowrisc_ibex_top_artya7_0.1
 
 SURELOG_BIN = ${root_dir}/image/bin/surelog
 YOSYS_BIN = ${root_dir}/yosys/yosys
@@ -63,45 +61,6 @@ surelog/parse: surelog
 	(cd build && \
 		${SURELOG_BIN} -parse -sverilog -d coveruhdm ../$(TOP_FILE))
 	cp build/slpp_all/surelog.uhdm build/top.uhdm
-
-
-IBEX_INCLUDE = \
-        -I$(IBEX_BUILD)/src/lowrisc_prim_assert_0.1/rtl \
-        -I$(IBEX_BUILD)/src/lowrisc_prim_util_memload_0/rtl \
-
-IBEX_PKG_SOURCES = \
-        $(shell \
-                cat ${IBEX_BUILD}/synth-vivado/lowrisc_ibex_top_artya7_0.1.tcl | \
-                grep read_verilog | cut -d' ' -f3  | grep _pkg.sv | \
-                sed 's@^..@${IBEX_BUILD}@')
-
-#Sources that will be skipped by Surelog uhdm
-SKIP_SOURCES=ibex_if_stage.sv\|ibex_id_stage.sv\|ibex_ex_block.sv\|ibex_cs_registers.sv\|ram_1p.sv\|clkgen_xil7series.sv\|ibex_alu.sv\|prim_lfsr.sv\|ibex_fetch_fifo.sv\|ibex_decoder.sv\|ibex_prefetch_buffer.sv\|ibex_pmp.sv\|ibex_core.sv\|top_artya7.sv
-
-IBEX_SOURCES = \
-        $(shell \
-                cat ${IBEX_BUILD}/synth-vivado/lowrisc_ibex_top_artya7_0.1.tcl | \
-                grep read_verilog | cut -d' ' -f3 | grep -v _pkg.sv | \
-		grep -v '${SKIP_SOURCES}' | \
-                sed 's@^..@${IBEX_BUILD}@')
-
-IBEX_SOURCES_SKIPPED = \
-        $(shell \
-                cat ${IBEX_BUILD}/synth-vivado/lowrisc_ibex_top_artya7_0.1.tcl | \
-                grep read_verilog | cut -d' ' -f3 | grep -v _pkg.sv | \
-		grep '${SKIP_SOURCES}' | \
-                sed 's@^..@${IBEX_BUILD}@')
-
-surelog/parse-ibex: surelog
-	mkdir -p build
-	virtualenv venv-ibex
-	(source ${root_dir}/venv-ibex/bin/activate && \
-		cd ${IBEX} && pip install -r python-requirements.txt && \
-		fusesoc --cores-root=. run --target=synth --setup lowrisc:ibex:top_artya7 --part xc7a35ticsg324-1L && \
-	${root_dir}/image/bin/surelog -parse -sverilog \
-		$(IBEX_INCLUDE) \
-		$(IBEX_SOURCES) ${IBEX_PKG_SOURCES} && \
-	cp ${IBEX}/slpp_all/surelog.uhdm ${root_dir}/build/top.uhdm)
 
 surelog/parse-earlgrey: surelog
 	mkdir -p build
@@ -198,11 +157,6 @@ uhdm/yosys/verilate-ast: uhdm/yosys/test-ast uhdm/verilator/build
 		 make -j -C obj_dir -f $(TOP_MAKEFILE) $(VERILATED_BIN) && \
 		 obj_dir/$(VERILATED_BIN))
 
-uhdm/yosys/coverage: yosys/yosys surelog/parse-ibex
-	mkdir -p build
-	-(cd ${IBEX}/slpp_all && \
-		${YOSYS_BIN} \
-		-p "read_uhdm -report ${COVARAGE_REPORT} ${TOP_UHDM}")
 
 uhdm/vcddiff: vcddiff/vcddiff
 	$(MAKE) uhdm/verilator/test-ast
@@ -211,54 +165,3 @@ uhdm/vcddiff: vcddiff/vcddiff
 	$(MAKE) uhdm/yosys/verilate-ast
 	mv build/dump.vcd build/dump_yosys.vcd
 	vcddiff/vcddiff build/dump_yosys.vcd build/dump_verilator.vcd
-
-
-#############################
-####      SYNTHESIS      ####
-#############################
-uhdm/yosys/synth-ibex: yosys/yosys surelog/parse-ibex
-	mkdir -p ${root_dir}/build
-	(cd ${root_dir}/build && \
-	${YOSYS_BIN} \
-		     -p 'read_uhdm -debug ${TOP_UHDM}' \
-		     -p 'read_verilog ${IBEX_INCLUDE} -sv ${IBEX_SOURCES_SKIPPED}' \
-		     -p 'chparam -set SRAMInitFile "${root_dir}/led.vmem" top_artya7' \
-		     -p 'synth_xilinx -iopad -family xc7' \
-		     -p 'write_edif -pvector bra ${root_dir}/build/top_artya7.edif' \
-		     -p 'write_json ${root_dir}/top.json')
-	#vivado -nojournal -log ${root_dir}/top.log -mode batch -source ${root_dir}/build.tcl
-
-
-#############################
-#### SIMULATION  (YOSYS) ####
-#############################
-
-IBEX_TOP_DIR := ${root_dir}/tests/ibex/top
-SIM_FILE ?= ibex_alu.sv
-SIM_FILES := $(IBEX_DIR)/$(SIM_FILE)
-ifeq ($(SIM_FILE),ibex_alu.sv)
-	SIM_FILES := $(SIM_FILES) $(IBEX_TOP_DIR)/ibex_alu_top.sv $(IBEX_DIR)/ibex_pkg.sv
-endif
-
-surelog/parse-sim: surelog
-	mkdir -p build
-	(cd build && \
-		${SURELOG_BIN} -parse -sverilog \
-			-I${root_dir}/tests/ibex/ibex/rtl \
-			$(SIM_FILES) \
-	)
-	cp build/slpp_all/surelog.uhdm build/top.uhdm
-
-surelog/parse-sim: surelog
-	mkdir -p build
-	(cd build && \
-		${SURELOG_BIN} -parse -sverilog \
-			-I${root_dir}/tests/ibex/ibex/rtl \
-			$(SIM_FILES))
-	cp build/slpp_all/surelog.uhdm build/top.uhdm
-
-uhdm/yosys/test-sim: surelog/parse-sim yosys/yosys
-	${YOSYS_BIN} \
-		-p 'read_uhdm -debug build/top.uhdm' \
-		-p 'prep -auto-top' \
-		-p 'sim -clock clk -rstlen 10 -vcd dump.vcd'

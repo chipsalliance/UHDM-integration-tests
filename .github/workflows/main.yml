@@ -19,13 +19,18 @@ jobs:
     - name: Install dependencies
       run: |
         sudo apt-get update -qq
-        sudo apt install -y g++-9 build-essential cmake tclsh ant default-jre swig google-perftools libgoogle-perftools-dev python3 python3-dev uuid uuid-dev
+        sudo apt install -y g++-9 build-essential cmake tclsh ant default-jre swig google-perftools libgoogle-perftools-dev python3 python3-dev uuid uuid-dev tcl-dev flex
 
     - name: Git pull
       uses: actions/checkout@v2
       with:
         submodules: recursive
         fetch-depth: 0
+
+    - name: Setup python
+      uses: actions/setup-python@v2
+      with:
+         python-version: '3.x'
 
     - name: Configure shell
       run: |
@@ -51,13 +56,18 @@ jobs:
     - name: Install dependencies
       run: |
         sudo apt-get update -qq
-        sudo apt install -y g++-9 build-essential cmake tclsh ant default-jre swig google-perftools libgoogle-perftools-dev python3 python3-dev uuid uuid-dev
+        sudo apt install -y g++-9 build-essential cmake tclsh ant default-jre swig google-perftools libgoogle-perftools-dev python3 python3-dev uuid uuid-dev tcl-dev flex
 
     - name: Git pull
       uses: actions/checkout@v2
       with:
         submodules: recursive
         fetch-depth: 0
+
+    - name: Setup python
+      uses: actions/setup-python@v2
+      with:
+         python-version: '3.x'
 
     - name: Configure shell
       run: |
@@ -82,13 +92,18 @@ jobs:
     - name: Install dependencies
       run: |
         sudo apt-get update -qq
-        sudo apt install -y g++-9 build-essential cmake tclsh ant default-jre swig google-perftools libgoogle-perftools-dev python3 python3-dev uuid uuid-dev
+        sudo apt install -y g++-9 build-essential cmake tclsh ant default-jre swig google-perftools libgoogle-perftools-dev python3 python3-dev uuid uuid-dev tcl-dev flex
 
     - name: Git pull
       uses: actions/checkout@v2
       with:
         submodules: recursive
         fetch-depth: 0
+
+    - name: Setup python
+      uses: actions/setup-python@v2
+      with:
+         python-version: '3.7'
 
     - name: Configure shell
       run: |
@@ -99,4 +114,7 @@ jobs:
       run: |
         export TARGET=${{matrix.TARGET}}
         export TEST_CASE=tests/ibex
+        pip install virtualenv
+        virtualenv venv-ibex
+        . venv-ibex/bin/activate && pip install -r tests/ibex/ibex/python-requirements.txt && cd tests/ibex/ibex && fusesoc --cores-root=. run --target=synth --setup lowrisc:ibex:top_artya7 --part xc7a35ticsg324-1L && cd ../../..
         ./.github/travis/script.sh
