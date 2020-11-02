@@ -8,7 +8,7 @@ wire q;
 
 glbl glbl();
 
-work_top uut (.c(clk), .d(d), .q(q));
+top uut (.c(clk), .d(d), .q(q));
 
 initial forever #5 clk = !clk;
 
