@@ -125,14 +125,13 @@ uhdm/cleanall: uhdm/clean
 
 uhdm/build:
 	-(cd UHDM && git apply ../UHDM.patch)
-	mkdir -p UHDM/build
-	(cd UHDM/build && cmake \
+	mkdir -p Surelog/third_party/UHDM/build
+	(cd Surelog/third_party/UHDM && cmake \
 		-DCMAKE_INSTALL_PREFIX=$(PWD)/image \
-		-D_GLIBCXX_DEBUG=1 \
 		-DCMAKE_BUILD_TYPE=Release \
-		-DCMAKE_CXX_FLAGS='-D_GLIBCXX_USE_CXX11_ABI=1 -DWITH_LIBCXX=Off' \
-		../)
-	$(MAKE) -C UHDM install
+		-S . \
+		-B build && cmake --build build)
+	$(MAKE) -C Surelog/third_party/UHDM install
 
 uhdm/verilator/build: uhdm/build image/bin/verilator
 
@@ -140,7 +139,7 @@ uhdm/verilator/get-ast: uhdm/verilator/build
 	mkdir -p build
 	(cd build && \
 		../image/bin/verilator --cc ../$(TOP_FILE) \
-			--exe ../$(MAIN_FILE) --xml-only)
+			--exe ../$(MAIN_FILE) --debug --xml-only)
 
 uhdm/verilator/ast-xml: uhdm/verilator/build surelog/parse
 	mkdir -p build

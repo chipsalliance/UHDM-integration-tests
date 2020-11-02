@@ -58,3 +58,31 @@ TEST=tests/OneNetModport make uhdm/verilator/test-ast
 ```
 
 Tools are built automatically and are installed to `./images` folder. Test results will be stored in `./build`.
+
+## Integration details
+
+### UHDM-Yosys
+
+In Yosys, the UHDM frontend walks the design tree and converts its nodes into Yosys AST nodes. The Yosys AST representation has previously been used by Yosys’ Verilog frontend, which parses Verilog code and generates the AST. However, this is not what Yosys operates on. The internal representation used for all of Yosys’ passes and backends is the RTL Intermediate Language, or RTLIL.
+
+RTLIL represents netlist data with the addition of addressable memories and processes (i.e. Verilog always blocks). More information on it can be found in [Yosys’ manual](http://www.clifford.at/yosys/files/yosys_manual.pdf) (section 4.2). To convert the AST we generate from UHDM to RTLIL, we use another, already existing, frontend, which accepts the AST (not as a file, but as an in-memory structure) and generates the appropriate RTLIL. The reason for using it is that the AST is much easier to generate from UHDM, as it already supports many Verilog features, whereas the RTLIL provides only very simple primitives.
+
+This approach allows us to only add new functionality to Yosys (which is the new frontend) and not modify any of the existing code, at least for now. Certainly, adding support for more SystemVerilog features will require a lot of additional work in Yosys internals in the future. Nevertheless, supporting the core Verilog syntax has been fairly straightforward.
+
+The UHDM frontend uses two helper functions, `visit_one_to_one` (for traversing 1-1 relations in VPI) and `visit_one_to_many` (for traversing 1-many relations in VPI). Each node is then handled according to its type, and the appropriate AST is created. These helper functions also accept a lambda that is executed for each of the encountered nodes.
+
+### UHDM-Verilator
+
+Verilator follows the same basic principle (including the helper functions), although without the additional step of converting the Verilator AST into another internal representation, as all Verilator passes are performed on the AST.
+
+Minimal changes needed to be done in the Verilator itself, mostly having to do with using another frontend - mainline Verilator only uses its own grammar, so a couple of command line switches and logic when loading the file were added:
+
+* `--uhdm-ast <file>` - read provided UHDM \<file\>
+* `--dump-uhdm` - print entire UHDM tree for debugging
+* `--uhdm-cov <file>` - print visited UHDM nodes to \<file\> (see below)
+ 
+Currently the design can be read either from UHDM or using the normal parser, but it would be possible to introduce support for mixed designs relatively easily.
+
+The frontend can also be used to generate a coverage report. An intermediary file can be created, that lists nodes present in the UHDM tree and which of those were visited by the frontend, which is then fed to a script available [here](./gen_coverage_report.py). Note that it is not the aim to visit each and every node, as not all of them have a directly corresponding AST node. Nevertheless, it is useful for identifying potentially missed nodes.
+
+Verilator already has some support for SystemVerilog features, including basic support for classes. There’s ongoing progress in parallel to the frontend work to bring more of them, especially related to the UVM, to the simulator.
