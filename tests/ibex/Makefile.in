@@ -12,7 +12,7 @@ IBEX_PKG_SOURCES = \
                 sed 's@^..@${IBEX_BUILD}@')
 
 #Sources that will be skipped by Surelog uhdm
-SKIP_SOURCES=ibex_if_stage.sv\|ibex_id_stage.sv\|ibex_ex_block.sv\|ibex_cs_registers.sv\|ram_1p.sv\|clkgen_xil7series.sv\|ibex_alu.sv\|prim_lfsr.sv\|ibex_fetch_fifo.sv\|ibex_decoder.sv\|ibex_prefetch_buffer.sv\|ibex_pmp.sv\|ibex_core.sv\|top_artya7.sv
+SKIP_SOURCES=ibex_if_stage.sv\|ibex_id_stage.sv\|ibex_ex_block.sv\|clkgen_xil7series.sv\|prim_lfsr.sv\|ibex_fetch_fifo.sv\|ibex_prefetch_buffer.sv\|ibex_pmp.sv\|ibex_core.sv\|top_artya7.sv\|ram_1p.sv\|ibex_alu.sv\|ibex_decoder.sv
 
 IBEX_SOURCES = \
         $(shell \
@@ -58,7 +58,7 @@ uhdm/yosys/synth-ibex: yosys/yosys surelog/parse-ibex
 		     -p 'synth_xilinx -iopad -family xc7' \
 		     -p 'write_edif -pvector bra ${root_dir}/build/top_artya7.edif' \
 		     -p 'write_json ${root_dir}/top.json')
-	#vivado -nojournal -log ${root_dir}/top.log -mode batch -source ${root_dir}/build.tcl
+	#vivado -nojournal -log ${root_dir}/top.log -mode batch -source ${root_dir}/build.tcl)
 
 #############################
 #### SIMULATION  (YOSYS) ####
@@ -78,14 +78,6 @@ surelog/parse-sim: surelog
 			-I${root_dir}/tests/ibex/ibex/rtl \
 			$(SIM_FILES) \
 	)
-	cp build/slpp_all/surelog.uhdm build/top.uhdm
-
-surelog/parse-sim: surelog
-	mkdir -p build
-	(cd build && \
-		${SURELOG_BIN} -parse -sverilog \
-			-I${root_dir}/tests/ibex/ibex/rtl \
-			$(SIM_FILES))
 	cp build/slpp_all/surelog.uhdm build/top.uhdm
 
 uhdm/yosys/test-sim: surelog/parse-sim yosys/yosys
