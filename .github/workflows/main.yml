@@ -12,8 +12,15 @@ jobs:
         shell: bash
     strategy:
       matrix:
-        TEST_CASE: [tests/onenet, tests/OneNetModport, tests/OneFF, tests/OneAnd, tests/OneDivider, tests/OneNetInterf, tests/OneNetRange, tests/OneConcat, tests/OneReplicate, tests/OneAlwaysComb, tests/OneShift, tests/OneArithShift, tests/OneSysFunc, tests/OneInside, tests/OneImport, tests/OneCast, tests/OnePackage, tests/OneStruct, tests/fsm_single_always, tests/fsm_using_function, tests/fsm_using_always, tests/FSMBsp13, tests/AluOps, tests/UnitForLoop, tests/GenerateAssigns, tests/AssignmentPattern, tests/MultipleCells, tests/IndexedPartSelect, tests/PartSelect, tests/VarSelect, tests/EnumInPackage, tests/StructInPackage]
+        TEST_CASE: [tests/onenet, tests/OneNetModport, tests/OneFF, tests/OneAnd, tests/OneDivider, tests/OneNetInterf, tests/OneNetRange, tests/OneConcat, tests/OneReplicate, tests/OneAlwaysComb, tests/OneShift, tests/OneArithShift, tests/OneSysFunc, tests/OneInside, tests/OneImport, tests/OneCast, tests/OnePackage, tests/OneStruct, tests/fsm_single_always, tests/fsm_using_function, tests/fsm_using_always, tests/AluOps, tests/UnitForLoop, tests/GenerateAssigns, tests/AssignmentPattern, tests/MultipleCells, tests/IndexedPartSelect, tests/PartSelect, tests/VarSelect, tests/EnumInPackage, tests/StructInPackage]
         TARGET: [uhdm/yosys/test-ast, uhdm/verilator/test-ast]
+        exclude:
+          - TEST_CASE: tests/EnumInPackage
+            TARGET: uhdm/verilator/test-ast
+          - TEST_CASE: tests/StructInPackage
+            TARGET: uhdm/verilator/test-ast
+          - TEST_CASE: tests/OneThis
+            TARGET: uhdm/verilator/test-ast
       fail-fast:
         false
 
