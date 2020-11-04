@@ -76,7 +76,7 @@ jobs:
          python-version: '3.x'
 
     - name: Build & Test
-      run: ./.github/travis/script.sh
+      run: ./.github/ci.sh
       env:
         TEST_CASE: tests/${{ matrix.TEST_CASE }}
         TARGET: ${{ matrix.TARGET }}
@@ -105,7 +105,7 @@ jobs:
          python-version: '3.x'
 
     - name: Build & Test
-      run: ./.github/travis/script.sh
+      run: ./.github/ci.sh
       env:
         MODE: surelog-uhdm
 
@@ -146,7 +146,7 @@ jobs:
         cd tests/ibex/ibex
         fusesoc --cores-root=. run --target=synth --setup lowrisc:ibex:top_artya7 --part xc7a35ticsg324-1L
         cd ../../..
-        ./.github/travis/script.sh
+        ./.github/ci.sh
       env:
         TARGET: uhdm/yosys/synth-ibex
         TEST_CASE: tests/ibex

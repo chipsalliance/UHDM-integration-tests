@@ -1,4 +1,4 @@
-#!/bin/bash
+#!/usr/bin/env bash
 
 COV_DIR=/tmp/pages/surelog-coverage
 rm -rf $COV_DIR
