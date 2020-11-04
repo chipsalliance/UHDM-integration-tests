@@ -12,7 +12,7 @@ IBEX_PKG_SOURCES = \
                 sed 's@^..@${IBEX_BUILD}@')
 
 #Sources that will be skipped by Surelog uhdm
-SKIP_SOURCES=ibex_if_stage.sv\|ibex_id_stage.sv\|ibex_ex_block.sv\|clkgen_xil7series.sv\|prim_lfsr.sv\|ibex_fetch_fifo.sv\|ibex_prefetch_buffer.sv\|ibex_pmp.sv\|ibex_core.sv\|top_artya7.sv\|ram_1p.sv\|ibex_alu.sv\|ibex_decoder.sv
+SKIP_SOURCES=ibex_if_stage.sv\|ibex_id_stage.sv\|ibex_ex_block.sv\|clkgen_xil7series.sv\|ibex_fetch_fifo.sv\|ibex_prefetch_buffer.sv\|ibex_pmp.sv\|ibex_core.sv\|top_artya7.sv\|ram_1p.sv\|ibex_alu.sv\|ibex_decoder.sv
 
 IBEX_SOURCES = \
         $(shell \
