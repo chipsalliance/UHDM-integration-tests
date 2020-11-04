@@ -12,46 +12,46 @@ jobs:
     strategy:
       matrix:
         TEST_CASE:
-          - tests/onenet
-          - tests/OneNetModport
-          - tests/OneFF
-          - tests/OneAnd
-          - tests/OneDivider
-          - tests/OneNetInterf
-          - tests/OneNetRange
-          - tests/OneConcat
-          - tests/OneReplicate
-          - tests/OneAlwaysComb
-          - tests/OneShift
-          - tests/OneArithShift
-          - tests/OneSysFunc
-          - tests/OneInside
-          - tests/OneImport
-          - tests/OneCast
-          - tests/OnePackage
-          - tests/OneStruct
-          - tests/fsm_single_always
-          - tests/fsm_using_function
-          - tests/fsm_using_always
-          - tests/AluOps
-          - tests/UnitForLoop
-          - tests/GenerateAssigns
-          - tests/AssignmentPattern
-          - tests/MultipleCells
-          - tests/IndexedPartSelect
-          - tests/PartSelect
-          - tests/VarSelect
-          - tests/EnumInPackage
-          - tests/StructInPackage
+          - onenet
+          - OneNetModport
+          - OneFF
+          - OneAnd
+          - OneDivider
+          - OneNetInterf
+          - OneNetRange
+          - OneConcat
+          - OneReplicate
+          - OneAlwaysComb
+          - OneShift
+          - OneArithShift
+          - OneSysFunc
+          - OneInside
+          - OneImport
+          - OneCast
+          - OnePackage
+          - OneStruct
+          - fsm_single_always
+          - fsm_using_function
+          - fsm_using_always
+          - AluOps
+          - UnitForLoop
+          - GenerateAssigns
+          - AssignmentPattern
+          - MultipleCells
+          - IndexedPartSelect
+          - PartSelect
+          - VarSelect
+          - EnumInPackage
+          - StructInPackage
         TARGET:
           - uhdm/yosys/test-ast
           - uhdm/verilator/test-ast
         exclude:
-          - TEST_CASE: tests/EnumInPackage
+          - TEST_CASE: EnumInPackage
             TARGET: uhdm/verilator/test-ast
-          - TEST_CASE: tests/StructInPackage
+          - TEST_CASE: StructInPackage
             TARGET: uhdm/verilator/test-ast
-          - TEST_CASE: tests/OneThis
+          - TEST_CASE: OneThis
             TARGET: uhdm/verilator/test-ast
       fail-fast:
         false
@@ -78,7 +78,7 @@ jobs:
     - name: Build & Test
       run: ./.github/travis/script.sh
       env:
-        TEST_CASE: ${{ matrix.TEST_CASE }}
+        TEST_CASE: tests/${{ matrix.TEST_CASE }}
         TARGET: ${{ matrix.TARGET }}
 
 
