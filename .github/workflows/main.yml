@@ -9,9 +9,6 @@ jobs:
 
   tests:
     runs-on: ubuntu-latest
-    defaults:
-      run:
-        shell: bash
     strategy:
       matrix:
         TEST_CASE:
@@ -87,9 +84,6 @@ jobs:
 
   surelog-uhdm:
     runs-on: ubuntu-latest
-    defaults:
-      run:
-        shell: bash
     env:
       CC: gcc-9
       CXX: g++-9
@@ -118,9 +112,6 @@ jobs:
 
   ibex_synth:
     runs-on: ubuntu-latest
-    defaults:
-      run:
-        shell: bash
     strategy:
       matrix:
         TARGET: [uhdm/yosys/synth-ibex]
