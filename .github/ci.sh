@@ -1,7 +1,9 @@
-#!/bin/bash
+#!/usr/bin/env bash
 
 set -x
 set -e
+
+cd $(dirname "$0")/..
 
 # Default is to run tests.
 MODE=${MODE:-test}
