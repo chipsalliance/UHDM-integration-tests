@@ -150,3 +150,8 @@ jobs:
       env:
         TARGET: uhdm/yosys/synth-ibex
         TEST_CASE: tests/ibex
+
+    - uses: actions/upload-artifact@v2
+      with:
+        name: top_artya7.edif
+        path: build/top_artya7.edif
