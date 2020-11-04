@@ -1,9 +1,6 @@
 [submodule "Surelog"]
 	path = Surelog
 	url = https://github.com/alainmarcel/Surelog.git
-[submodule "UHDM"]
-	path = UHDM
-	url = https://github.com/alainmarcel/UHDM.git
 [submodule "verilator"]
 	path = verilator
 	url = https://github.com/antmicro/verilator.git

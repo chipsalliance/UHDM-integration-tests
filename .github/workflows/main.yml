@@ -1,0 +1,133 @@
+name: 'main'
+
+on:
+  push:
+  pull_request:
+
+jobs:
+  tests:
+    runs-on: ubuntu-latest
+    defaults:
+      run:
+        shell: bash
+    strategy:
+      matrix:
+        TEST_CASE: [tests/onenet, tests/OneNetModport, tests/OneFF, tests/OneAnd, tests/OneDivider, tests/OneNetInterf, tests/OneNetRange, tests/OneConcat, tests/OneReplicate, tests/OneAlwaysComb, tests/OneShift, tests/OneArithShift, tests/OneSysFunc, tests/OneInside, tests/OneImport, tests/OneCast, tests/OnePackage, tests/OneStruct, tests/fsm_single_always, tests/fsm_using_function, tests/fsm_using_always, tests/AluOps, tests/UnitForLoop, tests/GenerateAssigns, tests/AssignmentPattern, tests/MultipleCells, tests/IndexedPartSelect, tests/PartSelect, tests/VarSelect, tests/EnumInPackage, tests/StructInPackage]
+        TARGET: [uhdm/yosys/test-ast, uhdm/verilator/test-ast]
+        exclude:
+          - TEST_CASE: tests/EnumInPackage
+            TARGET: uhdm/verilator/test-ast
+          - TEST_CASE: tests/StructInPackage
+            TARGET: uhdm/verilator/test-ast
+          - TEST_CASE: tests/OneThis
+            TARGET: uhdm/verilator/test-ast
+      fail-fast:
+        false
+
+    steps:
+    - name: Install dependencies
+      run: |
+        sudo apt-get update -qq
+        sudo apt install -y g++-9 build-essential cmake tclsh ant default-jre swig google-perftools libgoogle-perftools-dev python3 python3-dev uuid uuid-dev tcl-dev flex libfl-dev
+
+    - name: Git pull
+      uses: actions/checkout@v2
+      with:
+        submodules: recursive
+        fetch-depth: 0
+
+    - name: Setup python
+      uses: actions/setup-python@v2
+      with:
+         python-version: '3.x'
+
+    - name: Configure shell
+      run: |
+        echo 'CC=gcc-9' >> $GITHUB_ENV
+        echo 'CXX=g++-9' >> $GITHUB_ENV
+
+    - name: Build & Test TEST_CASE=${{ matrix.TEST_CASE }} TARGET=${{ matrix.TARGET }}
+      run: |
+        export TEST_CASE=${{matrix.TEST_CASE}}
+        export TARGET=${{matrix.TARGET}}
+        ./.github/travis/script.sh
+
+  surelog-uhdm:
+    runs-on: ubuntu-latest
+    defaults:
+      run:
+        shell: bash
+    strategy:
+      matrix:
+        MODE: [surelog-uhdm]
+      fail-fast:
+        false
+
+    steps:
+    - name: Install dependencies
+      run: |
+        sudo apt-get update -qq
+        sudo apt install -y g++-9 build-essential cmake tclsh ant default-jre swig google-perftools libgoogle-perftools-dev python3 python3-dev uuid uuid-dev tcl-dev flex libfl-dev
+
+    - name: Git pull
+      uses: actions/checkout@v2
+      with:
+        submodules: recursive
+        fetch-depth: 0
+
+    - name: Setup python
+      uses: actions/setup-python@v2
+      with:
+         python-version: '3.x'
+
+    - name: Configure shell
+      run: |
+        echo 'CC=gcc-9' >> $GITHUB_ENV
+        echo 'CXX=g++-9' >> $GITHUB_ENV
+
+    - name: Build & Test MODE=${{ matrix.MODE }}
+      run: |
+        export MODE=${{matrix.MODE}}
+        ./.github/travis/script.sh
+
+  ibex_synth:
+    runs-on: ubuntu-latest
+    defaults:
+      run:
+        shell: bash
+    strategy:
+      matrix:
+        TARGET: [uhdm/yosys/synth-ibex]
+      fail-fast:
+        false
+
+    steps:
+    - name: Install dependencies
+      run: |
+        sudo apt-get update -qq
+        sudo apt install -y g++-9 build-essential cmake tclsh ant default-jre swig google-perftools libgoogle-perftools-dev python3 python3-dev uuid uuid-dev tcl-dev flex libfl-dev
+
+    - name: Git pull
+      uses: actions/checkout@v2
+      with:
+        submodules: recursive
+        fetch-depth: 0
+
+    - name: Setup python
+      uses: actions/setup-python@v2
+      with:
+         python-version: '3.7'
+
+    - name: Configure shell
+      run: |
+        echo 'CC=gcc-9' >> $GITHUB_ENV
+        echo 'CXX=g++-9' >> $GITHUB_ENV
+
+    - name: Build & Test TARGET=${{ matrix.TARGET }}
+      run: |
+        export TARGET=${{matrix.TARGET}}
+        export TEST_CASE=tests/ibex
+        pip install virtualenv
+        virtualenv venv-ibex
+        . venv-ibex/bin/activate && pip install -r tests/ibex/ibex/python-requirements.txt && cd tests/ibex/ibex && fusesoc --cores-root=. run --target=synth --setup lowrisc:ibex:top_artya7 --part xc7a35ticsg324-1L && cd ../../..
+        ./.github/travis/script.sh
