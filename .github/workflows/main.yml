@@ -47,10 +47,6 @@ jobs:
           - uhdm/yosys/test-ast
           - uhdm/verilator/test-ast
         exclude:
-          - TEST_CASE: EnumInPackage
-            TARGET: uhdm/verilator/test-ast
-          - TEST_CASE: StructInPackage
-            TARGET: uhdm/verilator/test-ast
           - TEST_CASE: OneThis
             TARGET: uhdm/verilator/test-ast
       fail-fast:
