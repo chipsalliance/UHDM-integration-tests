@@ -12,7 +12,7 @@ IBEX_PKG_SOURCES = \
                 sed 's@^..@${IBEX_BUILD}@')
 
 #Sources that will be skipped by Surelog uhdm
-SKIP_SOURCES=ibex_if_stage.sv\|ibex_id_stage.sv\|ibex_ex_block.sv\|clkgen_xil7series.sv\|ibex_fetch_fifo.sv\|ibex_prefetch_buffer.sv\|ibex_pmp.sv\|ibex_core.sv\|top_artya7.sv\|ram_1p.sv\|ibex_alu.sv\|ibex_decoder.sv
+SKIP_SOURCES=ibex_if_stage.sv\|ibex_id_stage.sv\|clkgen_xil7series.sv\|ibex_fetch_fifo.sv\|ibex_prefetch_buffer.sv\|top_artya7.sv\|ram_1p.sv\|ibex_alu.sv\|ibex_decoder.sv
 
 IBEX_SOURCES = \
         $(shell \
@@ -53,7 +53,7 @@ uhdm/yosys/synth-ibex: yosys/yosys surelog/parse-ibex
 	(cd ${root_dir}/build && \
 	${YOSYS_BIN} \
 		     -p 'read_uhdm ${TOP_UHDM}' \
-		     -p 'read_verilog ${IBEX_INCLUDE} -sv ${IBEX_SOURCES_SKIPPED}' \
+		     -p 'read_verilog ${IBEX_INCLUDE} -overwrite -sv ${IBEX_SOURCES_SKIPPED}' \
 		     -p 'chparam -set SRAMInitFile "${root_dir}/led.vmem" top_artya7' \
 		     -p 'synth_xilinx -iopad -family xc7' \
 		     -p 'write_edif -pvector bra ${root_dir}/build/top_artya7.edif' \
