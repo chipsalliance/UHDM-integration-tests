@@ -38,6 +38,8 @@ jobs:
           - GenerateAssigns
           - AssignmentPattern
           - MultipleCells
+          - MultipleNets
+          - MultiplePrints
           - IndexedPartSelect
           - PartSelect
           - VarSelect
