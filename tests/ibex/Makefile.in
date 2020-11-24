@@ -12,7 +12,7 @@ IBEX_PKG_SOURCES = \
                 sed 's@^..@${IBEX_BUILD}@')
 
 #Sources that will be skipped by Surelog uhdm
-SKIP_SOURCES=clkgen_xil7series.sv\|ibex_fetch_fifo.sv\|ibex_prefetch_buffer.sv\|top_artya7.sv\|ram_1p.sv
+SKIP_SOURCES=ibex_fetch_fifo.sv\|top_artya7.sv\|ram_1p.sv\|ibex_prefetch_buffer.sv
 
 IBEX_SOURCES = \
         $(shell \
@@ -35,6 +35,7 @@ surelog/parse-ibex: surelog
 		cd ${IBEX} && pip install -r python-requirements.txt && \
 		fusesoc --cores-root=. run --target=synth --setup lowrisc:ibex:top_artya7 --part xc7a35ticsg324-1L && \
 	${root_dir}/image/bin/surelog -parse -sverilog \
+		-v ${root_dir}/yosys/techlibs/xilinx/cells_xtra_surelog.v \
 		$(IBEX_INCLUDE) \
 		$(IBEX_SOURCES) ${IBEX_PKG_SOURCES} && \
 	cp ${IBEX}/slpp_all/surelog.uhdm ${root_dir}/build/top.uhdm)
@@ -53,12 +54,29 @@ uhdm/yosys/synth-ibex: yosys/yosys surelog/parse-ibex
 	(cd ${root_dir}/build && \
 	${YOSYS_BIN} \
 		     -p 'read_uhdm ${TOP_UHDM}' \
-		     -p 'read_verilog ${IBEX_INCLUDE} -overwrite -sv ${IBEX_SOURCES_SKIPPED}' \
+		     -p 'read_verilog ${IBEX_INCLUDE} -sv ${IBEX_SOURCES_SKIPPED}' \
+		     -p 'chparam -set SRAMInitFile "${root_dir}/led.vmem" top_artya7' \
+		     -p 'read_verilog -lib -specify +/xilinx/cells_sim.v' \
+		     -p 'hierarchy -check -auto-top' \
+		     -p 'synth_xilinx -iopad -family xc7 -run prepare:check' \
+		     -p 'write_edif -pvector bra ${root_dir}/build/top_artya7.edif' \
+		     -p 'write_json ${root_dir}/build/top.json' \
+		     -p 'write_verilog -noattr ${root_dir}/build/top.v')
+
+uhdm/yosys/synth-ibex-build: uhdm/yosys/synth-ibex
+	(cd ${root_dir}/build && \
+		vivado -nojournal -log ${root_dir}/top.log -mode batch -source ${root_dir}/build.tcl)
+
+uhdm/yosys/synth-ibex-sv: yosys/yosys
+	mkdir -p ${root_dir}/build-sv
+	(cd ${root_dir}/build-sv && \
+	${YOSYS_BIN} \
+		     -p 'read_verilog ${IBEX_INCLUDE} -sv ${IBEX_PKG_SOURCES} ${IBEX_SOURCES} ${IBEX_SOURCES_SKIPPED}' \
 		     -p 'chparam -set SRAMInitFile "${root_dir}/led.vmem" top_artya7' \
 		     -p 'synth_xilinx -iopad -family xc7' \
-		     -p 'write_edif -pvector bra ${root_dir}/build/top_artya7.edif' \
-		     -p 'write_json ${root_dir}/top.json')
-	#vivado -nojournal -log ${root_dir}/top.log -mode batch -source ${root_dir}/build.tcl)
+		     -p 'write_edif -pvector bra ${root_dir}/build-sv/top_artya7.edif' \
+		     -p 'write_json ${root_dir}/build-sv/top.json' \
+		     -p 'write_verilog -noattr ${root_dir}/build-sv/top.v')
 
 #############################
 #### SIMULATION  (YOSYS) ####
