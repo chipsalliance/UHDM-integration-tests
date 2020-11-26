@@ -37,7 +37,10 @@ jobs:
           - UnitForLoop
           - GenerateAssigns
           - AssignmentPattern
+          - MixedPatterns
           - MultipleCells
+          - MultipleNets
+          - MultiplePrints
           - IndexedPartSelect
           - PartSelect
           - VarSelect
