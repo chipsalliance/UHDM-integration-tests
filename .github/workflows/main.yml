@@ -26,19 +26,21 @@ jobs:
 
     - uses: actions/setup-python@v2
       with:
-         python-version: '3.x'
+         python-version: '3.7'
 
     - name: Build binaries
       run: |
         make -j$(nproc) prep
-        mkdir -p output
-        mv image output/
+        # By default actions/upload-artifact@v2 do not preserve file permissions
+        # tar directory to workaround this issue
+        # See https://github.com/actions/upload-artifact/issues/38
+        tar -cvf binaries.tar image
 
     - name: Upload binaries
       uses: actions/upload-artifact@v2
       with:
         name: binaries
-        path: output
+        path: binaries.tar
 
   generate-matrix:
     runs-on: ubuntu-latest
@@ -50,7 +52,7 @@ jobs:
 
       - uses: actions/setup-python@v2
         with:
-           python-version: '3.x'
+           python-version: '3.7'
 
       - name: Generate matrix
         id: generate
@@ -68,6 +70,7 @@ jobs:
         TARGET:
           - uhdm/yosys/test-ast
           - uhdm/verilator/test-ast
+          - uhdm/vcddiff
       fail-fast:
         false
     env:
@@ -88,12 +91,16 @@ jobs:
 
     - uses: actions/setup-python@v2
       with:
-         python-version: '3.x'
+         python-version: '3.7'
 
     - name: Download binaries
       uses: actions/download-artifact@v2
       with:
         name: binaries
+
+    # See https://github.com/actions/upload-artifact/issues/38
+    - name: Extract
+      run: tar -xf binaries.tar
 
     - name: Update binaries timestamp
       run: |
@@ -128,12 +135,16 @@ jobs:
 
     - uses: actions/setup-python@v2
       with:
-         python-version: '3.x'
+         python-version: '3.7'
 
     - name: Download binaries
       uses: actions/download-artifact@v2
       with:
         name: binaries
+
+    # See https://github.com/actions/upload-artifact/issues/38
+    - name: Extract
+      run: tar -xf binaries.tar
 
     - name: Update binaries timestamp
       run: |
@@ -178,6 +189,10 @@ jobs:
       uses: actions/download-artifact@v2
       with:
         name: binaries
+
+    # See https://github.com/actions/upload-artifact/issues/38
+    - name: Extract
+      run: tar -xf binaries.tar
 
     - name: Update binaries timestamp
       run: |
