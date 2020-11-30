@@ -1,8 +1,2 @@
-# A hack to get two files working without touching main makefile
-# Verilator needs pkg.sv to be parsed first
-TOP_FILE := tests/OneImport/pkg.sv ../tests/OneImport/dut.sv
-MAIN_FILE := tests/OneImport/main.cpp
-YOSYS_SCRIPT := tests/OneImport/yosys_script
+TOP_FILE := $(TEST_DIR)/pkg.sv $(TEST_DIR)/dut.sv
 TOP_MODULE := dut
-VERILATED_BIN := Vwork_$(TOP_MODULE)
-TOP_MAKEFILE := $(VERILATED_BIN).mk

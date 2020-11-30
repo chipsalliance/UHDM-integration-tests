@@ -1,6 +1,2 @@
-TOP_FILE := tests/IndexedPartSelect/top.sv
-MAIN_FILE := tests/IndexedPartSelect/main.cpp
-YOSYS_SCRIPT := tests/IndexedPartSelect/yosys_script
+TOP_FILE := $(TEST_DIR)/top.sv
 TOP_MODULE := top
-VERILATED_BIN := Vwork_$(TOP_MODULE)
-TOP_MAKEFILE := $(VERILATED_BIN).mk

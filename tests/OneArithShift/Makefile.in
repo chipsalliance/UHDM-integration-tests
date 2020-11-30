@@ -1,6 +1,2 @@
-TOP_FILE := tests/OneArithShift/dut.v
-MAIN_FILE := tests/OneArithShift/main.cpp
-YOSYS_SCRIPT := tests/OneArithShift/yosys_script
+TOP_FILE := $(TEST_DIR)/dut.v
 TOP_MODULE := dut
-VERILATED_BIN := Vwork_$(TOP_MODULE)
-TOP_MAKEFILE := $(VERILATED_BIN).mk

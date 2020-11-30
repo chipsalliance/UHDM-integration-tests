@@ -1,6 +1,2 @@
-TOP_FILE := tests/fsm_using_always/dut.v
-MAIN_FILE := tests/fsm_using_always/main.cpp
-YOSYS_SCRIPT := tests/fsm_using_always/yosys_script
+TOP_FILE := $(TEST_DIR)/dut.v
 TOP_MODULE := fsm_using_always
-VERILATED_BIN := Vwork_$(TOP_MODULE)
-TOP_MAKEFILE := $(VERILATED_BIN).mk
