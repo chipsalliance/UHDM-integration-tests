@@ -1,0 +1,6 @@
+TOP_FILE := tests/AnonStructs/top.sv
+MAIN_FILE := tests/AnonStructs/main.cpp
+YOSYS_SCRIPT := tests/AnonStructs/yosys_script
+TOP_MODULE := top
+VERILATED_BIN := Vwork_$(TOP_MODULE)
+TOP_MAKEFILE := $(VERILATED_BIN).mk
