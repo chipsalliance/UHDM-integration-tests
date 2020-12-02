@@ -19,7 +19,7 @@ package pkg3;
     } enum2;
 endpackage
 
-module dut;  
+module dut(var1, var2, var3, var4);
     typedef enum logic[7:0] {
         SEVENTH = 8'b01011010,
         EIGHTH  = 8'b11010011
@@ -27,10 +27,10 @@ module dut;
 
    import pkg3::*;
 
-    pkg1::enum1 var1;
-    pkg2::enum1 var2;
-    enum2 var3;
-    enum3 var4;
+    output pkg1::enum1 var1;
+    output pkg2::enum1 var2;
+    output enum2 var3;
+    output enum3 var4;
 
     assign var1 = pkg1::FIRST;
     assign var2 = pkg2::FOURTH;

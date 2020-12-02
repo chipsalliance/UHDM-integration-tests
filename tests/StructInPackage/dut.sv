@@ -10,14 +10,14 @@ package pkg2;
     } struct1;
 endpackage
 
-module dut;
+module dut(var1, var2, var3);
     typedef struct packed {
         logic [5:0] third;
     } struct2;
 
-    pkg1::struct1 var1;
-    pkg2::struct1 var2;
-    struct2 var3;
+    output pkg1::struct1 var1;
+    output pkg2::struct1 var2;
+    output struct2 var3;
 
     assign var1.first = 255;
     assign var2.second = 127;
