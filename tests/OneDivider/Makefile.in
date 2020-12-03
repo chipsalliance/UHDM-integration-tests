@@ -1,6 +1,2 @@
-TOP_FILE := Surelog/tests/OneDivider/dut.v
-MAIN_FILE := tests/OneDivider/main.cpp
-YOSYS_SCRIPT := tests/OneDivider/yosys_script
+TOP_FILE := $(root_dir)/Surelog/tests/OneDivider/dut.v
 TOP_MODULE := dut
-VERILATED_BIN := Vwork_$(TOP_MODULE)
-TOP_MAKEFILE := $(VERILATED_BIN).mk

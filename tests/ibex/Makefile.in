@@ -28,29 +28,23 @@ IBEX_SOURCES_SKIPPED = \
 		grep '${SKIP_SOURCES}' | \
                 sed 's@^..@${IBEX_BUILD}@')
 
-surelog/parse-ibex: surelog
-	mkdir -p ${root_dir}/build
+surelog/parse-ibex: image/bin/surelog clean-build
 	virtualenv ${root_dir}/venv-ibex
 	(. ${root_dir}/venv-ibex/bin/activate && \
 		cd ${IBEX} && pip install -r python-requirements.txt && \
 		fusesoc --cores-root=. run --target=synth --setup lowrisc:ibex:top_artya7 --part xc7a35ticsg324-1L && \
+		cd $(root_dir)/build && \
 	${root_dir}/image/bin/surelog -parse -sverilog \
 		-v ${root_dir}/yosys/techlibs/xilinx/cells_xtra_surelog.v \
 		$(IBEX_INCLUDE) \
 		$(IBEX_SOURCES) ${IBEX_PKG_SOURCES} && \
-	cp ${IBEX}/slpp_all/surelog.uhdm ${root_dir}/build/top.uhdm)
+	cp ${root_dir}/build/slpp_all/surelog.uhdm ${TOP_UHDM})
 
-uhdm/yosys/coverage: yosys/yosys surelog/parse-ibex
-	mkdir -p build
-	-(cd ${IBEX}/slpp_all && \
-		${YOSYS_BIN} \
-		-p "read_uhdm -report ${COVARAGE_REPORT} ${TOP_UHDM}")
 
 #############################
 ####      SYNTHESIS      ####
 #############################
-uhdm/yosys/synth-ibex: yosys/yosys surelog/parse-ibex
-	mkdir -p ${root_dir}/build
+uhdm/yosys/synth-ibex: image/bin/yosys surelog/parse-ibex
 	(cd ${root_dir}/build && \
 	${YOSYS_BIN} \
 		     -p 'read_uhdm ${TOP_UHDM}' \
@@ -67,7 +61,7 @@ uhdm/yosys/synth-ibex-build: uhdm/yosys/synth-ibex
 	(cd ${root_dir}/build && \
 		vivado -nojournal -log ${root_dir}/top.log -mode batch -source ${root_dir}/build.tcl)
 
-uhdm/yosys/synth-ibex-sv: yosys/yosys
+uhdm/yosys/synth-ibex-sv: image/bin/yosys
 	mkdir -p ${root_dir}/build-sv
 	(cd ${root_dir}/build-sv && \
 	${YOSYS_BIN} \
@@ -89,7 +83,7 @@ ifeq ($(SIM_FILE),ibex_alu.sv)
 	SIM_FILES := $(SIM_FILES) $(IBEX_TOP_DIR)/ibex_alu_top.sv $(IBEX_DIR)/ibex_pkg.sv
 endif
 
-surelog/parse-sim: surelog
+surelog/parse-sim: image/bin/surelog
 	mkdir -p build
 	(cd build && \
 		${SURELOG_BIN} -parse -sverilog \
@@ -98,7 +92,7 @@ surelog/parse-sim: surelog
 	)
 	cp build/slpp_all/surelog.uhdm build/top.uhdm
 
-uhdm/yosys/test-sim: surelog/parse-sim yosys/yosys
+uhdm/yosys/test-sim: surelog/parse-sim image/bin/yosys
 	${YOSYS_BIN} \
 		-p 'read_uhdm -debug build/top.uhdm' \
 		-p 'prep -auto-top' \

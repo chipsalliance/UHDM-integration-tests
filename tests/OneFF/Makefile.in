@@ -1,6 +1,2 @@
-TOP_FILE := Surelog/tests/OneFF/dut.v
-MAIN_FILE := tests/OneFF/main.cpp
-YOSYS_SCRIPT := tests/OneFF/yosys_script
+TOP_FILE := $(root_dir)/Surelog/$(TEST)/dut.v
 TOP_MODULE := dut
-VERILATED_BIN := Vwork_$(TOP_MODULE)
-TOP_MAKEFILE := $(VERILATED_BIN).mk
