@@ -76,6 +76,9 @@ jobs:
     env:
       CC: gcc-9
       CXX: g++-9
+      GIT_HTTP_LOW_SPEED_LIMIT: 1
+      GIT_HTTP_LOW_SPEED_TIME: 600
+      GIT_CURL_VERBOSE: 1
 
     steps:
 
