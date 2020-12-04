@@ -11,27 +11,18 @@ IBEX_PKG_SOURCES = \
                 grep read_verilog | cut -d' ' -f3  | grep _pkg.sv | \
                 sed 's@^..@${IBEX_BUILD}@')
 
-#Sources that will be skipped by Surelog uhdm
-SKIP_SOURCES=top_artya7.sv\|ram_1p.sv
-
 IBEX_SOURCES = \
         $(shell \
                 cat ${IBEX_BUILD}/synth-vivado/lowrisc_ibex_top_artya7_0.1.tcl | \
                 grep read_verilog | cut -d' ' -f3 | grep -v _pkg.sv | \
-		grep -v '${SKIP_SOURCES}' | \
-                sed 's@^..@${IBEX_BUILD}@')
-
-IBEX_SOURCES_SKIPPED = \
-        $(shell \
-                cat ${IBEX_BUILD}/synth-vivado/lowrisc_ibex_top_artya7_0.1.tcl | \
-                grep read_verilog | cut -d' ' -f3 | grep -v _pkg.sv | \
-		grep '${SKIP_SOURCES}' | \
                 sed 's@^..@${IBEX_BUILD}@')
 
 surelog/parse-ibex: image/bin/surelog clean-build
 	virtualenv ${root_dir}/venv-ibex
 	(. ${root_dir}/venv-ibex/bin/activate && \
 		cd ${IBEX} && pip install -r python-requirements.txt && \
+                sed -i '14s@SRAMInitFile =.*@SRAMInitFile = '"\"${root_dir}/led.vmem\";"'@' ./examples/fpga/artya7/rtl/top_artya7.sv && \
+                sed -i '31s/mem.*;/mem [128];/' ./vendor/lowrisc_ip/prim_generic/rtl/prim_generic_ram_1p.sv && \
 		fusesoc --cores-root=. run --target=synth --setup lowrisc:ibex:top_artya7 --part xc7a35ticsg324-1L && \
 		cd $(root_dir)/build && \
 	${root_dir}/image/bin/surelog -parse -sverilog \
@@ -48,8 +39,6 @@ uhdm/yosys/synth-ibex: image/bin/yosys surelog/parse-ibex
 	(cd ${root_dir}/build && \
 	${YOSYS_BIN} \
 		     -p 'read_uhdm ${TOP_UHDM}' \
-		     -p 'read_verilog ${IBEX_INCLUDE} -sv ${IBEX_SOURCES_SKIPPED}' \
-		     -p 'chparam -set SRAMInitFile "${root_dir}/led.vmem" top_artya7' \
 		     -p 'read_verilog -lib -specify +/xilinx/cells_sim.v' \
 		     -p 'hierarchy -check -auto-top' \
 		     -p 'synth_xilinx -iopad -family xc7 -run prepare:check' \
@@ -65,7 +54,7 @@ uhdm/yosys/synth-ibex-sv: image/bin/yosys
 	mkdir -p ${root_dir}/build-sv
 	(cd ${root_dir}/build-sv && \
 	${YOSYS_BIN} \
-		     -p 'read_verilog ${IBEX_INCLUDE} -sv ${IBEX_PKG_SOURCES} ${IBEX_SOURCES} ${IBEX_SOURCES_SKIPPED}' \
+		     -p 'read_verilog ${IBEX_INCLUDE} -sv ${IBEX_PKG_SOURCES} ${IBEX_SOURCES}' \
 		     -p 'chparam -set SRAMInitFile "${root_dir}/led.vmem" top_artya7' \
 		     -p 'synth_xilinx -iopad -family xc7' \
 		     -p 'write_edif -pvector bra ${root_dir}/build-sv/top_artya7.edif' \
