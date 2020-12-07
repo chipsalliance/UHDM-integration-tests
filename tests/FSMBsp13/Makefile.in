@@ -1,2 +1,0 @@
-TOP_FILE := $(root_dir)/Surelog/$(TEST)/dut.v
-TOP_MODULE := dut

@@ -1,5 +1,0 @@
-read_uhdm -debug top.uhdm
-write_json
-prep -top \dut
-write_verilog
-write_verilog yosys.sv
