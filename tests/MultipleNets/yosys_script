@@ -3,4 +3,4 @@ write_json
 prep -top \top
 write_verilog
 write_verilog yosys.sv
-sim -clock i -rstlen 10 -vcd dump.vcd
+sim -rstlen 10 -vcd dump.vcd
