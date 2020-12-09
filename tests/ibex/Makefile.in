@@ -22,7 +22,6 @@ surelog/parse-ibex: image/bin/surelog clean-build
 	(. ${root_dir}/venv-ibex/bin/activate && \
 		cd ${IBEX} && pip install -r python-requirements.txt && \
                 sed -i '14s@SRAMInitFile =.*@SRAMInitFile = '"\"${root_dir}/led.vmem\";"'@' ./examples/fpga/artya7/rtl/top_artya7.sv && \
-                sed -i '31s/mem.*;/mem [128];/' ./vendor/lowrisc_ip/prim_generic/rtl/prim_generic_ram_1p.sv && \
 		fusesoc --cores-root=. run --target=synth --setup lowrisc:ibex:top_artya7 --part xc7a35ticsg324-1L && \
 		cd $(root_dir)/build && \
 	${root_dir}/image/bin/surelog -parse -sverilog \
