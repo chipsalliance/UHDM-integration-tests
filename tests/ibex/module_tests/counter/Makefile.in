@@ -1,11 +1,2 @@
 TOP_FILE := $(TEST_DIR)/../../ibex/rtl/ibex_pkg.sv $(TEST_DIR)/../../ibex/rtl/ibex_counter.sv
 TOP_MODULE := top
-#all:
-#	cp ../../ibex/rtl/ibex_counter.sv .
-#	../../../../image/bin/surelog -parse -sverilog ../../ibex/rtl/ibex_pkg.sv ibex_counter.sv
-#	../../../../image/bin/verilator --cc --debugi 6 --trace --exe --Mdir build --uhdm-ast --dump-uhdm slpp_all/surelog.uhdm sim.cpp
-#	make -C build -f Vsurelog.mk -j`nproc`
-#	./build/Vsurelog
-#
-#clean:
-#	rm -rf build slpp_all surelog.log dump.vcd
