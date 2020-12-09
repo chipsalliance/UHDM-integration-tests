@@ -21,11 +21,12 @@ surelog/parse-ibex: image/bin/surelog clean-build
 	virtualenv ${root_dir}/venv-ibex
 	(. ${root_dir}/venv-ibex/bin/activate && \
 		cd ${IBEX} && pip install -r python-requirements.txt && \
-                sed -i '14s@SRAMInitFile =.*@SRAMInitFile = '"\"${root_dir}/led.vmem\";"'@' ./examples/fpga/artya7/rtl/top_artya7.sv && \
 		fusesoc --cores-root=. run --target=synth --setup lowrisc:ibex:top_artya7 --part xc7a35ticsg324-1L && \
 		cd $(root_dir)/build && \
 	${root_dir}/image/bin/surelog -parse -sverilog \
 		-v ${root_dir}/yosys/techlibs/xilinx/cells_xtra_surelog.v \
+		-PSRAMInitFile="${root_dir}/led.vmem" \
+		-top top_artya7 \
 		$(IBEX_INCLUDE) \
 		$(IBEX_SOURCES) ${IBEX_PKG_SOURCES} && \
 	cp ${root_dir}/build/slpp_all/surelog.uhdm ${TOP_UHDM})
