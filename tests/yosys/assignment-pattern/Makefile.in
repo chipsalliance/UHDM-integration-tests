@@ -1,3 +1,3 @@
 TOP_FILE := tests/yosys/assignment-pattern/top.sv
 YOSYS_SCRIPT := tests/yosys/assignment-pattern/test.ys
-TOP_MODULE := work_top
+TOP_MODULE := top
