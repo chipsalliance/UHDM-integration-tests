@@ -1,65 +1,25 @@
 IBEX = ${root_dir}/tests/ibex/ibex
-IBEX_BUILD = ${IBEX}/build/lowrisc_ibex_top_artya7_0.1
-
-IBEX_INCLUDE = \
-        -I$(IBEX_BUILD)/src/lowrisc_prim_assert_0.1/rtl \
-        -I$(IBEX_BUILD)/src/lowrisc_prim_util_memload_0/rtl \
-
-IBEX_PKG_SOURCES = \
-        $(shell \
-                cat ${IBEX_BUILD}/synth-vivado/lowrisc_ibex_top_artya7_0.1.tcl | \
-                grep read_verilog | cut -d' ' -f3  | grep _pkg.sv | \
-                sed 's@^..@${IBEX_BUILD}@')
-
-IBEX_SOURCES = \
-        $(shell \
-                cat ${IBEX_BUILD}/synth-vivado/lowrisc_ibex_top_artya7_0.1.tcl | \
-                grep read_verilog | cut -d' ' -f3 | grep -v _pkg.sv | \
-                sed 's@^..@${IBEX_BUILD}@')
-
-surelog/parse-ibex: image/bin/surelog clean-build
-	virtualenv ${root_dir}/venv-ibex
-	(. ${root_dir}/venv-ibex/bin/activate && \
-		cd ${IBEX} && pip install -r python-requirements.txt && \
-		fusesoc --cores-root=. run --target=synth --setup lowrisc:ibex:top_artya7 --part xc7a35ticsg324-1L && \
-		cd $(root_dir)/build && \
-	${root_dir}/image/bin/surelog -parse -sverilog \
-		-v ${root_dir}/yosys/techlibs/xilinx/cells_xtra_surelog.v \
-		-PSRAMInitFile="${root_dir}/led.vmem" \
-		-top top_artya7 \
-		$(IBEX_INCLUDE) \
-		$(IBEX_SOURCES) ${IBEX_PKG_SOURCES} && \
-	cp ${root_dir}/build/slpp_all/surelog.uhdm ${TOP_UHDM})
-
-
 #############################
 ####      SYNTHESIS      ####
 #############################
-uhdm/yosys/synth-ibex: image/bin/yosys surelog/parse-ibex
-	(cd ${root_dir}/build && \
-	${YOSYS_BIN} \
-		     -p 'read_uhdm ${TOP_UHDM}' \
-		     -p 'read_verilog -lib -specify +/xilinx/cells_sim.v' \
-		     -p 'hierarchy -check -auto-top' \
-		     -p 'synth_xilinx -iopad -family xc7 -run prepare:check' \
-		     -p 'write_edif -pvector bra ${root_dir}/build/top_artya7.edif' \
-		     -p 'write_json ${root_dir}/build/top.json' \
-		     -p 'write_verilog -noattr ${root_dir}/build/top.v')
+${IBEX}/.gitpatch:
+	cd ${IBEX} && git apply ${root_dir}/top_artya7_core.patch && touch $@
 
-uhdm/yosys/synth-ibex-build: uhdm/yosys/synth-ibex
-	(cd ${root_dir}/build && \
-		vivado -nojournal -log ${root_dir}/top.log -mode batch -source ${root_dir}/build.tcl)
+uhdm/yosys/synth-ibex: image/bin/yosys clean-build ${IBEX}/.gitpatch
+	virtualenv ${root_dir}/venv-ibex
+	(export PATH=${root_dir}/image/bin:${PATH} && \
+		. ${root_dir}/venv-ibex/bin/activate && \
+		pip install -r ${IBEX}/python-requirements.txt && \
+		pip install git+https://github.com/antmicro/edalize@surelog && \
+		fusesoc --cores-root=${IBEX} run --build --tool yosys --target=synth lowrisc:ibex:top_artya7_surelog --SRAMInitFile="${root_dir}/led.vmem" --library_files="${root_dir}/yosys/techlibs/xilinx/cells_xtra_surelog.v")
 
-uhdm/yosys/synth-ibex-sv: image/bin/yosys
-	mkdir -p ${root_dir}/build-sv
-	(cd ${root_dir}/build-sv && \
-	${YOSYS_BIN} \
-		     -p 'read_verilog ${IBEX_INCLUDE} -sv ${IBEX_PKG_SOURCES} ${IBEX_SOURCES}' \
-		     -p 'chparam -set SRAMInitFile "${root_dir}/led.vmem" top_artya7' \
-		     -p 'synth_xilinx -iopad -family xc7' \
-		     -p 'write_edif -pvector bra ${root_dir}/build-sv/top_artya7.edif' \
-		     -p 'write_json ${root_dir}/build-sv/top.json' \
-		     -p 'write_verilog -noattr ${root_dir}/build-sv/top.v')
+uhdm/yosys/synth-ibex-build: image/bin/yosys clean-build ${IBEX}/.gitpatch
+	virtualenv ${root_dir}/venv-ibex
+	(export PATH=${root_dir}/image/bin:${PATH} && \
+		. ${root_dir}/venv-ibex/bin/activate && \
+		pip install -r ${IBEX}/python-requirements.txt && \
+		pip install git+https://github.com/antmicro/edalize@surelog && \
+		fusesoc --cores-root=${IBEX} run --build --tool vivado --target=synth lowrisc:ibex:top_artya7_surelog --part xc7a35ticsg324-1L --SRAMInitFile="${root_dir}/led.vmem" --library_files="${root_dir}/yosys/techlibs/xilinx/cells_xtra_surelog.v")
 
 #############################
 #### SIMULATION  (YOSYS) ####
