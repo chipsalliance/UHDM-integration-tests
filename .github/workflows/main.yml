@@ -207,12 +207,6 @@ jobs:
     - name: Build & Test
       run: |
         pip install virtualenv
-        virtualenv venv-ibex
-        . venv-ibex/bin/activate
-        pip install -r tests/ibex/ibex/python-requirements.txt
-        cd tests/ibex/ibex
-        fusesoc --cores-root=. run --target=synth --setup lowrisc:ibex:top_artya7 --part xc7a35ticsg324-1L
-        cd ../../..
         ./.github/ci.sh
       env:
         TARGET: uhdm/yosys/synth-ibex
@@ -220,5 +214,5 @@ jobs:
 
     - uses: actions/upload-artifact@v2
       with:
-        name: top_artya7.edif
-        path: build/top_artya7.edif
+        name: lowrisc_ibex_top_artya7_surelog_0.1.edif
+        path: build/lowrisc_ibex_top_artya7_surelog_0.1/synth-yosys/lowrisc_ibex_top_artya7_surelog_0.1.edif

@@ -2,23 +2,24 @@ IBEX = ${root_dir}/tests/ibex/ibex
 #############################
 ####      SYNTHESIS      ####
 #############################
-uhdm/yosys/synth-ibex: image/bin/yosys clean-build
-	virtualenv ${root_dir}/venv-ibex
-	(. ${root_dir}/venv-ibex/bin/activate && \
-		pip install -r ${IBEX}/python-requirements.txt && \
-		pip install git+https://github.com/antmicro/edalize@surelog && \
-		fusesoc --cores-root=${IBEX} run --target=synth --setup lowrisc:ibex:top_artya7 --part xc7a35ticsg324-1L && \
-		export PATH=${root_dir}/image/bin:${PATH} && \
-	        python ${root_dir}/surelog_yosys.py --tool yosys)
+${IBEX}/.gitpatch:
+	cd ${IBEX} && git apply ${root_dir}/top_artya7_core.patch && touch $@
 
-uhdm/yosys/synth-ibex-build: image/bin/yosys clean-build
+uhdm/yosys/synth-ibex: image/bin/yosys clean-build ${IBEX}/.gitpatch
 	virtualenv ${root_dir}/venv-ibex
-	(. ${root_dir}/venv-ibex/bin/activate && \
+	(export PATH=${root_dir}/image/bin:${PATH} && \
+		. ${root_dir}/venv-ibex/bin/activate && \
 		pip install -r ${IBEX}/python-requirements.txt && \
 		pip install git+https://github.com/antmicro/edalize@surelog && \
-		fusesoc --cores-root=${IBEX} run --target=synth --setup lowrisc:ibex:top_artya7 --part xc7a35ticsg324-1L && \
-		export PATH=${root_dir}/image/bin:${PATH} && \
-	        python ${root_dir}/surelog_yosys.py --tool vivado)
+		fusesoc --cores-root=${IBEX} run --build --tool yosys --target=synth lowrisc:ibex:top_artya7_surelog --SRAMInitFile="${root_dir}/led.vmem" --library_files="${root_dir}/yosys/techlibs/xilinx/cells_xtra_surelog.v")
+
+uhdm/yosys/synth-ibex-build: image/bin/yosys clean-build ${IBEX}/.gitpatch
+	virtualenv ${root_dir}/venv-ibex
+	(export PATH=${root_dir}/image/bin:${PATH} && \
+		. ${root_dir}/venv-ibex/bin/activate && \
+		pip install -r ${IBEX}/python-requirements.txt && \
+		pip install git+https://github.com/antmicro/edalize@surelog && \
+		fusesoc --cores-root=${IBEX} run --build --tool vivado --target=synth lowrisc:ibex:top_artya7_surelog --part xc7a35ticsg324-1L --SRAMInitFile="${root_dir}/led.vmem" --library_files="${root_dir}/yosys/techlibs/xilinx/cells_xtra_surelog.v")
 
 #############################
 #### SIMULATION  (YOSYS) ####
