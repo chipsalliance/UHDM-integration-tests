@@ -2,7 +2,7 @@
 #include <verilated_vcd_c.h>
 
 #define VL_DEBUG
-#include "Vwork_fsm_using_function.h"
+#include "Vfsm_using_function.h"
 #include "verilated.h"
 
 static vluint64_t main_time = 0;
@@ -15,7 +15,7 @@ sc_time_stamp()
 
 int main (int argc, char **argv) {
   Verilated::commandArgs(argc, argv);
-  Vwork_fsm_using_function *top = new Vwork_fsm_using_function();
+  Vfsm_using_function *top = new Vfsm_using_function();
 
   Verilated::traceEverOn(true);
   VerilatedVcdC* tfp = new VerilatedVcdC;
