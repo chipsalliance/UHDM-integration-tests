@@ -26,3 +26,10 @@ index 811fb93..cc8789e 100644
 +        yosys_read_options: ['-noassert']
 +        surelog_options: ['-verilator']
 +        library_files: ""
++      symbiflow:
++        package: "csg324-1"
++        part: "xc7a35t"
++        pnr: "vtr"
++        vendor: "xilinx"
++        yosys_frontend: "uhdm"
++        library_files: []
