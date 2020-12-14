@@ -171,7 +171,7 @@ jobs:
         find . -type f -exec touch {} +
 
     - name: Build & Test
-      run:
+      run: |
         pip install virtualenv
         virtualenv venv-ibex
         . venv-ibex/bin/activate
