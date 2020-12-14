@@ -1,6 +1,6 @@
 #include <verilated.h>
 #include <verilated_vcd_c.h>
-#include "Vtop.h"
+#include "Vibex_counter.h"
 
 vluint64_t main_time = 0;
 
@@ -9,7 +9,7 @@ int main(int argc, char* argv[])
   Verilated::traceEverOn(true);
   VerilatedVcdC* tfp = new VerilatedVcdC;
 
-  Vtop* top = new Vtop;
+  Vibex_counter* top = new Vibex_counter;
   top->trace(tfp, 99);
   tfp->open("dump.vcd");
 
