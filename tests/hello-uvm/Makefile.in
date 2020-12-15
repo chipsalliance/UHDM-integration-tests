@@ -1,6 +1,2 @@
-TOP_FILE := tests/hello-uvm/top.sv
-MAIN_FILE := tests/hello-uvm/main.cpp
-YOSYS_SCRIPT := tests/hello-uvm/yosys_script
+TOP_FILE := $(root_dir)/tests/hello-uvm/top.sv
 TOP_MODULE := top
-VERILATED_BIN := V$(TOP_MODULE)
-TOP_MAKEFILE := $(VERILATED_BIN).mk
