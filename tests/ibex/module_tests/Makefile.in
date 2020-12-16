@@ -1,0 +1,2 @@
+IBEX = ${root_dir}/tests/ibex/ibex
+IBEX_BUILD = ${IBEX}/build/lowrisc_ibex_top_artya7_0.1

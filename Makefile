@@ -8,7 +8,6 @@ YOSYS_BIN = ${root_dir}/image/bin/yosys
 VERILATOR_BIN = ${root_dir}/image/bin/verilator
 VCDDIFF_BIN = ${root_dir}/image/bin/vcddiff
 COVARAGE_REPORT = ${root_dir}/build/coverage
-TOP_UHDM = ${root_dir}/build/top.uhdm
 UHDM_PATCH = ${root_dir}/Surelog/third_party/UHDM/.gitpatch
 
 TEST_DIR := $(root_dir)/$(TEST)
@@ -18,9 +17,10 @@ YOSYS_SCRIPT := $(TEST_DIR)/yosys_script
 # this include should set $(TOP_FILE) and $(TOP_MODULE) variables
 include $(TEST)/Makefile.in
 
-# this variables uses $(TOP_MODULE) that is set in included Makefile.in
-VERILATED_BIN := Vwork_$(TOP_MODULE)
-TOP_MAKEFILE := $(VERILATED_BIN).mk
+# this variables use $(TOP_MODULE) that is set in included Makefile.in
+VERILATED_BIN := V$(TOP_MODULE)
+TOP_UHDM = ${root_dir}/build/$(TOP_MODULE).uhdm
+TOP_MAKEFILE := V$(TOP_MODULE).mk
 
 list:
 	@echo "Available tests:"
@@ -80,7 +80,6 @@ surelog/parse: image/bin/surelog clean-build
 uhdm/verilator/test-ast-generate: image/bin/verilator surelog/parse
 	(cd $(root_dir)/build && \
 		$(VERILATOR_BIN) --uhdm-ast --cc $(TOP_UHDM) \
-			--top-module work_$(TOP_MODULE) \
 			--dump-uhdm \
 			--exe $(MAIN_FILE) --trace && \
 		 make -j -C obj_dir -f $(TOP_MAKEFILE) $(VERILATED_BIN) && \
@@ -150,10 +149,10 @@ uhdm/verilator/get-ast: image/bin/verilator clean-build
 
 uhdm/verilator/ast-xml: image/bin/verilator surelog/parse
 	(cd $(root_dir)/build && \
-		$(VERILATOR_BIN) --uhdm-ast --cc ./top.uhdm \
-			--top-module work_$(TOP_MODULE) \
+		$(VERILATOR_BIN) --uhdm-ast --cc $(TOP_UHDM) \
 			--dump-uhdm \
-			--exe $(MAIN_FILE) --xml-only --debug)
+			--debugi 6 \
+			--exe $(MAIN_FILE) --xml-only)
 
 vcd:
 	gtkwave $(root_dir)/build/dump.vcd &>/dev/null &

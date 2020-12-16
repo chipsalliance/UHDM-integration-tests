@@ -1,0 +1,4 @@
+include $(TEST_DIR)/../Makefile.in
+TOP_FILE := $(IBEX_BUILD)/src/lowrisc_ibex_ibex_pkg_0.1/rtl/ibex_pkg.sv \
+    $(IBEX_BUILD)/src/lowrisc_ibex_ibex_core_0.1/rtl/ibex_alu.sv
+TOP_MODULE := ibex_alu
