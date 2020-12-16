@@ -67,7 +67,7 @@ uhdm/verilator/test-ast: uhdm/verilator/test-ast-generate
 uhdm/yosys/test-ast: image/bin/yosys surelog/parse
 	(cd $(root_dir)/build && ${YOSYS_BIN} -s $(YOSYS_SCRIPT))
 
-surelog/regression: image/bin/surelog
+surelog/regression:
 	(cd Surelog && $(MAKE) regression)
 
 # ------------ Test helper targets ------------
