@@ -29,10 +29,10 @@ list:
 
 # ------------ Binaries build targets ------------
 
-image/bin/verilator: image/bin/surelog
+image/bin/verilator: | image/bin/surelog
 	(cd ${root_dir}/verilator && autoconf && ./configure --prefix=$(root_dir)/image && $(MAKE) install)
 
-image/bin/yosys: yosys/Makefile image/bin/surelog
+image/bin/yosys: | image/bin/surelog
 	(cd ${root_dir}/yosys && $(MAKE) PREFIX=$(root_dir)/image install)
 
 image/bin/surelog:
@@ -49,7 +49,7 @@ image/bin/vcddiff:
 	mkdir -p $(root_dir)/image/bin
 	cp -p vcddiff/vcddiff $(VCDDIFF_BIN)
 
-prep: image/bin/verilator image/bin/yosys image/bin/surelog image/bin/vcddiff
+prep: | image/bin/verilator image/bin/yosys image/bin/surelog image/bin/vcddiff
 
 # ------------ Test targets ------------
 
@@ -64,7 +64,7 @@ uhdm/verilator/test-ast: uhdm/verilator/test-ast-generate
 	mkdir -p $(root_dir)/dumps
 	mv $(root_dir)/build/dump.vcd $(root_dir)/dumps/dump_verilator.vcd
 
-uhdm/yosys/test-ast: image/bin/yosys surelog/parse
+uhdm/yosys/test-ast: surelog/parse | image/bin/yosys
 	(cd $(root_dir)/build && ${YOSYS_BIN} -s $(YOSYS_SCRIPT))
 
 surelog/regression:
@@ -72,12 +72,12 @@ surelog/regression:
 
 # ------------ Test helper targets ------------
 
-surelog/parse: image/bin/surelog clean-build
+surelog/parse: clean-build | image/bin/surelog
 	(cd ${root_dir}/build && \
 		${SURELOG_BIN} -parse -sverilog -d coveruhdm $(TOP_FILE))
 	cp ${root_dir}/build/slpp_all/surelog.uhdm ${TOP_UHDM}
 
-uhdm/verilator/test-ast-generate: image/bin/verilator surelog/parse
+uhdm/verilator/test-ast-generate:surelog/parse | image/bin/verilator
 	(cd $(root_dir)/build && \
 		$(VERILATOR_BIN) --uhdm-ast --cc $(TOP_UHDM) \
 			--dump-uhdm \
@@ -85,7 +85,7 @@ uhdm/verilator/test-ast-generate: image/bin/verilator surelog/parse
 		 make -j -C obj_dir -f $(TOP_MAKEFILE) $(VERILATED_BIN) && \
 		 obj_dir/$(VERILATED_BIN))
 
-uhdm/yosys/verilate-ast: uhdm/yosys/test-ast image/bin/verilator uhdm/verilator/test-ast-generate
+uhdm/yosys/verilate-ast: uhdm/yosys/test-ast uhdm/verilator/test-ast-generate | image/bin/verilator
 	(cd $(root_dir)/build && \
 		$(VERILATOR_BIN) --cc ./yosys.sv \
 			--top-module \$(TOP_MODULE) \
@@ -96,7 +96,7 @@ uhdm/yosys/verilate-ast: uhdm/yosys/test-ast image/bin/verilator uhdm/verilator/
 
 # ------------ Coverage targets ------------
 
-uhdm/verilator/coverage: image/bin/verilator surelog/parse
+uhdm/verilator/coverage: surelog/parse | image/bin/verilator
 	(cd $(root_dir)/build && \
 		$(VERILATOR_BIN) --uhdm-ast --cc $(TOP_UHDM) \
 			--uhdm-cov uhdm.cov \
@@ -104,7 +104,7 @@ uhdm/verilator/coverage: image/bin/verilator surelog/parse
 	python3 gen_coverage_report.py --verilator-uhdm $(root_dir)/build/uhdm.cov \
 		--output-file $(root_dir)/build/coverage.out
 
-uhdm/yosys/coverage: image/bin/yosys surelog/parse
+uhdm/yosys/coverage: surelog/parse | image/bin/yosys
 	(cd ${root_dir}/build && ${YOSYS_BIN} -p "read_uhdm -report ${COVARAGE_REPORT} ${TOP_UHDM}")
 
 # ------------ Clean targets ------------
@@ -124,30 +124,30 @@ cleanall: clean
 
 # ------------ Other targets ------------
 
-surelog/parse-earlgrey: image/bin/surelog clean-build
+surelog/parse-earlgrey: clean-build | image/bin/surelog
 	(cd ${root_dir}/Surelog/third_party/tests/Earlgrey_0_1/sim-icarus && \
 		${SURELOG_BIN} -f Earlgrey_0_1.sl \
 	)
 	cp ${root_dir}/Surelog/third_party/tests/Earlgrey_0_1/sim-icarus/slpp_all/surelog.uhdm ${TOP_UHDM}
 
-surelog/ibex-verilator: image/bin/surelog clean-build
+surelog/ibex-verilator: clean-build | image/bin/surelog
 	(cd ${root_dir}/Surelog/third_party/tests/Earlgrey_Verilator_0_1/sim-verilator && \
 		${SURELOG_BIN} -f Earlgrey_Verilator_0_1.sl)
 	cp ${root_dir}/Surelog/third_party/tests/Earlgrey_Verilator_0_1/sim-verilator/slpp_all/surelog.uhdm ${TOP_UHDM}
 
-surelog/ibex-simplesystem: image/bin/surelog clean-build
+surelog/ibex-simplesystem: clean-build | image/bin/surelog
 	(cd ${root_dir}/tests/ibex/ibex/build/lowrisc_ibex_ibex_simple_system_0/sim-verilator \
 		${SURELOG_BIN} +define+VERILATOR \
 			-f lowrisc_ibex_ibex_simple_system_0.vc \
 			-parse -d coveruhdm -verbose)
 	cp ${root_dir}/tests/ibex/ibex/build/lowrisc_ibex_ibex_simple_system_0/sim-verilator/slpp_all/surelog.uhdm ${TOP_UHDM}
 
-uhdm/verilator/get-ast: image/bin/verilator clean-build
+uhdm/verilator/get-ast: clean-build | image/bin/verilator
 	(cd $(root_dir)/build && \
 		$(VERILATOR_BIN) --cc $(TOP_FILE) \
 			--exe $(MAIN_FILE) --debug --xml-only)
 
-uhdm/verilator/ast-xml: image/bin/verilator surelog/parse
+uhdm/verilator/ast-xml: surelog/parse | image/bin/verilator
 	(cd $(root_dir)/build && \
 		$(VERILATOR_BIN) --uhdm-ast --cc $(TOP_UHDM) \
 			--dump-uhdm \

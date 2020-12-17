@@ -5,7 +5,7 @@ IBEX = ${root_dir}/tests/ibex/ibex
 ${IBEX}/.gitpatch:
 	cd ${IBEX} && git apply ${root_dir}/top_artya7_core.patch && touch $@
 
-uhdm/yosys/synth-ibex: image/bin/yosys clean-build ${IBEX}/.gitpatch
+uhdm/yosys/synth-ibex: clean-build ${IBEX}/.gitpatch | image/bin/yosys
 	virtualenv ${root_dir}/venv-ibex
 	(export PATH=${root_dir}/image/bin:${PATH} && \
 		. ${root_dir}/venv-ibex/bin/activate && \
@@ -13,7 +13,7 @@ uhdm/yosys/synth-ibex: image/bin/yosys clean-build ${IBEX}/.gitpatch
 		pip install git+https://github.com/antmicro/edalize@surelog && \
 		fusesoc --cores-root=${IBEX} run --build --tool yosys --target=synth lowrisc:ibex:top_artya7_surelog --SRAMInitFile="${root_dir}/led.vmem" --library_files="${root_dir}/yosys/techlibs/xilinx/cells_xtra_surelog.v")
 
-uhdm/yosys/synth-ibex-build: image/bin/yosys clean-build ${IBEX}/.gitpatch
+uhdm/yosys/synth-ibex-build: clean-build ${IBEX}/.gitpatch | image/bin/yosys
 	virtualenv ${root_dir}/venv-ibex
 	(export PATH=${root_dir}/image/bin:${PATH} && \
 		. ${root_dir}/venv-ibex/bin/activate && \
@@ -32,7 +32,7 @@ ifeq ($(SIM_FILE),ibex_alu.sv)
 	SIM_FILES := $(SIM_FILES) $(IBEX_TOP_DIR)/ibex_alu_top.sv $(IBEX_DIR)/ibex_pkg.sv
 endif
 
-surelog/parse-sim: image/bin/surelog
+surelog/parse-sim: | image/bin/surelog
 	mkdir -p build
 	(cd build && \
 		${SURELOG_BIN} -parse -sverilog \
@@ -41,7 +41,7 @@ surelog/parse-sim: image/bin/surelog
 	)
 	cp build/slpp_all/surelog.uhdm build/top.uhdm
 
-uhdm/yosys/test-sim: surelog/parse-sim image/bin/yosys
+uhdm/yosys/test-sim: surelog/parse-sim | image/bin/yosys
 	${YOSYS_BIN} \
 		-p 'read_uhdm -debug build/top.uhdm' \
 		-p 'prep -auto-top' \
