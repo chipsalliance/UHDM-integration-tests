@@ -1,0 +1,3 @@
+include $(TEST_DIR)/../Makefile.in
+TOP_FILE := $(IBEX_BUILD)/src/lowrisc_prim_lfsr_0.1/rtl/prim_lfsr.sv
+TOP_MODULE := prim_lfsr
