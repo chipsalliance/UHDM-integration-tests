@@ -125,11 +125,6 @@ jobs:
     - name: Extract
       run: tar -xf binaries.tar
 
-    - name: Update binaries timestamp
-      run: |
-        cd image
-        find . -type f -exec touch {} +
-
     - name: Build & Test
       run: ./.github/ci.sh
       env:
@@ -177,11 +172,6 @@ jobs:
     # See https://github.com/actions/upload-artifact/issues/38
     - name: Extract
       run: tar -xf binaries.tar
-
-    - name: Update binaries timestamp
-      run: |
-        cd image
-        find . -type f -exec touch {} +
 
     - name: Build & Test
       run: |
@@ -261,11 +251,6 @@ jobs:
     # See https://github.com/actions/upload-artifact/issues/38
     - name: Extract
       run: tar -xf binaries.tar
-
-    - name: Update binaries timestamp
-      run: |
-        cd image
-        find . -type f -exec touch {} +
 
     - name: Build & Test
       run: |
