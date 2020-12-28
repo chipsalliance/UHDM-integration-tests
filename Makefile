@@ -8,7 +8,6 @@ YOSYS_BIN = ${root_dir}/image/bin/yosys
 VERILATOR_BIN = ${root_dir}/image/bin/verilator
 VCDDIFF_BIN = ${root_dir}/image/bin/vcddiff
 COVARAGE_REPORT = ${root_dir}/build/coverage
-UHDM_PATCH = ${root_dir}/Surelog/third_party/UHDM/.gitpatch
 
 TEST_DIR := $(root_dir)/$(TEST)
 MAIN_FILE := $(TEST_DIR)/main.cpp
@@ -36,12 +35,6 @@ image/bin/yosys: | image/bin/surelog
 	(cd ${root_dir}/yosys && $(MAKE) PREFIX=$(root_dir)/image install)
 
 image/bin/surelog:
-# Apply git-patch if .gitpatch file do not exists in UHDM, but do not make explicite dependency
-# in Makefile to do not force rebuild binary, when image/bin/surelog exists, but patch don't
-# this is useful for GH-actions CI to allow building binaries in different job then test.
-ifeq (,$(wildcard ${UHDM_PATCH}))
-	(cd ${root_dir}/Surelog/third_party/UHDM && git apply ${root_dir}/UHDM.patch) && touch ${UHDM_PATCH}
-endif
 	(cd ${root_dir}/Surelog && $(MAKE) PREFIX=${root_dir}/image release install)
 
 image/bin/vcddiff:
