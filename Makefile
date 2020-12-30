@@ -20,6 +20,7 @@ include $(TEST)/Makefile.in
 VERILATED_BIN := V$(TOP_MODULE)
 TOP_UHDM = ${root_dir}/build/$(TOP_MODULE).uhdm
 TOP_MAKEFILE := V$(TOP_MODULE).mk
+# SURELOG_FLAGS are empty by default, unless set in Makefile.in
 
 list:
 	@echo "Available tests:"
@@ -67,7 +68,7 @@ surelog/regression:
 
 surelog/parse: clean-build | image/bin/surelog
 	(cd ${root_dir}/build && \
-		${SURELOG_BIN} -parse -sverilog -d coveruhdm $(TOP_FILE))
+		${SURELOG_BIN} -parse -sverilog -d coveruhdm ${SURELOG_FLAGS} $(TOP_FILE))
 	cp ${root_dir}/build/slpp_all/surelog.uhdm ${TOP_UHDM}
 
 uhdm/verilator/test-ast-generate:surelog/parse | image/bin/verilator
