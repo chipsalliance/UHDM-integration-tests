@@ -24,7 +24,7 @@ int main(int argc, char* argv[])
     switch (main_time) {
       case 100: top->rst_ni = 1; break;
       case 200:
-		//top->rf_wdata_id_i = 0xdeadbeef;
+		top->seed_i = 0xdeadbeef;
 		break;
 
       default: break;
