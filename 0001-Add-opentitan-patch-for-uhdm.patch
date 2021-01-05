@@ -1,0 +1,44 @@
+diff --git a/hw/ip/prim_generic/rtl/prim_generic_pad_wrapper.sv b/hw/ip/prim_generic/rtl/prim_generic_pad_wrapper.sv
+index 962d3b55..d6430bc5 100644
+--- a/hw/ip/prim_generic/rtl/prim_generic_pad_wrapper.sv
++++ b/hw/ip/prim_generic/rtl/prim_generic_pad_wrapper.sv
+@@ -70,10 +70,10 @@ module prim_generic_pad_wrapper #(
+     assign oe       = oe_i & ((od & ~out) | ~od);
+ 
+   // driving strength attributes are not supported by verilator
+-`ifdef VERILATOR
+-    assign inout_io = (oe)   ? out : 1'bz;
++`ifdef SYNTHESIS
++    assign inout_io = out;
+     // received data driver
+-    assign in_o     = (ie_i) ? in  : 1'bz;
++    assign in_o     = in;
+ `else
+     // different driver types
+     assign (strong0, strong1) inout_io = (oe && drv != DRIVE_00) ? out : 1'bz;
+diff --git a/hw/top_earlgrey/rtl/clkgen_xil7series.sv b/hw/top_earlgrey/rtl/clkgen_xil7series.sv
+index ab0987c9..c772fd86 100644
+--- a/hw/top_earlgrey/rtl/clkgen_xil7series.sv
++++ b/hw/top_earlgrey/rtl/clkgen_xil7series.sv
+@@ -33,14 +33,14 @@ module clkgen_xil7series # (
+     .STARTUP_WAIT         ("FALSE"),
+     .DIVCLK_DIVIDE        (1),
+     .CLKFBOUT_MULT        (12),
+-    .CLKFBOUT_PHASE       (0.000),
++    .CLKFBOUT_PHASE       (0),
+     .CLKOUT0_DIVIDE       (24),
+-    .CLKOUT0_PHASE        (0.000),
+-    .CLKOUT0_DUTY_CYCLE   (0.500),
++    .CLKOUT0_PHASE        (0),
++    .CLKOUT0_DUTY_CYCLE   (500),
+     .CLKOUT1_DIVIDE       (25),
+-    .CLKOUT1_PHASE        (0.000),
+-    .CLKOUT1_DUTY_CYCLE   (0.500),
+-    .CLKIN1_PERIOD        (10.000)
++    .CLKOUT1_PHASE        (0),
++    .CLKOUT1_DUTY_CYCLE   (500),
++    .CLKIN1_PERIOD        (10)
+   ) pll (
+     .CLKFBOUT            (clk_fb_unbuf),
+     .CLKOUT0             (clk_50_unbuf),
+
