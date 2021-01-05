@@ -1,0 +1,5 @@
+include $(TEST_DIR)/../Makefile.in
+TOP_FILE := $(IBEX_BUILD)/src/lowrisc_prim_lfsr_0.1/rtl/prim_lfsr.sv
+INCLUDE := -I$(IBEX_BUILD)/src/lowrisc_prim_assert_0.1/rtl/
+TOP_MODULE := prim_lfsr
+SURELOG_FLAGS := +define+SYNTHESIS
