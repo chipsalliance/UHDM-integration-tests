@@ -61,7 +61,7 @@ IBEX_INCLUDE = \
 	-I$(IBEX_BUILD)/src/lowrisc_dv_verilator_memutil_verilator_0/cpp
 
 #Sources that will be skipped by Surelog uhdm
-SKIP_SOURCES=ram_1p.sv\|prim_pkg.sv\|ibex_tracer_pkg.sv\|ibex_tracer.sv\|prim_generic_clock_gating.sv\|prim_generic_ram_2p.sv\|prim_xilinx_clock_gating.sv\|prim_clock_gating.sv\|prim_ram_2p.sv\|ibex_icache.sv\|ram_2p.sv\|bus.sv\|simulator_ctrl.sv\|timer.sv\|ibex_alu.sv\|ibex_branch_predict.sv\|ibex_compressed_decoder.sv\|ibex_controller.sv\|ibex_cs_registers.sv\|ibex_csr.sv\|ibex_counter.sv\|ibex_decoder.sv\|ibex_ex_block.sv\|ibex_id_stage.sv\|ibex_if_stage.sv\|ibex_multdiv_fast.sv\|ibex_multdiv_slow.sv\|ibex_prefetch_buffer.sv\|ibex_pmp.sv\|ibex_wb_stage.sv\|ibex_dummy_instr.sv\|ibex_register_file_fpga.sv\|ibex_register_file_latch.sv\|ibex_core.sv\|ibex_core_tracing.sv\|ibex_simple_system.sv
+SKIP_SOURCES=ram_1p.sv\|ibex_tracer_pkg.sv\|ibex_tracer.sv\|prim_generic_ram_2p.sv\|prim_ram_2p.sv\|ibex_icache.sv\|ram_2p.sv\|bus.sv\|simulator_ctrl.sv\|timer.sv\|ibex_cs_registers.sv\|ibex_csr.sv\|ibex_counter.sv\|ibex_ex_block.sv\|ibex_id_stage.sv\|ibex_if_stage.sv\|ibex_prefetch_buffer.sv\|ibex_pmp.sv\|ibex_wb_stage.sv\|ibex_dummy_instr.sv\|ibex_register_file_fpga.sv\|ibex_register_file_latch.sv\|ibex_core.sv\|ibex_core_tracing.sv\|ibex_simple_system.sv
 
 IBEX_SOURCES = \
         $(shell \
