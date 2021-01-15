@@ -1,0 +1,8 @@
+include $(TEST_DIR)/../Makefile.in
+TOP_FILE := $(IBEX_BUILD)/src/lowrisc_ibex_ibex_pkg_0.1/rtl/ibex_pkg.sv \
+    $(IBEX_BUILD)/src/lowrisc_ibex_ibex_core_0.1/rtl/ibex_decoder.sv \
+    $(IBEX_BUILD)/src/lowrisc_ibex_ibex_core_0.1/rtl/ibex_controller.sv \
+    $(IBEX_BUILD)/src/lowrisc_ibex_ibex_core_0.1/rtl/ibex_id_stage.sv
+TOP_MODULE := ibex_id_stage
+INCLUDE := -I$(IBEX_BUILD)/src/lowrisc_prim_assert_0.1/rtl/
+SURELOG_FLAGS := +define+SYNTHESIS
