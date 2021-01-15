@@ -46,3 +46,64 @@ uhdm/yosys/test-sim: surelog/parse-sim | image/bin/yosys
 		-p 'read_uhdm -debug build/top.uhdm' \
 		-p 'prep -auto-top' \
 		-p 'sim -clock clk -rstlen 10 -vcd dump.vcd'
+
+################################
+#### verilator - simulation ####
+################################
+IBEX_BUILD = ${root_dir}/build/lowrisc_ibex_ibex_simple_system_0
+
+IBEX_INCLUDE = \
+	-I$(IBEX_BUILD)/src/lowrisc_dv_verilator_ibex_pcounts_0/cpp \
+	-I$(IBEX_BUILD)/src/lowrisc_dv_verilator_memutil_dpi_0/cpp \
+	-I$(IBEX_BUILD)/src/lowrisc_dv_verilator_simutil_verilator_0/cpp \
+	-I$(IBEX_BUILD)/src/lowrisc_prim_assert_0.1/rtl \
+	-I$(IBEX_BUILD)/src/lowrisc_prim_util_memload_0/rtl \
+	-I$(IBEX_BUILD)/src/lowrisc_dv_verilator_memutil_verilator_0/cpp
+
+#Sources that will be skipped by Surelog uhdm
+SKIP_SOURCES=ram_1p.sv\|ibex_pkg.sv\|prim_pkg.sv\|ibex_tracer_pkg.sv\|ibex_tracer.sv\|prim_generic_clock_gating.sv\|prim_generic_ram_2p.sv\|prim_xilinx_clock_gating.sv\|prim_clock_gating.sv\|prim_ram_2p.sv\|ibex_icache.sv\|ram_2p.sv\|bus.sv\|simulator_ctrl.sv\|timer.sv\|ibex_alu.sv\|ibex_branch_predict.sv\|ibex_compressed_decoder.sv\|ibex_controller.sv\|ibex_cs_registers.sv\|ibex_csr.sv\|ibex_counter.sv\|ibex_decoder.sv\|ibex_ex_block.sv\|ibex_id_stage.sv\|ibex_if_stage.sv\|ibex_multdiv_fast.sv\|ibex_multdiv_slow.sv\|ibex_prefetch_buffer.sv\|ibex_pmp.sv\|ibex_wb_stage.sv\|ibex_dummy_instr.sv\|ibex_register_file_ff.sv\|ibex_register_file_fpga.sv\|ibex_register_file_latch.sv\|ibex_core.sv\|ibex_core_tracing.sv\|ibex_simple_system.sv
+
+IBEX_SOURCES = \
+        $(shell \
+                cat ${IBEX_BUILD}/sim-verilator/lowrisc_ibex_ibex_simple_system_0.vc | \
+                grep -F .sv | grep -v '${SKIP_SOURCES}' | \
+                sed 's@^..@${IBEX_BUILD}@')
+
+IBEX_SOURCES_DELETE = \
+        $(shell \
+                cat ${IBEX_BUILD}/sim-verilator/lowrisc_ibex_ibex_simple_system_0.vc | \
+                grep -F .sv | grep -v '${SKIP_SOURCES}' | sed "s/.*\///")
+
+IBEX_SOURCES_DELETE_OR = \
+	$(shell \
+		echo ${IBEX_SOURCES_DELETE} | sed 's/\s/\\|/g')
+
+prepare-sources:
+	virtualenv ${root_dir}/venv-ibex
+	(export PATH=${root_dir}/image/bin:${PATH} && \
+		. ${root_dir}/venv-ibex/bin/activate && \
+		pip install -r ${IBEX}/python-requirements.txt && \
+		pip install git+https://github.com/antmicro/edalize@surelog && \
+		fusesoc --cores-root=${IBEX} run --target=sim --setup lowrisc:ibex:ibex_simple_system --RV32E=0 --RV32M=ibex_pkg::RV32MFast)
+
+surelog-ibex: clean-build | prepare-sources
+	(export PATH=${root_dir}/image/bin:${PATH} && \
+		. ${root_dir}/venv-ibex/bin/activate && \
+		cd ${root_dir}/build && \
+		${root_dir}/image/bin/surelog -parse -sverilog +define+SYNTHESIS \
+			$(IBEX_INCLUDE) \
+			$(IBEX_SOURCES) && \
+		cp ${root_dir}/build/slpp_all/surelog.uhdm ${root_dir}/build/simple_system.uhdm && \
+		cd ${IBEX_BUILD}/sim-verilator/ && \
+		sed 's/-Wall --unroll-count 72/--unroll-count 72/g' -i config.mk && \
+		sed '/${IBEX_SOURCES_DELETE_OR}/d' -i lowrisc_ibex_ibex_simple_system_0.vc && \
+		sed '/--cc/a --uhdm-ast-sv' -i lowrisc_ibex_ibex_simple_system_0.vc && \
+		sed '/--top-module.*/i ${root_dir}/build/simple_system.uhdm' -i lowrisc_ibex_ibex_simple_system_0.vc && \
+		$(MAKE))
+
+surelog-ibex-verilator: clean-build | prepare-sources
+	(export PATH=${root_dir}/image/bin:${PATH} && \
+		. ${root_dir}/venv-ibex/bin/activate && \
+		cd ${IBEX_BUILD}/sim-verilator/ && \
+		$(MAKE))
+

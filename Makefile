@@ -130,7 +130,7 @@ surelog/ibex-verilator: clean-build | image/bin/surelog
 	cp ${root_dir}/Surelog/third_party/tests/Earlgrey_Verilator_0_1/sim-verilator/slpp_all/surelog.uhdm ${TOP_UHDM}
 
 surelog/ibex-simplesystem: clean-build | image/bin/surelog
-	(cd ${root_dir}/tests/ibex/ibex/build/lowrisc_ibex_ibex_simple_system_0/sim-verilator \
+	(cd ${root_dir}/tests/ibex/ibex/build/lowrisc_ibex_ibex_simple_system_0/sim-verilator && \
 		${SURELOG_BIN} +define+VERILATOR \
 			-f lowrisc_ibex_ibex_simple_system_0.vc \
 			-parse -d coveruhdm -verbose)
@@ -150,3 +150,4 @@ uhdm/verilator/ast-xml: surelog/parse | image/bin/verilator
 
 vcd:
 	gtkwave $(root_dir)/build/dump.vcd &>/dev/null &
+
