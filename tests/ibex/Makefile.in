@@ -103,7 +103,6 @@ surelog-ibex: clean-build | prepare-sources
 
 surelog-ibex-verilator: clean-build | prepare-sources
 	(export PATH=${root_dir}/image/bin:${PATH} && \
-		export VERILATOR_ROOT=${root_dir}/verilator && \
 		. ${root_dir}/venv-ibex/bin/activate && \
 		cd ${IBEX_BUILD}/sim-verilator/ && \
 		$(MAKE))
