@@ -10,7 +10,7 @@ uhdm/yosys/synth-ibex: clean-build ${IBEX}/.gitpatch | image/bin/yosys
 	(export PATH=${root_dir}/image/bin:${PATH} && \
 		. ${root_dir}/venv-ibex/bin/activate && \
 		pip install -r ${IBEX}/python-requirements.txt && \
-		pip install git+https://github.com/antmicro/edalize@surelog && \
+		pip install git+https://github.com/antmicro/edalize@surelog-options && \
 		fusesoc --cores-root=${IBEX} run --build --tool yosys --target=synth lowrisc:ibex:top_artya7_surelog --SRAMInitFile="${root_dir}/led.vmem" --library_files="${root_dir}/yosys/techlibs/xilinx/cells_xtra_surelog.v")
 
 uhdm/yosys/synth-ibex-build: clean-build ${IBEX}/.gitpatch | image/bin/yosys
@@ -18,7 +18,7 @@ uhdm/yosys/synth-ibex-build: clean-build ${IBEX}/.gitpatch | image/bin/yosys
 	(export PATH=${root_dir}/image/bin:${PATH} && \
 		. ${root_dir}/venv-ibex/bin/activate && \
 		pip install -r ${IBEX}/python-requirements.txt && \
-		pip install git+https://github.com/antmicro/edalize@surelog && \
+		pip install git+https://github.com/antmicro/edalize@surelog-options && \
 		fusesoc --cores-root=${IBEX} run --build --tool vivado --target=synth lowrisc:ibex:top_artya7_surelog --part xc7a35ticsg324-1L --SRAMInitFile="${root_dir}/led.vmem" --library_files="${root_dir}/yosys/techlibs/xilinx/cells_xtra_surelog.v")
 
 #############################

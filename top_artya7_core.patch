@@ -1,5 +1,5 @@
 diff --git a/examples/fpga/artya7/top_artya7.core b/examples/fpga/artya7/top_artya7.core
-index 811fb93..936c76a 100644
+index 811fb93..cc8789e 100644
 --- a/examples/fpga/artya7/top_artya7.core
 +++ b/examples/fpga/artya7/top_artya7.core
 @@ -2,7 +2,7 @@ CAPI=2:
@@ -11,16 +11,18 @@ index 811fb93..936c76a 100644
  description: "Ibex example toplevel for Arty A7 boards (both, -35 and -100)"
  filesets:
    files_rtl_artya7:
-@@ -50,3 +50,12 @@ targets:
+@@ -50,3 +50,14 @@ targets:
      tools:
        vivado:
          part: "xc7a100tcsg324-1"  # Default to Arty A7-100
 +        synth: "yosys"
 +        yosys_synth_options: ['-iopad', '-family xc7', '-run :check', "frontend=surelog"]
 +        yosys_read_options: ['-noassert']
++        surelog_options: ['-verilator']
 +        library_files: ""
 +      yosys:
 +        arch: "xilinx"
 +        yosys_synth_options: ['-iopad', '-family xc7', '-run :check', "frontend=surelog"]
 +        yosys_read_options: ['-noassert']
++        surelog_options: ['-verilator']
 +        library_files: ""
