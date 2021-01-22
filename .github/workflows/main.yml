@@ -305,17 +305,16 @@ jobs:
         mkdir output_uhdm
         cp ibex_simple_system.log ibex_simple_system_pcount.csv trace_core_00000000.log output_uhdm/
       env:
-        TARGET: surelog-ibex
+        TARGET: uhdm/verilator/simple-system
         TEST_CASE: tests/ibex
 
     - name: Build & Test (vanilla verilator)
       run: |
-        pip install virtualenv
         ./.github/ci.sh
         ./build/lowrisc_ibex_ibex_simple_system_0/sim-verilator/Vibex_simple_system --meminit=ram,hello_test.elf
         diff -y ibex_simple_system.log output_uhdm/ibex_simple_system.log
       env:
-        TARGET: surelog-ibex-verilator
+        TARGET: verilator/simple-system
         TEST_CASE: tests/ibex
 
     - uses: actions/upload-artifact@v2
