@@ -10,7 +10,7 @@ uhdm/yosys/synth-ibex: clean-build ${IBEX}/.gitpatch | image/bin/yosys
 	(export PATH=${root_dir}/image/bin:${PATH} && \
 		. ${root_dir}/venv-ibex/bin/activate && \
 		pip install -r ${IBEX}/python-requirements.txt && \
-		pip install git+https://github.com/antmicro/edalize@surelog-options && \
+		pip install git+https://github.com/antmicro/edalize@surelog && \
 		fusesoc --cores-root=${IBEX} run --build --tool yosys --target=synth lowrisc:ibex:top_artya7_surelog --SRAMInitFile="${root_dir}/led.vmem" --library_files="${root_dir}/yosys/techlibs/xilinx/cells_xtra_surelog.v")
 
 uhdm/yosys/synth-ibex-build: clean-build ${IBEX}/.gitpatch | image/bin/yosys
@@ -18,7 +18,7 @@ uhdm/yosys/synth-ibex-build: clean-build ${IBEX}/.gitpatch | image/bin/yosys
 	(export PATH=${root_dir}/image/bin:${PATH} && \
 		. ${root_dir}/venv-ibex/bin/activate && \
 		pip install -r ${IBEX}/python-requirements.txt && \
-		pip install git+https://github.com/antmicro/edalize@surelog-options && \
+		pip install git+https://github.com/antmicro/edalize@surelog && \
 		fusesoc --cores-root=${IBEX} run --build --tool vivado --target=synth lowrisc:ibex:top_artya7_surelog --part xc7a35ticsg324-1L --SRAMInitFile="${root_dir}/led.vmem" --library_files="${root_dir}/yosys/techlibs/xilinx/cells_xtra_surelog.v")
 
 #############################
@@ -86,7 +86,7 @@ prepare-sources:
 		pip install git+https://github.com/antmicro/edalize@surelog && \
 		fusesoc --cores-root=${IBEX} run --target=sim --setup lowrisc:ibex:ibex_simple_system --RV32E=0 --RV32M=ibex_pkg::RV32MFast)
 
-surelog-ibex: clean-build | prepare-sources
+uhdm/verilator/simple-system: clean-build | prepare-sources
 	(export PATH=${root_dir}/image/bin:${PATH} && \
 		. ${root_dir}/venv-ibex/bin/activate && \
 		cd ${root_dir}/build && \
@@ -101,7 +101,7 @@ surelog-ibex: clean-build | prepare-sources
 		sed '/--top-module.*/i ${root_dir}/build/simple_system.uhdm' -i lowrisc_ibex_ibex_simple_system_0.vc && \
 		$(MAKE))
 
-surelog-ibex-verilator: clean-build | prepare-sources
+verilator/simple-system: clean-build | prepare-sources
 	(export PATH=${root_dir}/image/bin:${PATH} && \
 		. ${root_dir}/venv-ibex/bin/activate && \
 		cd ${IBEX_BUILD}/sim-verilator/ && \
