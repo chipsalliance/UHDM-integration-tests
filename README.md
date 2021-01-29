@@ -3,12 +3,24 @@ Repository for testing SystemVerilog support status in Yosys/Verilator via UHDM
 
 ## Setup
 
-Clone the repository:
+Verilator setup:
 
 ```
-git clone https://github.com/antmicro/uhdm-integration.git
-cd uhdm-integration
+git clone https://github.com/antmicro/verilator.git -b uhdm-verilator
+cd verilator
 git submodule update --init --recursive
+./build_binaries.sh
+cd uhdm-integration
+```
+
+Yosys setup:
+
+```
+git clone https://github.com/antmicro/yosys.git -b uhdm-yosys
+cd yosys
+git submodule update --init --recursive
+./build_binaries.sh
+cd uhdm-integration
 ```
 
 ### Install dependencies
