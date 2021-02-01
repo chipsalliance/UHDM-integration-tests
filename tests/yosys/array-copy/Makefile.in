@@ -1,2 +1,0 @@
-TOP_FILE := $(TEST)/top.sv
-YOSYS_SCRIPT := $(TEST)/test.ys
