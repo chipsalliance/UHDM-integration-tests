@@ -4,7 +4,6 @@ TOOL_BIN = ${root_dir}/image/bin
 VENV_OT = ${root_dir}/venv-opentitan
 
 SV2V_FILE = ${root_dir}/build/sv2v.v
-SV2V_FILE_ALL = ${root_dir}/build/sv2v_all.v
 
 TOP := top_earlgrey_nexysvideo
 
@@ -256,45 +255,37 @@ CUSTOM_FILES = ${root_dir}/custom_files/prim_ram_2p.v \
 	       ${root_dir}/custom_files/padring.v \
 	       ${root_dir}/custom_files/prim_xilinx_pad_wrapper.v
 
-image/bin/stack:
-	wget -qO- https://get.haskellstack.org/ | sh -s - -d ${root_dir}/image/bin
-
-image/bin/sv2v: | image/bin/stack
-	(export PATH=${root_dir}/image/bin:${PATH} && \
-		$(MAKE) -C ${root_dir}/sv2v)
-	cp ${root_dir}/sv2v/bin/sv2v ${root_dir}/image/bin
-
 #############################
 ####      SYNTHESIS      ####
 #############################
 ${OPENTITAN}/.gitpatch:
 	cd ${OPENTITAN} && git apply ${root_dir}/0001-Add-opentitan-patch-for-uhdm.patch && touch $@
 
-prep-sources: clean-build | ${OPENTITAN}/.gitpatch boot_rom_fpga_nexysvideo.32.vmem
+${VENV_OT}:
+	virtualenv ${VENV_OT}
+
+
+prep-sources: clean-build | ${OPENTITAN}/.gitpatch boot_rom_fpga_nexysvideo.32.vmem ${VENV_OT}
 	(. ${VENV_OT}/bin/activate && \
 		pip install -r ${OPENTITAN}/python-requirements.txt && \
 		fusesoc --cores-root=${OPENTITAN} run --setup --tool vivado --target=synth lowrisc:systems:top_earlgrey_nexysvideo)
 	cp boot_rom_fpga_nexysvideo.32.vmem build/boot_rom_fpga_nexysvideo.32.vmem
-	cp boot_rom_fpga_nexysvideo.32.vmem build/lowrisc_systems_top_earlgrey_nexysvideo_0.1/synth-vivado/boot_rom_fpga_nexysvideo.32.vmem
 
-${SV2V_FILE}: prep-sources | image/bin/sv2v
-	${root_dir}/image/bin/sv2v -DSYNTHESIS ${EARLGRAY_INCLUDE} ${EARLGRAY_PKG_SOURCES} ${SV2V_FILES_FULL} > ${SV2V_FILE}
+${SV2V_FILE}: prep-sources
+	${root_dir}/../image/bin/sv2v -DSYNTHESIS ${EARLGRAY_INCLUDE} ${EARLGRAY_PKG_SOURCES} ${SV2V_FILES_FULL} > ${SV2V_FILE}
 
-${SV2V_FILE_ALL}: prep-sources | image/bin/sv2v
-	${root_dir}/image/bin/sv2v -DSYNTHESIS ${EARLGRAY_INCLUDE} ${EARLGRAY_PKG_SOURCES} ${SV2V_FILES_FULL} > ${SV2V_FILE_ALL}
-
-${UHDM_file}: ${SV2V_FILE} | image/bin/surelog
+${UHDM_file}: ${SV2V_FILE}
 	(cd ${EARLGRAY_BUILD} && \
-		${root_dir}/image/bin/surelog -parse -sverilog \
+		${root_dir}/../image/bin/surelog -parse -sverilog \
 			-DSYNTHESIS \
 			$(EARLGRAY_INCLUDE) \
 			$(UHDM_FILES_FULL) && \
 	cp ${EARLGRAY_BUILD}/slpp_all/surelog.uhdm ${UHDM_file})
 
 
-uhdm/yosys/synth-opentitan: ${UHDM_file} ${SV2V_FILE} | image/bin/yosys
+uhdm/yosys/synth-opentitan: ${UHDM_file} ${SV2V_FILE} | ${VENV_OT}
 	(cd ${root_dir}/build && \
-	${root_dir}/image/bin/yosys \
+	${root_dir}/../image/bin/yosys \
 		-p "verilog_defines -DBootRomInitFile=boot_rom_fpga_nexysvideo.32.vmem" \
 		-p "verilog_defines -DPRIM_DEFAULT_IMPL=prim_pkg::ImplXilinx" \
 		-p "verilog_defaults -push" \
@@ -306,28 +297,13 @@ uhdm/yosys/synth-opentitan: ${UHDM_file} ${SV2V_FILE} | image/bin/yosys
 	        -p 'synth_xilinx -iopad -family xc7 -top top_earlgrey_nexysvideo' \
 	        -p 'write_edif -pvector bra ${root_dir}/build/top_earlgrey_nexysvideo.edif')
 
-uhdm/yosys/synth-opentitan-sv2v: ${SV2V_FILE_ALL} | image/bin/yosys
-	(cd ${root_dir}/build && \
-	${root_dir}/image/bin/yosys \
-		-p "verilog_defines -DBootRomInitFile=boot_rom_fpga_nexysvideo.32.vmem" \
-		-p "verilog_defines -DPRIM_DEFAULT_IMPL=prim_pkg::ImplXilinx" \
-		-p "verilog_defaults -push" \
-		-p "verilog_defaults -add -defer" \
-		-p "read_verilog ${SV2V_FILE_ALL}" \
-		-p "read_verilog -overwrite ${CUSTOM_FILES}" \
-		-p "verilog_defaults -pop" \
-	        -p 'synth_xilinx -iopad -family xc7 -top top_earlgrey_nexysvideo' \
-	        -p 'write_edif -pvector bra ${root_dir}/build/top_earlgrey_nexysvideo.edif')
-
-uhdm/yosys/synth-opentitan-build: ${root_dir}/build/top_earlgrey_nexysvideo.edif
+uhdm/yosys/synth-opentitan-build: | ${root_dir}/build/top_earlgrey_nexysvideo.edif
 	cp ${root_dir}/build.tcl ${root_dir}/build/build.tcl
 	(cd ${root_dir}/build && \
 		vivado -nojournal -log ${root_dir}/top.log -mode batch -source build.tcl)
 
-vivado/synth-opentitan: clean-build build/boot_rom_fpga_nexysvideo.32.vmem
-	virtualenv ${VENV_OT}
+vivado/synth-opentitan: clean-build | ${VENV_OT} ${root_dir}/build/boot_rom_fpga_nexysvideo.32.vmem
 	(. ${VENV_OT}/bin/activate && \
 		pip install -r ${OPENTITAN}/python-requirements.txt && \
 		fusesoc --cores-root=${OPENTITAN} run --build --tool vivado --target=synth lowrisc:systems:top_earlgrey_nexysvideo --BootRomInitFile=${root_dir}/build/boot_rom_fpga_nexysvideo.32.vmem)
 
-.PHONY: ${GENERATED_TOPFILE}
