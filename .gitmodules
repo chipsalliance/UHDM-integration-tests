@@ -4,6 +4,3 @@
 [submodule "tests/opentitan/opentitan"]
 	path = tests/opentitan/opentitan
 	url = https://github.com/lowRISC/opentitan.git
-[submodule "sv2v"]
-	path = sv2v
-	url = https://github.com/zachjs/sv2v.git
