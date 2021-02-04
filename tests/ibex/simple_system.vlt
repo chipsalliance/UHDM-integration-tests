@@ -1,0 +1,19 @@
+`verilator_config
+lint_off -rule PINCONNECTEMPTY
+
+lint_off -rule WIDTH -file "uhdm"
+         -match "*expects 1 bits*Initial value's CONST '32'h1'*"
+
+lint_off -rule WIDTH -file "uhdm" -match "*'RV32B'*"
+
+lint_off -rule UNUSED -file "uhdm" -match "*'be_i'[3:1]*"
+lint_off -rule UNUSED -file "uhdm" -match "*'addr_i'[31:10,1:0]*"
+lint_off -rule UNUSED -file "uhdm" -match "*'wdata_i'[31:8]*"
+
+lint_off -rule UNUSED -file "uhdm" -match "*'timer_addr_i'[31:10]*"
+
+lint_off -rule UNUSED -file "uhdm" -match "*clk_i*"
+
+lint_off -rule UNUSED -file "uhdm" -match "*rst_ni*"
+
+lint_off -rule UNOPTFLAT -file "uhdm" -match "*ibex_core.cs_registers_i.u_mie_csr.rdata_q*"

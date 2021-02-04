@@ -64,7 +64,7 @@ IBEX_INCLUDE = \
 SKIP_SOURCES=ibex_tracer_pkg.sv\|ibex_tracer.sv\|prim_generic_ram_2p.sv\|prim_ram_2p.sv\|ram_2p.sv\|bus.sv\|simulator_ctrl.sv\|ibex_register_file_latch.sv\|ibex_core.sv\|ibex_core_tracing.sv\|ibex_simple_system.sv
 
 # Top-level parameters in skipped modules that need to be known to Surelog
-SURELOG_PARAMETERS = -PMHPMCounterNum=29 #TODO: Remove when ibex_simple_system is removed from skip list
+SURELOG_PARAMETERS = -PMHPMCounterNum=29 +define+RVFI #TODO: Remove when ibex_simple_system is removed from skip list
 
 IBEX_SOURCES = \
         $(shell \
@@ -102,7 +102,7 @@ uhdm/verilator/simple-system: clean-build | prepare-sources
 		sed 's/-Wall --unroll-count 72/--unroll-count 72/g' -i config.mk && \
 		sed '/${IBEX_SOURCES_DELETE_OR}/d' -i lowrisc_ibex_ibex_simple_system_0.vc && \
 		sed '/--cc/a --uhdm-ast-sv' -i lowrisc_ibex_ibex_simple_system_0.vc && \
-		sed '/--top-module.*/i ${root_dir}/build/simple_system.uhdm' -i lowrisc_ibex_ibex_simple_system_0.vc && \
+		sed '/--top-module.*/i ${root_dir}/tests/ibex/simple_system.vlt ${root_dir}/build/simple_system.uhdm' -i lowrisc_ibex_ibex_simple_system_0.vc && \
 		$(MAKE))
 
 verilator/simple-system: clean-build | prepare-sources
