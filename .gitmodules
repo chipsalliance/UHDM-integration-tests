@@ -1,3 +1,6 @@
 [submodule "tests/ibex/ibex"]
 	path = tests/ibex/ibex
 	url = https://github.com/lowRISC/ibex.git
+[submodule "tests/opentitan/opentitan"]
+	path = tests/opentitan/opentitan
+	url = https://github.com/lowRISC/opentitan.git
