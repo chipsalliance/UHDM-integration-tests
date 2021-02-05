@@ -52,7 +52,9 @@ surelog/parse: clean-build
 
 uhdm/verilator/test-ast-generate:surelog/parse
 	(cd $(root_dir)/build && \
-		$(VERILATOR_BIN) --uhdm-ast --cc $(TOP_UHDM) \
+		$(VERILATOR_BIN) --uhdm-ast-sv \
+			--cc $(TOP_UHDM) \
+			$(VERILATOR_FLAGS) \
 			--dump-uhdm \
 			--exe $(MAIN_FILE) --trace && \
 		 make -j -C obj_dir -f $(TOP_MAKEFILE) $(VERILATED_BIN) && \

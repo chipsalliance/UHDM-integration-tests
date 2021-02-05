@@ -61,7 +61,7 @@ IBEX_INCLUDE = \
 	-I$(IBEX_BUILD)/src/lowrisc_dv_verilator_memutil_verilator_0/cpp
 
 #Sources that will be skipped by Surelog uhdm
-SKIP_SOURCES=ibex_tracer_pkg.sv\|ibex_tracer.sv\|prim_generic_ram_2p.sv\|prim_ram_2p.sv\|ram_2p.sv\|bus.sv\|simulator_ctrl.sv\|ibex_register_file_latch.sv\|ibex_core.sv\|ibex_core_tracing.sv\|ibex_simple_system.sv
+SKIP_SOURCES=ibex_tracer_pkg.sv\|ibex_tracer.sv\|prim_generic_ram_2p.sv\|prim_ram_2p.sv\|ram_2p.sv\|bus.sv\|simulator_ctrl.sv\|ibex_register_file_latch.sv\|ibex_core_tracing.sv\|ibex_simple_system.sv
 
 # Top-level parameters in skipped modules that need to be known to Surelog
 SURELOG_PARAMETERS = -PMHPMCounterNum=29 +define+RVFI #TODO: Remove when ibex_simple_system is removed from skip list

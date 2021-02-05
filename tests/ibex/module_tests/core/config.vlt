@@ -1,0 +1,5 @@
+`verilator_config
+// Signal unoptimizable: Feedback to clock or circular logic:
+// ibex_core.cs_registers_i.mie_q
+// Issue lowrisc/ibex#212
+clock_enable -module "prim_generic_clock_gating_u_impl_generic1" -var "en_latch"
