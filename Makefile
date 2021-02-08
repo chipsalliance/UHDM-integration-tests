@@ -29,15 +29,19 @@ list:
 
 # ------------ Test targets ------------
 
-uhdm/vcddiff: clean-build
-	# Make sure verilator/test-ast and yosys/verilate-ast are not runned in parallel
-	# when executed with -j flag
-	$(MAKE) uhdm/verilator/test-ast
-	$(MAKE) uhdm/yosys/verilate-ast
+uhdm/vcddiff: $(root_dir)/dumps/dump_yosys.vcd $(root_dir)/dumps/dump_verilator.vcd
 	$(VCDDIFF_BIN) $(root_dir)/dumps/dump_yosys.vcd $(root_dir)/dumps/dump_verilator.vcd
 
-uhdm/verilator/test-ast: uhdm/verilator/test-ast-generate
+uhdm/verilator/test-ast: surelog/parse
 	mkdir -p $(root_dir)/dumps
+	(cd $(root_dir)/build && \
+		$(VERILATOR_BIN) --uhdm-ast-sv \
+			--cc $(TOP_UHDM) \
+			$(VERILATOR_FLAGS) \
+			--dump-uhdm \
+			--exe $(MAIN_FILE) --trace && \
+		 make -j -C obj_dir -f $(TOP_MAKEFILE) $(VERILATED_BIN) && \
+		 obj_dir/$(VERILATED_BIN))
 	mv $(root_dir)/build/dump.vcd $(root_dir)/dumps/dump_verilator.vcd
 
 uhdm/yosys/test-ast: surelog/parse
@@ -50,17 +54,8 @@ surelog/parse: clean-build
 		${SURELOG_BIN} -parse -sverilog -d coveruhdm ${SURELOG_FLAGS} $(INCLUDE) $(TOP_FILE))
 	cp ${root_dir}/build/slpp_all/surelog.uhdm ${TOP_UHDM}
 
-uhdm/verilator/test-ast-generate:surelog/parse
-	(cd $(root_dir)/build && \
-		$(VERILATOR_BIN) --uhdm-ast-sv \
-			--cc $(TOP_UHDM) \
-			$(VERILATOR_FLAGS) \
-			--dump-uhdm \
-			--exe $(MAIN_FILE) --trace && \
-		 make -j -C obj_dir -f $(TOP_MAKEFILE) $(VERILATED_BIN) && \
-		 obj_dir/$(VERILATED_BIN))
-
-uhdm/yosys/verilate-ast: uhdm/yosys/test-ast uhdm/verilator/test-ast-generate
+uhdm/yosys/verilate-ast:
+	mkdir -p ${root_dir}/dumps
 	(cd $(root_dir)/build && \
 		$(VERILATOR_BIN) --cc ./yosys.sv \
 			--top-module \$(TOP_MODULE) \
