@@ -6,6 +6,7 @@ ${IBEX}/.gitpatch:
 	cd ${IBEX} && git apply ${root_dir}/top_artya7_core.patch && touch $@
 
 ${IBEX}/.gitsymbiflowpatch: ${IBEX}/.gitpatch
+	cd ${IBEX} && git apply ${root_dir}/prim_generic_clock_gating.patch
 	cd ${IBEX} && git apply ${root_dir}/pins_artya7_xdc.patch && touch $@
 
 uhdm/yosys/synth-ibex: clean-build ${IBEX}/.gitpatch
