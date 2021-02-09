@@ -54,7 +54,7 @@ uhdm/yosys/synth-ibex-symbiflow: clean-build patch/symbiflow ${IBEX}/.gitsymbifl
 
 yosys/plugins:
 	(export PATH=${root_dir}/../image/bin:${PATH} && \
-		cd yosys-symbiflow-plugins && $(IN_CONDA_ENV) $(MAKE) install && cd ..)
+		cd ${root_dir}/../yosys-symbiflow-plugins && $(IN_CONDA_ENV) $(MAKE) install && cd ..)
 
 third_party/make-env/conda.mk:
 	git submodule update --init --recursive

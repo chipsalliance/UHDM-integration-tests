@@ -7,6 +7,3 @@
 [submodule "third_party/make-env"]
 	path = third_party/make-env
 	url = git@github.com:SymbiFlow/make-env.git
-[submodule "yosys-symbiflow-plugins"]
-	path = yosys-symbiflow-plugins
-	url = git@github.com:SymbiFlow/yosys-symbiflow-plugins.git
