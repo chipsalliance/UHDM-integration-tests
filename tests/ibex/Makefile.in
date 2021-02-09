@@ -48,6 +48,7 @@ uhdm/yosys/synth-ibex-symbiflow: clean-build patch/symbiflow ${IBEX}/.gitsymbifl
 		pip install -r ${IBEX}/python-requirements.txt && \
 		pip install git+https://github.com/antmicro/edalize@symbiflow-surelog && \
 		fusesoc --cores-root=${IBEX} run --build --tool symbiflow --target=synth lowrisc:ibex:top_artya7_surelog --SRAMInitFile="\"${root_dir}/led.vmem\"" \
+		--PRIM_DEFAULT_IMPL=prim_pkg::ImplGeneric \
 		--library_files="${root_dir}/../techlibs/xilinx/cells_xtra_surelog.v","${root_dir}/../techlibs/xilinx/cells_sim.v")
 
 yosys/plugins:
