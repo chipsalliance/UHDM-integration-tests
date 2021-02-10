@@ -1,0 +1,15 @@
+name: surelog_xc7
+channels:
+  - symbiflow
+dependencies:
+  - symbiflow::symbiflow-vtr=8.0.0.rc2_5415_gd6d69ff92=20201120_180018
+  - symbiflow::prjxray-db=0.0_0239_gd87c844
+  - symbiflow::prjxray-tools=0.1_2697_g0f939808
+  - make
+  - git
+  - gxx_linux-64
+  # Packages installed from PyPI
+  - python=3.8
+  - pip
+  - pip:
+    - -r file:requirements.txt

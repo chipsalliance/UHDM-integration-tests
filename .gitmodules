@@ -4,3 +4,6 @@
 [submodule "tests/opentitan/opentitan"]
 	path = tests/opentitan/opentitan
 	url = https://github.com/lowRISC/opentitan.git
+[submodule "third_party/make-env"]
+	path = third_party/make-env
+	url = git@github.com:SymbiFlow/make-env.git
