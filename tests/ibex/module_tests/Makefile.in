@@ -1,2 +1,1 @@
-IBEX = ${root_dir}/tests/ibex/ibex
-IBEX_BUILD = ${IBEX}/build/lowrisc_ibex_top_artya7_0.1
+include ${root_dir}/../uhdm-tests/ibex/module_tests/Makefile.in
