@@ -6,18 +6,16 @@ module dut;
   logic[63:0] c;
 
   initial begin
-     x = { 8'd23, 8'd42, 8'd127, 8'd255 };
+     x = { 8'h11, 8'h22, 8'h33, 8'h44 };
      a = { << 8 {x} };
   end
 
-  assign y = { 8'd255, 8'd127, 8'd42, 8'd23 };
+  assign y = { 8'h88, 8'h77, 8'h66, 8'h55 };
   assign b = { << 8 {y} };
 
-  // Add once supported by Surelog (https://github.com/alainmarcel/Surelog/issues/1067):
-  //logic[63:0] c;
-  //assign c = { << 8 {x, y} };
-  // { >> {} } is the same as concat
-  //logic[63:0] d;
-  //assign d = { 8 >> {x, y} };
+  assign c = { << 8 {x, y} };
+
+  logic[63:0] d;
+  assign d = { >> 8 {y, x} };
 
 endmodule
