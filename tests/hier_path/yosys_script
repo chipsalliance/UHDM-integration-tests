@@ -1,0 +1,8 @@
+read_uhdm -debug dut.uhdm
+write_json
+prep -top \dut
+hierarchy; proc; opt
+write_verilog
+write_verilog yosys.sv
+select -module dut
+sat -verify -seq 1 -tempinduct -prove-asserts -show-all
