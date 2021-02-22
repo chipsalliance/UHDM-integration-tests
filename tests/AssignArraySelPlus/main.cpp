@@ -27,10 +27,6 @@ int main (int argc, char **argv) {
     tfp->dump(main_time);
 
     main_time += 1;
-
-    std::cout << "time: " << main_time
-      << " data: " << (top->data[10]?1:0)
-      << std::endl;
   }
   top->final();
   tfp->close();
