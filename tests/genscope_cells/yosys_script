@@ -1,5 +1,5 @@
 read_uhdm -debug dut.uhdm
-synth_xilinx
+proc
 write_json
 write_verilog
 write_verilog yosys.sv
