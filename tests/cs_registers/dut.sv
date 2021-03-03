@@ -213,7 +213,7 @@ typedef enum logic [2:0] {
 
 endpackage
 
-module ibex_cs_registers(input clk);
+module dut(input clk);
 import ibex_pkg::*;
 
 typedef struct packed {
@@ -360,8 +360,7 @@ assert(pmp_cfg_rdata[3] == 8'b11111111);
       csr_rdata_int = MISA_VALUE;
       csr_addr_i = CSR_MIE;
       assert(csr_rdata_int == MISA_VALUE);
-      //disabled until fixed in Surelog
-      //assert(MISA_VALUE == MISA_VALUE_RESULT);
+      assert(MISA_VALUE == MISA_VALUE_RESULT);
       end
     CSR_MIE: begin
       csr_rdata_int                                     = '0;
