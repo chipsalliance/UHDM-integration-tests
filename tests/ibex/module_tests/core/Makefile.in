@@ -26,5 +26,5 @@ TOP_FILE := \
     $(IBEX_BUILD)/src/lowrisc_ibex_ibex_core_0.1/rtl/ibex_core.sv
 TOP_MODULE := ibex_core
 INCLUDE := -I$(IBEX_BUILD)/src/lowrisc_prim_assert_0.1/rtl/
-SURELOG_FLAGS := +define+SYNTHESIS
+SURELOG_FLAGS := --disable-feature=parametersubstitution +define+SYNTHESIS
 VERILATOR_FLAGS := --cc $(TEST_DIR)/config.vlt
