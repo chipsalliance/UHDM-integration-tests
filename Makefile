@@ -58,6 +58,7 @@ uhdm/yosys/verilate-ast:
 	mkdir -p ${root_dir}/dumps
 	(cd $(root_dir)/build && \
 		$(VERILATOR_BIN) --cc ./yosys.sv \
+			$(VERILATOR_FLAGS) \
 			--top-module \$(TOP_MODULE) \
 			--exe $(MAIN_FILE) --trace && \
 		 make -j -C obj_dir -f $(TOP_MAKEFILE) $(VERILATED_BIN) && \
@@ -69,6 +70,7 @@ uhdm/yosys/verilate-ast:
 uhdm/verilator/coverage: surelog/parse
 	(cd $(root_dir)/build && \
 		$(VERILATOR_BIN) --uhdm-ast --cc $(TOP_UHDM) \
+			$(VERILATOR_FLAGS) \
 			--uhdm-cov uhdm.cov \
 			--xml-only)
 	python3 gen_coverage_report.py --verilator-uhdm $(root_dir)/build/uhdm.cov \
@@ -109,11 +111,13 @@ surelog/ibex-simplesystem: clean-build
 uhdm/verilator/get-ast: clean-build
 	(cd $(root_dir)/build && \
 		$(VERILATOR_BIN) --cc $(TOP_FILE) \
+			$(VERILATOR_FLAGS) \
 			--exe $(MAIN_FILE) --debug --xml-only)
 
 uhdm/verilator/ast-xml: surelog/parse
 	(cd $(root_dir)/build && \
 		$(VERILATOR_BIN) --uhdm-ast --cc $(TOP_UHDM) \
+			$(VERILATOR_FLAGS) \
 			--dump-uhdm \
 			--debugi 6 \
 			--exe $(MAIN_FILE) --xml-only)
