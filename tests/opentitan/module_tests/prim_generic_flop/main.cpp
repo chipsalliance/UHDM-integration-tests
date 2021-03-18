@@ -29,13 +29,20 @@ int main (int argc, char **argv) {
     top->eval();
     tfp->dump(main_time);
 
+    main_time += 1;
     top->clk_i ^= 1;
     if (main_time > 10)
       top->rst_ni = 1;
-    if (main_time%2)
+    if (top->clk_i % 2)
       top->d_i ^= 1;
 
-    main_time += 1;
+    std::cout << "time: " << main_time
+      << " rst_ni: " << (top->rst_ni ? 0 : 1)
+      << " clk_i: " << (top->clk_i ? 0 : 1)
+      << " d_i: " << (top->d_i ? 0 : 1)
+      << " q_o: " << (top->q_o ? 0 : 1)
+      << std::endl;
+
   }
   top->final();
   tfp->close();
