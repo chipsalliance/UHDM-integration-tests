@@ -1,0 +1,7 @@
+include $(TEST_DIR)/../Makefile.in
+TOP_FILE := \
+    $(OPEN_TITAN_BUILD)/src/lowrisc_prim_generic_flop_0/rtl/prim_generic_flop.sv
+
+INCLUDE := -I$(OPEN_TITAN_BUILD)/src/lowrisc_prim_assert_0.1/rtl/
+
+TOP_MODULE := prim_generic_flop
