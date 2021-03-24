@@ -1,0 +1,9 @@
+include $(TEST_DIR)/../Makefile.in
+TOP_FILE := \
+    $(OPEN_TITAN_BUILD)/src/lowrisc_prim_abstract_prim_pkg_0.1/prim_pkg.sv \
+    $(OPEN_TITAN_BUILD)/src/lowrisc_prim_generic_buf_0/rtl/prim_generic_buf.sv \
+    $(OPEN_TITAN_BUILD)/src/lowrisc_prim_abstract_buf_0/prim_buf.sv
+
+INCLUDE := -I$(OPEN_TITAN_BUILD)/src/lowrisc_prim_assert_0.1/rtl/
+
+TOP_MODULE := prim_buf
