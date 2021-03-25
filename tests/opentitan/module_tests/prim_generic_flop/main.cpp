@@ -37,10 +37,10 @@ int main (int argc, char **argv) {
       top->d_i ^= 1;
 
     std::cout << "time: " << main_time
-      << " rst_ni: " << (top->rst_ni ? 0 : 1)
-      << " clk_i: " << (top->clk_i ? 0 : 1)
-      << " d_i: " << (top->d_i ? 0 : 1)
-      << " q_o: " << (top->q_o ? 0 : 1)
+      << " rst_ni: " << (top->rst_ni ? 1 : 0)
+      << " clk_i: " << (top->clk_i ? 1 : 0)
+      << " d_i: " << (top->d_i ? 1 : 0)
+      << " q_o: " << (top->q_o ? 1 : 0)
       << std::endl;
 
   }
