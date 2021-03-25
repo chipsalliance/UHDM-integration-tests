@@ -111,7 +111,9 @@ surelog/ibex-simplesystem: clean-build
 uhdm/verilator/get-ast: clean-build
 	(cd $(root_dir)/build && \
 		$(VERILATOR_BIN) --cc $(TOP_FILE) \
+			$(INCLUDE) \
 			$(VERILATOR_FLAGS) \
+			--top-module ${TOP_MODULE} \
 			--exe $(MAIN_FILE) --debug --xml-only)
 
 uhdm/verilator/ast-xml: surelog/parse
@@ -121,6 +123,22 @@ uhdm/verilator/ast-xml: surelog/parse
 			--dump-uhdm \
 			--debugi 6 \
 			--exe $(MAIN_FILE) --xml-only)
+
+verilator/test-ast:
+	mkdir -p $(root_dir)/dumps
+	(cd $(root_dir)/build && \
+		$(VERILATOR_BIN) \
+			$(INCLUDE) \
+			--cc $(TOP_FILE) \
+			$(VERILATOR_FLAGS) \
+			--top-module ${TOP_MODULE} \
+			--exe $(MAIN_FILE) --trace && \
+		 make -j -C obj_dir -f $(TOP_MAKEFILE) $(VERILATED_BIN) && \
+		 obj_dir/$(VERILATED_BIN))
+	mv $(root_dir)/build/dump.vcd $(root_dir)/dumps/dump_vanilla.vcd
+
+uhdm/verilator/vcddiff: verilator/test-ast uhdm/verilator/test-ast
+	$(VCDDIFF_BIN) $(root_dir)/dumps/dump_vanilla.vcd $(root_dir)/dumps/dump_verilator.vcd
 
 vcd:
 	gtkwave $(root_dir)/build/dump.vcd &>/dev/null &
