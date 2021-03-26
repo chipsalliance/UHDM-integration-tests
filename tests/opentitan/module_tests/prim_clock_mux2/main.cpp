@@ -39,10 +39,10 @@ int main (int argc, char **argv) {
       top->sel_i ^= 1;
 
     std::cout << "time: " << main_time
-      << " clk0_i: " << (top->clk0_i ? 0 : 1)
-      << " clk1_i: " << (top->clk1_i ? 0 : 1)
-      << " sel_i: " << (top->sel_i ? 0 : 1)
-      << " clk_o: " << (top->clk_o ? 0 : 1)
+      << " clk0_i: " << (top->clk0_i ? 1 : 0)
+      << " clk1_i: " << (top->clk1_i ? 1 : 0)
+      << " sel_i: " << (top->sel_i ? 1 : 0)
+      << " clk_o: " << (top->clk_o ? 1 : 0)
       << std::endl;
 
   }
