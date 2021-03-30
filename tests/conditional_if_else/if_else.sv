@@ -3,9 +3,9 @@
 :description: A module testing if-else statement
 :tags: 12.4
 */
-module top (b);
+module top ();
 	wire a = 1;
-	output reg b = 0;
+	reg b = 0;
 	always @* begin
 		if(a) b = 1;
 		else b = 0;
