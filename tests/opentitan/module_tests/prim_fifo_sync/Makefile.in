@@ -1,0 +1,11 @@
+include $(TEST_DIR)/../Makefile.in
+TOP_FILE := \
+    $(OPEN_TITAN_BUILD)/src/lowrisc_prim_abstract_prim_pkg_0.1/prim_pkg.sv \
+    $(OPEN_TITAN_BUILD)/src/lowrisc_prim_util_0.1/rtl/prim_util_pkg.sv \
+    $(OPEN_TITAN_BUILD)/src/lowrisc_prim_all_0.1/rtl/prim_fifo_sync.sv
+
+INCLUDE := -I$(OPEN_TITAN_BUILD)/src/lowrisc_prim_assert_0.1/rtl/ -I$(OPEN_TITAN_BUILD)/src/lowrisc_prim_util_0.1/rtl/
+
+TOP_MODULE := prim_fifo_sync
+SURELOG_FLAGS := --disable-feature=parametersubstitution -PWidth=8 -PPass=1\'b1 -PDepth=2
+VERILATOR_FLAGS := -GWidth=8 -GPass=1\'b1 -GDepth=2
