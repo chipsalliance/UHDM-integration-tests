@@ -5,5 +5,5 @@ TOP_FILE := \
 INCLUDE := -I$(OPEN_TITAN_BUILD)/src/lowrisc_prim_assert_0.1/rtl/
 
 TOP_MODULE := prim_arbiter_tree
-SURELOG_PARAMETERS := -disablefeature=parametersubstitution -PN=5 -PDW=3
+SURELOG_FLAGS := -disablefeature=parametersubstitution -PN=5 -PDW=3
 VERILATOR_FLAGS := -Wno-UNOPTFLAT -Wno-ALWCOMBORDER -GN=5 -GDW=3
