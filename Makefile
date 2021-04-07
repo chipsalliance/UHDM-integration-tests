@@ -38,6 +38,7 @@ uhdm/verilator/test-ast: surelog/parse
 		$(VERILATOR_BIN) --uhdm-ast-sv \
 			--cc $(TOP_UHDM) \
 			$(VERILATOR_FLAGS) \
+			--top-module ${TOP_MODULE} \
 			--dump-uhdm \
 			--exe $(MAIN_FILE) --trace && \
 		 make -j -C obj_dir -f $(TOP_MAKEFILE) $(VERILATED_BIN) && \
@@ -119,6 +120,7 @@ uhdm/verilator/ast-xml: surelog/parse
 	(cd $(root_dir)/build && \
 		$(VERILATOR_BIN) --uhdm-ast --cc $(TOP_UHDM) \
 			$(VERILATOR_FLAGS) \
+			--top-module ${TOP_MODULE} \
 			--dump-uhdm \
 			--debugi 6 \
 			--exe $(MAIN_FILE) --xml-only)
