@@ -1,0 +1,9 @@
+include $(TEST_DIR)/../Makefile.in
+TOP_FILE := \
+    $(OPEN_TITAN_BUILD)/src/lowrisc_prim_all_0.1/rtl/prim_arbiter_ppc.sv
+
+INCLUDE := -I$(OPEN_TITAN_BUILD)/src/lowrisc_prim_assert_0.1/rtl/
+
+TOP_MODULE := prim_arbiter_ppc
+SURELOG_FLAGS := -disablefeature=parametersubstitution -PN=5 -PDW=3
+VERILATOR_FLAGS := -Wno-UNOPTFLAT -Wno-ALWCOMBORDER -GN=5 -GDW=3
