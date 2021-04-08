@@ -1,6 +1,6 @@
 #include <verilated.h>
 #include <verilated_vcd_c.h>
-#include "Vibex_register_file.h"
+#include "Vibex_register_file_ff.h"
 
 vluint64_t main_time = 0;
 
@@ -9,7 +9,7 @@ int main(int argc, char* argv[])
   Verilated::traceEverOn(true);
   VerilatedVcdC* tfp = new VerilatedVcdC;
 
-  Vibex_register_file* top = new Vibex_register_file;
+  Vibex_register_file_ff* top = new Vibex_register_file_ff;
   top->trace(tfp, 99);
   tfp->open("dump.vcd");
 
