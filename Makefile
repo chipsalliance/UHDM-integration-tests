@@ -124,7 +124,7 @@ uhdm/verilator/ast-xml: surelog/parse
 			--debugi 6 \
 			--exe $(MAIN_FILE) --xml-only)
 
-verilator/test-ast:
+verilator/test-ast: clean-build
 	mkdir -p $(root_dir)/dumps
 	(cd $(root_dir)/build && \
 		$(VERILATOR_BIN) \
