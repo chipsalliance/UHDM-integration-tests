@@ -26,11 +26,15 @@ int main (int argc, char **argv) {
     top->eval();
     tfp->dump(main_time);
 
+    std::cout << "time: " << main_time
+              << " a: " << (top->a ? 1 : 0)
+      << std::endl;
+
     main_time += 1;
   }
   top->final();
   tfp->close();
-    delete top;
+  delete top;
 
   return 0;
 }
