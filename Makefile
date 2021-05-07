@@ -86,7 +86,6 @@ clean-build:
 	mkdir -p $(root_dir)/build
 
 clean:: clean-build
-	rm -rf $(root_dir)/image
 
 # ------------ Other targets ------------
 
