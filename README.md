@@ -68,8 +68,9 @@ Available test cases are in the `tests` directory. They are chosen using `TEST_C
 ```
 TEST=tests/OneNetModport make uhdm/verilator/test-ast
 ```
+Test results will be stored in `./build`.
 
-Tools are built automatically and are installed to `./images` folder. Test results will be stored in `./build`.
+Tools are expected to be in `../images` folder. They can be built using `build_binaries.sh` found in Yosys/Verilator repository referenced in Setup.
 
 ## Integration details
 
