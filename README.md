@@ -1,6 +1,15 @@
 # UHDM-integration
 Repository for testing SystemVerilog support status in Yosys/Verilator via UHDM
 
+### Install dependencies
+Ensure you have [latest CMake](https://cmake.org/download/) (needed for Surelog/UHDM).
+
+```
+sudo apt install g++-7 cmake build-essential tclsh \
+ ant default-jre swig google-perftools libgoogle-perftools-dev \
+ python3 python3-dev
+```
+
 ## Setup
 
 Verilator setup:
@@ -21,15 +30,6 @@ cd yosys
 git submodule update --init --recursive
 ./build_binaries.sh
 cd uhdm-integration
-```
-
-### Install dependencies
-Ensure you have [latest CMake](https://cmake.org/download/) (needed for Surelog/UHDM).
-
-```
-sudo apt install g++-7 cmake build-essential tclsh \
- ant default-jre swig google-perftools libgoogle-perftools-dev \
- python3 python3-dev
 ```
 
 ## Running tests
