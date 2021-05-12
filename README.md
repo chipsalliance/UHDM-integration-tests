@@ -3,7 +3,16 @@ Repository for testing SystemVerilog support status in Yosys/Verilator via UHDM
 
 ## Setup
 
-Verilator setup:
+### Install dependencies
+Ensure you have [latest CMake](https://cmake.org/download/) (needed for Surelog/UHDM).
+
+```
+sudo apt install g++-7 cmake build-essential tclsh \
+ ant default-jre swig google-perftools libgoogle-perftools-dev \
+ python3 python3-dev
+```
+
+### Verilator setup:
 
 ```
 git clone https://github.com/antmicro/verilator.git -b uhdm-verilator
@@ -13,7 +22,7 @@ git submodule update --init --recursive
 cd uhdm-integration
 ```
 
-Yosys setup:
+### Yosys setup:
 
 ```
 git clone https://github.com/antmicro/yosys.git -b uhdm-yosys
@@ -21,15 +30,6 @@ cd yosys
 git submodule update --init --recursive
 ./build_binaries.sh
 cd uhdm-integration
-```
-
-### Install dependencies
-Ensure you have [latest CMake](https://cmake.org/download/) (needed for Surelog/UHDM).
-
-```
-sudo apt install g++-7 cmake build-essential tclsh \
- ant default-jre swig google-perftools libgoogle-perftools-dev \
- python3 python3-dev
 ```
 
 ## Running tests
@@ -68,8 +68,9 @@ Available test cases are in the `tests` directory. They are chosen using `TEST_C
 ```
 TEST=tests/OneNetModport make uhdm/verilator/test-ast
 ```
+Test results will be stored in `./build`.
 
-Tools are built automatically and are installed to `./images` folder. Test results will be stored in `./build`.
+Tools are expected to be in `../images` folder. They can be built using `build_binaries.sh` found in Yosys/Verilator repository referenced in Setup.
 
 ## Integration details
 
