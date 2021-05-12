@@ -1,6 +1,8 @@
 # UHDM-integration
 Repository for testing SystemVerilog support status in Yosys/Verilator via UHDM
 
+## Setup
+
 ### Install dependencies
 Ensure you have [latest CMake](https://cmake.org/download/) (needed for Surelog/UHDM).
 
@@ -10,9 +12,7 @@ sudo apt install g++-7 cmake build-essential tclsh \
  python3 python3-dev
 ```
 
-## Setup
-
-Verilator setup:
+### Verilator setup:
 
 ```
 git clone https://github.com/antmicro/verilator.git -b uhdm-verilator
@@ -22,7 +22,7 @@ git submodule update --init --recursive
 cd uhdm-integration
 ```
 
-Yosys setup:
+### Yosys setup:
 
 ```
 git clone https://github.com/antmicro/yosys.git -b uhdm-yosys
