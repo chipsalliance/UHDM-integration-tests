@@ -28,7 +28,7 @@ int main (int argc, char **argv) {
 
     std::cout << "time: " << main_time
               << " a: " << (top->a ? 1 : 0)
-      << std::endl;
+              << std::endl;
 
     main_time += 1;
   }
