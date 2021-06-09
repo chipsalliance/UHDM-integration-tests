@@ -23,9 +23,6 @@ int main(int argc, char* argv[])
     switch (main_time) {
     case 100: top->rst_ni = 1; break;
 
-    case 200:
-      top->test_en_i = 1;
-      break;
 
     default: break;
     }
