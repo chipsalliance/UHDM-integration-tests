@@ -39,7 +39,7 @@ int main (int argc, char **argv) {
               << " rst_ni: " << (top->rst_ni ? 1 : 0)
               << " valid_i: " << (top->valid_i ? 1 : 0)
               << " data_i: " << top->data_i
-              << " key_i: " << top->key_i
+              << " key_i: " << top->key_i[0]
               << " dec_i: " << (top->dec_i ? 1 : 0)
               << " valid_o: " << (top->valid_o ? 1 : 0)
               << " data_o: " << top->data_o
