@@ -5,6 +5,11 @@ MODULES="$IBEX_RTL/ibex_pkg.sv "
 INCLUDE=tests/ibex/ibex/vendor/lowrisc_ip/ip/prim/rtl/
 case $1 in
     "ibex_cs_registers.sv") MODULES="$MODULES $IBEX_RTL/ibex_csr.sv $IBEX_RTL/ibex_counter.sv";;
+    "ibex_core_tracing.sv") MODULES="$MODULES $IBEX_RTL/ibex_tracer_pkg.sv $IBEX_RTL/ibex_tracer.sv";;
+    "ibex_ex_block.sv") MODULES="$MODULES $IBEX_RTL/ibex_alu.sv $IBEX_RTL/ibex_multdiv_fast.sv";;
+    "ibex_id_stage.sv") MODULES="$MODULES $IBEX_RTL/ibex_controller.sv $IBEX_RTL/ibex_decoder.sv";;
+    "ibex_if_stage.sv") MODULES="$MODULES $IBEX_RTL/ibex_compressed_decoder.sv $IBEX_RTL/ibex_prefetch_buffer.sv $IBEX_RTL/ibex_fetch_fifo.sv";;
+    "ibex_prefetch_buffer.sv") MODULES="$MODULES $IBEX_RTL/ibex_fetch_fifo.sv";;
     "ibex_tracer.sv") MODULES="$MODULES $IBEX_RTL/ibex_tracer_pkg.sv";;
 esac
 MODULES="$MODULES $IBEX_RTL/$1"
@@ -13,11 +18,8 @@ OUT_DIR=build-equiv
 
 rm -rf $OUT_DIR
 mkdir -p $OUT_DIR
-for MODULE in $MODULES; do
-    cat $MODULE >> $OUT_DIR/all.sv
-done
 
-sv2v -I$INCLUDE $OUT_DIR/all.sv >> $OUT_DIR/test.v
+sv2v -I$INCLUDE $MODULES >> $OUT_DIR/test.v
 
 ../image/bin/surelog -parse -sverilog $MODULES -I$INCLUDE -odir $OUT_DIR
 
