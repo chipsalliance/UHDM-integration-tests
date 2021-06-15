@@ -38,4 +38,4 @@ echo $MODULES
     flatten; \
     equiv_struct; \
     equiv_induct; \
-    equiv_status;"
+    equiv_status -assert;"
