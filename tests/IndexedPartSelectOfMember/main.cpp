@@ -29,8 +29,8 @@ int main (int argc, char **argv) {
     main_time += 1;
 
     std::cout << "time: " << main_time
-      << " o: " << (top->o?1:0)
-      << std::endl;
+              << " o: " << (int)top->o
+              << std::endl;
   }
   top->final();
   tfp->close();
