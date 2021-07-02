@@ -1,3 +1,4 @@
+plugin -i uhdm
 read_uhdm -debug top.uhdm
 write_json
 hierarchy -check -top \top
