@@ -1,3 +1,4 @@
+plugin -i uhdm
 read_uhdm -debug fsm_using_function.uhdm
 write_json
 prep -top \fsm_using_function
