@@ -1,10 +1,12 @@
 package pkg;
-   typedef enum logic {
-      x = 1
+   typedef enum logic[2:0] {
+      x = 1,
+      y = 2,
+      z = 3
    } a;
    typedef a b;
 endpackage
    
-module top(output pkg::b o);
+module top(input logic clk, output pkg::b o);
    assign o = pkg::x;
 endmodule   
