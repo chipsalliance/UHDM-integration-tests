@@ -14,7 +14,7 @@ package pkg;
   typedef logic [7:0] third_alias_t;
 endpackage;
 
-module dut (input pkg::enum_t a, output pkg::alias_t b);
+module dut (input clk, input pkg::enum_t a, output pkg::alias_t b);
    typedef pkg::struct_t second_alias_t; // Can be moved to pkg after
                                          // https://github.com/chipsalliance/Surelog/issues/1388
 
