@@ -21,12 +21,22 @@ int main (int argc, char **argv) {
   VerilatedVcdC* tfp = new VerilatedVcdC;
   top->trace(tfp, 99);
   tfp->open("dump.vcd");
+
+  top->clk_i = 0;
+  top->rst_ni = 0;
   
   while (!Verilated::gotFinish() && (main_time < 100)) {
     top->eval();
     tfp->dump(main_time);
 
+    std::cout << "time: " << main_time
+      << " clk_i: " << (top->clk_i ? 1 : 0)
+      << " rst_ni: " << (top->rst_ni ? 1 : 0)
+      << std::endl;
+
     main_time += 1;
+    top->clk_i = main_time & 1;
+    top->rst_ni = main_time & 2;
   }
   top->final();
   tfp->close();
