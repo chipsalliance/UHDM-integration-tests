@@ -1,0 +1,34 @@
+include $(TEST_DIR)/../Makefile.in
+TOP_FILE := \
+   $(OPEN_TITAN_BUILD)/src/lowrisc_ip_aes_0.6/rtl/aes_pkg.sv \
+   $(OPEN_TITAN_BUILD)/src/lowrisc_ip_aes_0.6/rtl/aes_reg_pkg.sv \
+   $(OPEN_TITAN_BUILD)/src/lowrisc_prim_all_0.1/rtl/prim_cipher_pkg.sv \
+   $(OPEN_TITAN_BUILD)/src/lowrisc_prim_abstract_prim_pkg_0.1/prim_pkg.sv \
+   $(OPEN_TITAN_BUILD)/src/lowrisc_prim_generic_flop_0/rtl/prim_generic_flop.sv \
+   $(OPEN_TITAN_BUILD)/src/lowrisc_prim_abstract_flop_0/prim_flop.sv \
+   $(OPEN_TITAN_BUILD)/src/lowrisc_prim_generic_buf_0/rtl/prim_generic_buf.sv \
+   $(OPEN_TITAN_BUILD)/src/lowrisc_prim_abstract_buf_0/prim_buf.sv \
+   $(OPEN_TITAN_BUILD)/src/lowrisc_prim_lfsr_0.1/rtl/prim_lfsr.sv \
+   $(OPEN_TITAN_BUILD)/src/lowrisc_prim_all_0.1/rtl/prim_subreg_arb.sv \
+   $(OPEN_TITAN_BUILD)/src/lowrisc_prim_all_0.1/rtl/prim_subreg.sv \
+   $(OPEN_TITAN_BUILD)/src/lowrisc_prim_all_0.1/rtl/prim_subreg_shadow.sv \
+   $(OPEN_TITAN_BUILD)/src/lowrisc_ip_aes_0.6/rtl/aes_prng_clearing.sv \
+   $(OPEN_TITAN_BUILD)/src/lowrisc_ip_aes_0.6/rtl/aes_ctr.sv \
+   $(OPEN_TITAN_BUILD)/src/lowrisc_ip_aes_0.6/rtl/aes_cipher_core.sv \
+   $(OPEN_TITAN_BUILD)/src/lowrisc_ip_aes_0.6/rtl/aes_control.sv \
+   $(OPEN_TITAN_BUILD)/src/lowrisc_ip_aes_0.6/rtl/aes_sel_buf_chk.sv \
+   $(OPEN_TITAN_BUILD)/src/lowrisc_ip_aes_0.6/rtl/aes_reg_status.sv \
+   $(OPEN_TITAN_BUILD)/src/lowrisc_ip_aes_0.6/rtl/aes_sub_bytes.sv \
+   $(OPEN_TITAN_BUILD)/src/lowrisc_ip_aes_0.6/rtl/aes_shift_rows.sv \
+   $(OPEN_TITAN_BUILD)/src/lowrisc_ip_aes_0.6/rtl/aes_key_expand.sv \
+   $(OPEN_TITAN_BUILD)/src/lowrisc_ip_aes_0.6/rtl/aes_mix_columns.sv \
+   $(OPEN_TITAN_BUILD)/src/lowrisc_ip_aes_0.6/rtl/aes_cipher_control.sv \
+   $(OPEN_TITAN_BUILD)/src/lowrisc_ip_aes_0.6/rtl/aes_sbox.sv \
+   $(OPEN_TITAN_BUILD)/src/lowrisc_ip_aes_0.6/rtl/aes_mix_single_column.sv \
+   $(OPEN_TITAN_BUILD)/src/lowrisc_ip_aes_0.6/rtl/aes_sbox_lut.sv \
+   $(OPEN_TITAN_BUILD)/src/lowrisc_ip_aes_0.6/rtl/aes_core.sv 
+
+INCLUDE := -I$(OPEN_TITAN_BUILD)/src/lowrisc_prim_assert_0.1/rtl/
+
+TOP_MODULE := aes_core
+
