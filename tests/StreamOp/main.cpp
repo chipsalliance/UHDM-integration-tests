@@ -22,25 +22,22 @@ int main (int argc, char **argv) {
   top->trace(tfp, 99);
   tfp->open("dump.vcd");
 
-  top->a = 0;
   while (!Verilated::gotFinish() && (main_time < 100)) {
     top->eval();
     tfp->dump(main_time);
 
     main_time += 1;
 
-    if (!(main_time % 2)) {
-      top->a += 1;
-    }
-
     std::cout << "time: " << main_time
-      << " a: " << (top->a ? 1 : 0)
-      << " o: " << (top->o ? 1 : 0)
-      << std::endl;
+              << " a: " << (int) top->a
+              << " b: " << (int) top->b
+              << " c: " << (long long) top->c
+              << " d: " << (long long) top->d
+              << std::endl;
   }
   top->final();
   tfp->close();
-    delete top;
+  delete top;
 
   return 0;
 }
