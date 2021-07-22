@@ -29,7 +29,10 @@ int main (int argc, char **argv) {
     main_time += 1;
 
     std::cout << "time: " << main_time
-              << " o: " << (int)top->o
+              << " a: " << (int)top->a
+              << " b: " << (int)top->b
+              << " c: " << (int)top->c
+              << " d: " << (int)top->d
               << std::endl;
   }
   top->final();
