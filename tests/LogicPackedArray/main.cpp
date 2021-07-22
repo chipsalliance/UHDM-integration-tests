@@ -32,6 +32,7 @@ int main (int argc, char **argv) {
               << " a: " << (int)top->a
               << " b: " << (int)top->b
               << " c: " << (int)top->c
+              << " d: " << (int)top->d
               << std::endl;
   }
   top->final();
