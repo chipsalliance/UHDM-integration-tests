@@ -3,7 +3,7 @@ package prim_util_pkg;
       int result = 5;
       return result;
    endfunction // get_5
-endpackage // prim_utilt_pkg
+endpackage // prim_util_pkg
 
 module dut;
    import prim_util_pkg::*;
