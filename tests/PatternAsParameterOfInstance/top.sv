@@ -6,8 +6,8 @@ endmodule // dut
 module top(output logic [1:0] o);
    parameter logic [1:0] X = '{1, 1};
    dut #(
-         .P(X)
-         ) u_dut(
-                 .a(o)
-                 );   
+      .P(X)
+   ) u_dut(
+      .a(o)
+   );
 endmodule // top
