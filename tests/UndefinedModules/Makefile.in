@@ -1,0 +1,2 @@
+TOP_FILE := $(TEST_DIR)/bug.sv
+TOP_MODULE := dut
