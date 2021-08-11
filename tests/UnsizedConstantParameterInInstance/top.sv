@@ -11,6 +11,6 @@ module top(output int o);
    ) staged_reg(o);
 
    always_comb begin
-      assert(o == 32'hFFFF);
+      assert(o == 32'hFFFFFFFF);
    end
 endmodule
