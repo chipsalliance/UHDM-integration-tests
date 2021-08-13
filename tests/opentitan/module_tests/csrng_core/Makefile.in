@@ -42,4 +42,4 @@ INCLUDE := -I$(OPEN_TITAN_BUILD)/src/lowrisc_prim_assert_0.1/rtl/
 
 TOP_MODULE := csrng_core
 SURELOG_FLAGS := --disablefeature=parametersubstitution
-VERILATOR_FLAGS := -Wno-UNOPTFLAT -Wno-ALWCOMBORDER
+VERILATOR_FLAGS := -Wno-UNOPTFLAT -Wno-ALWCOMBORDER $(TEST_DIR)/csrng_core.vlt
