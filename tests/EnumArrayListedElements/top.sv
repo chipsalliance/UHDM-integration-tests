@@ -1,6 +1,7 @@
 package my_pkg;
    typedef enum logic [3:0] {
-       On = 4'b1010
+       On = 4'b1010,
+       Off = 4'b1111
    } lc_tx_t;
 endpackage
 
