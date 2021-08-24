@@ -1,0 +1,4 @@
+`verilator_config
+
+// Warning thrown by original verilator
+lint_off -rule WIDTH -file "*" -match "Operator ASSIGNW expects 4 bits on the Assign RHS, but Assign RHS's VARREF 'CrashStoreSlot' generates 32 bits."
