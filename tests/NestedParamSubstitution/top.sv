@@ -1,5 +1,5 @@
 module dut1(output logic [1:0] a);
-   parameter logic [1:0] P1 = 0;
+   parameter logic [1:0] P1 = 2'b0;
    assign a = P1;
 endmodule // dut1
 
