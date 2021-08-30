@@ -6,5 +6,3 @@ TOP_FILE := \
 INCLUDE := -I$(OPEN_TITAN_BUILD)/src/lowrisc_prim_assert_0.1/rtl/
 
 TOP_MODULE := keccak_2share
-
-SURELOG_FLAGS := --disable-feature=parametersubstitution
