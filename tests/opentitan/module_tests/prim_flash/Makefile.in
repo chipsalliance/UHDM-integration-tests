@@ -1,0 +1,29 @@
+include $(TEST_DIR)/../Makefile.in
+TOP_FILE := \
+    $(OPEN_TITAN_BUILD)/src/lowrisc_prim_abstract_prim_pkg_0.1/prim_pkg.sv \
+    $(OPEN_TITAN_BUILD)/src/lowrisc_constants_top_pkg_0/rtl/top_pkg.sv \
+    $(OPEN_TITAN_BUILD)/src/lowrisc_tlul_headers_0.1/rtl/tlul_pkg.sv \
+    $(OPEN_TITAN_BUILD)/src/lowrisc_prim_util_0.1/rtl/prim_util_pkg.sv \
+    $(OPEN_TITAN_BUILD)/src/lowrisc_ip_entropy_src_pkg_0.1/rtl/entropy_src_pkg.sv \
+    $(OPEN_TITAN_BUILD)/src/lowrisc_ip_edn_pkg_0.1/rtl/edn_pkg.sv \
+    $(OPEN_TITAN_BUILD)/src/lowrisc_systems_flash_ctrl_pkg_0.1/rtl/autogen/flash_ctrl_reg_pkg.sv \
+    $(OPEN_TITAN_BUILD)/src/lowrisc_systems_flash_ctrl_pkg_0.1/rtl/autogen/flash_ctrl_pkg.sv \
+    $(OPEN_TITAN_BUILD)/src/lowrisc_ip_flash_ctrl_pkg_0.1/rtl/flash_phy_pkg.sv \
+    $(OPEN_TITAN_BUILD)/src/lowrisc_ip_lc_ctrl_state_pkg_0.1/rtl/lc_ctrl_state_pkg.sv \
+    $(OPEN_TITAN_BUILD)/src/lowrisc_ip_lc_ctrl_pkg_0.1/rtl/lc_ctrl_pkg.sv \
+    $(OPEN_TITAN_BUILD)/src/lowrisc_prim_generic_ram_1p_0/rtl/prim_generic_ram_1p.sv \
+    $(OPEN_TITAN_BUILD)/src/lowrisc_prim_abstract_ram_1p_0/prim_ram_1p.sv \
+    $(OPEN_TITAN_BUILD)/src/lowrisc_tlul_common_0.1/rtl/tlul_err.sv \
+    $(OPEN_TITAN_BUILD)/src/lowrisc_prim_all_0.1/rtl/prim_fifo_sync.sv \
+    $(OPEN_TITAN_BUILD)/src/lowrisc_prim_generic_flash_0/rtl/prim_generic_flash_bank.sv \
+    $(OPEN_TITAN_BUILD)/src/lowrisc_tlul_adapter_sram_0.1/rtl/tlul_adapter_sram.sv \
+    $(OPEN_TITAN_BUILD)/src/lowrisc_prim_generic_flash_0/rtl/prim_generic_flash.sv \
+    $(OPEN_TITAN_BUILD)/src/lowrisc_prim_abstract_flash_0/prim_flash.sv
+
+INCLUDE := \
+    -I$(OPEN_TITAN_BUILD)/src/lowrisc_prim_assert_0.1/rtl/ \
+    -I$(OPEN_TITAN_BUILD)/src/lowrisc_prim_util_memload_0/rtl/
+
+TOP_MODULE := prim_flash
+
+VERILATOR_FLAGS := $(TEST_DIR)/prim_flash.vlt
