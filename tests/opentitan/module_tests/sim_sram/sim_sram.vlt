@@ -1,0 +1,9 @@
+`verilator_config
+
+// Warnings that are thrown by original verilator
+
+lint_off -rule WIDTH -file "*" -match "Operator VAR 'ReqDepth' expects 32 bits on the Initial value, but Initial value's CONST '4'h0' generates 4 bits."
+
+lint_off -rule WIDTH -file "*" -match "Operator VAR 'RspDepth' expects 32 bits on the Initial value, but Initial value's CONST '4'h0' generates 4 bits."
+
+lint_off -rule PINMISSING -file "*" -match "Cell has missing pin: 'en_ifetch_i'"
