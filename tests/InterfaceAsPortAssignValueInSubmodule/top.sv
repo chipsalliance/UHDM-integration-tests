@@ -8,7 +8,6 @@ endmodule // dut
 
 module top(output int o);
    sim_sram_if u_sim_sram_if();
-   assign u_sim_sram_if.start_addr = 0;
 
    dut u_dut(.ss_if(u_sim_sram_if));
 
