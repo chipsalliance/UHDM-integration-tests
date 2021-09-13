@@ -13,3 +13,11 @@ lint_off -rule WIDTH -file "*" -match "Operator ASSIGN expects 1 bits on the Ass
 lint_off -rule ALWCOMBORDER -file "*" -match "Always_comb variable driven after use: 'ppc_out'"
 
 lint_off -rule SYMRSVDWORD -file "*" -match "Symbol matches C++ common word: 'abort'"
+
+// Warning that is thrown only by uhdm-verilator due to parameter substitution
+
+lint_off -rule WIDTH -file "*" -match "Operator VAR 'Depth' expects 32 bits on the Initial value, but Initial value's CONST '4'h0' generates 4 bits."
+
+// Warning that is thrown only by uhdm-verilator, because original verilator omits assert sentences
+
+lint_off -rule WIDTH -file "*" -match "Operator LTE expects 32 bits on the LHS, but LHS's VARREF 'num_req_outstanding' generates 9 bits."
