@@ -30,7 +30,7 @@ int main (int argc, char **argv) {
 
     std::cout << "time: " << main_time
               << " clk_i: " << (top->clk_i ? 1 : 0)
-                << std::endl;
+              << std::endl;
 
     main_time += 1;
     top->clk_i = main_time & 1;
