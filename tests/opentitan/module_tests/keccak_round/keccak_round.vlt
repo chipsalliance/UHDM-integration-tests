@@ -1,0 +1,7 @@
+`verilator_config
+
+// Warnings that are thrown by original verilator
+
+lint_off -rule WIDTH -file "*" -match "Operator EQ expects 32 bits on the LHS, but LHS's VARREF 'round' generates 5 bits."
+
+lint_off -rule WIDTH -file "*" -match "Operator EQ expects 32 bits on the LHS, but LHS's VARREF 'addr_i' generates 5 bits."
