@@ -1,5 +1,8 @@
+// This is part of top_earlgrey_verilator module
+// Submodules (with their dependencies) are included in Makefile.in
+
 module top;
-     bind rv_dm dmidpi u_dmidpi (
+  bind rv_dm dmidpi u_dmidpi (
     .clk_i,
     .rst_ni,
     .dmi_req_valid,
