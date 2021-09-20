@@ -1,0 +1,9 @@
+`verilator_config
+
+// Warnings that are thrown by original verilator
+
+lint_off -rule WIDTH -file "*" -match "Bit extraction of var[11:0] requires 4 bit index, not 5 bits."
+
+lint_off -rule WIDTH -file "*" -match "Operator LT expects 32 bits on the LHS, but LHS's VARREF 'autoexecdata_idx' generates 5 bits."
+
+lint_off -rule WIDTH -file "*" -match "Operator LT expects 2 bits on the LHS, but LHS's VARREF 'selected_hart' generates 1 bits."
