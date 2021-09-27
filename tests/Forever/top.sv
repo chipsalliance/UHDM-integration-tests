@@ -3,14 +3,12 @@ module top(output int o);
       o = 1;
    end
 
-   // disable statement is unsupported in current verilator
-   // so the the call of this function will hang the program
+   // The call of this function will hang the program
    // in infinite loop
    // It only tests parsing of forever statement
    task automatic forever_test();
       forever begin : loop
          o = 10;
-         disable loop;
       end
    endtask
 endmodule
