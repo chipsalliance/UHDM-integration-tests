@@ -1,7 +1,7 @@
 include $(TEST_DIR)/../Makefile.in
 TOP_FILE := \
     $(OPENTITAN_BUILD)/src/lowrisc_prim_abstract_prim_pkg_0.1/prim_pkg.sv \
-    $(OPENTITAN_BUILD)/src/lowrisc_prim_all_0.1/rtl/prim_alert_pkg.sv \
+    $(OPENTITAN_BUILD)/src/lowrisc_prim_alert_0/rtl/prim_alert_pkg.sv \
     $(OPENTITAN_BUILD)/src/lowrisc_ip_entropy_src_pkg_0.1/rtl/entropy_src_pkg.sv \
     $(OPENTITAN_BUILD)/src/lowrisc_ip_edn_pkg_0.1/rtl/edn_pkg.sv \
     $(OPENTITAN_BUILD)/src/lowrisc_prim_generic_flop_0/rtl/prim_generic_flop.sv \

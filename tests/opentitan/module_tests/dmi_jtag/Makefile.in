@@ -6,7 +6,7 @@ TOP_FILE := \
     $(OPENTITAN_BUILD)/src/lowrisc_prim_abstract_flop_0/prim_flop.sv \
     $(OPENTITAN_BUILD)/src/lowrisc_prim_generic_flop_2sync_0/rtl/prim_generic_flop_2sync.sv \
     $(OPENTITAN_BUILD)/src/lowrisc_prim_abstract_flop_2sync_0/prim_flop_2sync.sv \
-    $(OPENTITAN_BUILD)/src/lowrisc_prim_all_0.1/rtl/prim_fifo_async.sv \
+    $(OPENTITAN_BUILD)/src/lowrisc_prim_fifo_0/rtl/prim_fifo_async.sv \
     $(OPENTITAN_BUILD)/src/lowrisc_prim_generic_clock_inv_0/rtl/prim_generic_clock_inv.sv \
     $(OPENTITAN_BUILD)/src/lowrisc_prim_generic_clock_mux2_0/rtl/prim_generic_clock_mux2.sv \
     $(OPENTITAN_BUILD)/src/lowrisc_prim_abstract_clock_mux2_0/prim_clock_mux2.sv \

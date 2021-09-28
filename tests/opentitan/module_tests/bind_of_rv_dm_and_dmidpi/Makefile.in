@@ -13,7 +13,7 @@ TOP_FILE := \
     $(OPENTITAN_BUILD)/src/lowrisc_prim_xilinx_flop_0/rtl/prim_xilinx_flop.sv \
     $(OPENTITAN_BUILD)/src/lowrisc_prim_generic_flop_2sync_0/rtl/prim_generic_flop_2sync.sv \
     $(OPENTITAN_BUILD)/src/lowrisc_prim_abstract_flop_2sync_0/prim_flop_2sync.sv \
-    $(OPENTITAN_BUILD)/src/lowrisc_prim_all_0.1/rtl/prim_fifo_async.sv \
+    $(OPENTITAN_BUILD)/src/lowrisc_prim_fifo_0/rtl/prim_fifo_async.sv \
     $(OPENTITAN_BUILD)/src/lowrisc_prim_generic_clock_inv_0/rtl/prim_generic_clock_inv.sv \
     $(OPENTITAN_BUILD)/src/lowrisc_prim_generic_clock_mux2_0/rtl/prim_generic_clock_mux2.sv \
     $(OPENTITAN_BUILD)/src/lowrisc_prim_abstract_clock_mux2_0/prim_clock_mux2.sv \
@@ -29,7 +29,7 @@ TOP_FILE := \
     $(OPENTITAN_BUILD)/src/pulp-platform_riscv-dbg_0.1_0/pulp_riscv_dbg/debug_rom/debug_rom.sv \
     $(OPENTITAN_BUILD)/src/pulp-platform_riscv-dbg_0.1_0/pulp_riscv_dbg/src/dm_mem.sv \
     $(OPENTITAN_BUILD)/src/lowrisc_tlul_common_0.1/rtl/tlul_err.sv \
-    $(OPENTITAN_BUILD)/src/lowrisc_prim_all_0.1/rtl/prim_fifo_sync.sv \
+    $(OPENTITAN_BUILD)/src/lowrisc_prim_fifo_0/rtl/prim_fifo_sync.sv \
     $(OPENTITAN_BUILD)/src/lowrisc_tlul_adapter_sram_0.1/rtl/tlul_adapter_sram.sv \
     $(OPENTITAN_BUILD)/src/lowrisc_tlul_adapter_host_0.1/rtl/tlul_adapter_host.sv \
     $(OPENTITAN_BUILD)/src/lowrisc_ip_rv_dm_0.1/rtl/rv_dm.sv \

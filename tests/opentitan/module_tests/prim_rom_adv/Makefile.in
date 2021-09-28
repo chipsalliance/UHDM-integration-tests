@@ -1,5 +1,6 @@
 include $(TEST_DIR)/../Makefile.in
 TOP_FILE := \
+   $(OPENTITAN_BUILD)/src/lowrisc_prim_rom_pkg_0/rtl/prim_rom_pkg.sv \
    $(OPENTITAN_BUILD)/src/lowrisc_prim_generic_rom_0/rtl/prim_generic_rom.sv \
    $(OPENTITAN_BUILD)/src/lowrisc_prim_abstract_rom_0/prim_rom.sv \
    $(OPENTITAN_BUILD)/src/lowrisc_prim_rom_adv_0.1/rtl/prim_rom_adv.sv

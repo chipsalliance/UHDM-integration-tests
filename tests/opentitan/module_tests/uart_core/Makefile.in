@@ -3,7 +3,7 @@ TOP_FILE := \
     $(OPENTITAN_BUILD)/src/lowrisc_prim_abstract_prim_pkg_0.1/prim_pkg.sv \
     $(OPENTITAN_BUILD)/src/lowrisc_prim_util_0.1/rtl/prim_util_pkg.sv \
     $(OPENTITAN_BUILD)/src/lowrisc_ip_uart_0.1/rtl/uart_reg_pkg.sv \
-    $(OPENTITAN_BUILD)/src/lowrisc_prim_all_0.1/rtl/prim_fifo_sync.sv \
+    $(OPENTITAN_BUILD)/src/lowrisc_prim_fifo_0/rtl/prim_fifo_sync.sv \
     $(OPENTITAN_BUILD)/src/lowrisc_ip_uart_0.1/rtl/uart_tx.sv \
     $(OPENTITAN_BUILD)/src/lowrisc_ip_uart_0.1/rtl/uart_rx.sv \
     $(OPENTITAN_BUILD)/src/lowrisc_prim_generic_flop_0/rtl/prim_generic_flop.sv \
