@@ -6,7 +6,7 @@
 module top ();
 	wire a = 1;
 	reg b = 0;
-	always @* begin
+	always_latch @* begin
 		if(a) b = 1;
 	end
 endmodule
