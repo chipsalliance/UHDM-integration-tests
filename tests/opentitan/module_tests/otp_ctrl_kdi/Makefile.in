@@ -1,19 +1,19 @@
 include $(TEST_DIR)/../Makefile.in
 TOP_FILE := \
-    $(OPEN_TITAN_BUILD)/src/lowrisc_prim_abstract_prim_pkg_0.1/prim_pkg.sv \
-    $(OPEN_TITAN_BUILD)/src/lowrisc_prim_util_0.1/rtl/prim_util_pkg.sv \
-    $(OPEN_TITAN_BUILD)/src/lowrisc_ip_lc_ctrl_state_pkg_0.1/rtl/lc_ctrl_state_pkg.sv \
-    $(OPEN_TITAN_BUILD)/src/lowrisc_ip_lc_ctrl_pkg_0.1/rtl/lc_ctrl_pkg.sv \
-    $(OPEN_TITAN_BUILD)/src/lowrisc_ip_otp_ctrl_pkg_0.1/rtl/otp_ctrl_reg_pkg.sv \
-    $(OPEN_TITAN_BUILD)/src/lowrisc_ip_otp_ctrl_pkg_0.1/rtl/otp_ctrl_pkg.sv \
-    $(OPEN_TITAN_BUILD)/src/lowrisc_ip_otp_ctrl_pkg_0.1/rtl/otp_ctrl_part_pkg.sv \
-    $(OPEN_TITAN_BUILD)/src/lowrisc_prim_generic_flop_0/rtl/prim_generic_flop.sv \
-    $(OPEN_TITAN_BUILD)/src/lowrisc_prim_xilinx_flop_0/rtl/prim_xilinx_flop.sv \
-    $(OPEN_TITAN_BUILD)/src/lowrisc_prim_abstract_flop_0/prim_flop.sv \
-    $(OPEN_TITAN_BUILD)/src/lowrisc_prim_all_0.1/rtl/prim_arbiter_tree.sv \
-    $(OPEN_TITAN_BUILD)/src/lowrisc_ip_otp_ctrl_0.1/rtl/otp_ctrl_kdi.sv
+    $(OPENTITAN_BUILD)/src/lowrisc_prim_abstract_prim_pkg_0.1/prim_pkg.sv \
+    $(OPENTITAN_BUILD)/src/lowrisc_prim_util_0.1/rtl/prim_util_pkg.sv \
+    $(OPENTITAN_BUILD)/src/lowrisc_ip_lc_ctrl_state_pkg_0.1/rtl/lc_ctrl_state_pkg.sv \
+    $(OPENTITAN_BUILD)/src/lowrisc_ip_lc_ctrl_pkg_0.1/rtl/lc_ctrl_pkg.sv \
+    $(OPENTITAN_BUILD)/src/lowrisc_ip_otp_ctrl_pkg_0.1/rtl/otp_ctrl_reg_pkg.sv \
+    $(OPENTITAN_BUILD)/src/lowrisc_ip_otp_ctrl_pkg_0.1/rtl/otp_ctrl_pkg.sv \
+    $(OPENTITAN_BUILD)/src/lowrisc_ip_otp_ctrl_pkg_0.1/rtl/otp_ctrl_part_pkg.sv \
+    $(OPENTITAN_BUILD)/src/lowrisc_prim_generic_flop_0/rtl/prim_generic_flop.sv \
+    $(OPENTITAN_BUILD)/src/lowrisc_prim_xilinx_flop_0/rtl/prim_xilinx_flop.sv \
+    $(OPENTITAN_BUILD)/src/lowrisc_prim_abstract_flop_0/prim_flop.sv \
+    $(OPENTITAN_BUILD)/src/lowrisc_prim_all_0.1/rtl/prim_arbiter_tree.sv \
+    $(OPENTITAN_BUILD)/src/lowrisc_ip_otp_ctrl_0.1/rtl/otp_ctrl_kdi.sv
 
-INCLUDE := -I$(OPEN_TITAN_BUILD)/src/lowrisc_prim_assert_0.1/rtl/
+INCLUDE := -I$(OPENTITAN_BUILD)/src/lowrisc_prim_assert_0.1/rtl/
 
 TOP_MODULE := otp_ctrl_kdi
 VERILATOR_FLAGS := -Wno-UNOPTFLAT -Wno-ALWCOMBORDER

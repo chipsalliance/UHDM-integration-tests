@@ -1,39 +1,39 @@
 include $(TEST_DIR)/../Makefile.in
 TOP_FILE := \
-    $(OPEN_TITAN_BUILD)/src/lowrisc_systems_rstmgr_reg_0.1/rtl/autogen/rstmgr_reg_pkg.sv \
-    $(OPEN_TITAN_BUILD)/src/lowrisc_systems_rstmgr_pkg_0.1/rtl/autogen/rstmgr_pkg.sv \
-    $(OPEN_TITAN_BUILD)/src/lowrisc_constants_top_pkg_0/rtl/top_pkg.sv \
-    $(OPEN_TITAN_BUILD)/src/lowrisc_prim_abstract_prim_pkg_0.1/prim_pkg.sv \
-    $(OPEN_TITAN_BUILD)/src/lowrisc_prim_util_0.1/rtl/prim_util_pkg.sv \
-    $(OPEN_TITAN_BUILD)/src/lowrisc_ip_lc_ctrl_state_pkg_0.1/rtl/lc_ctrl_state_pkg.sv \
-    $(OPEN_TITAN_BUILD)/src/lowrisc_tlul_headers_0.1/rtl/tlul_pkg.sv \
-    $(OPEN_TITAN_BUILD)/src/lowrisc_systems_pwrmgr_reg_0.1/rtl/autogen/pwrmgr_reg_pkg.sv \
-    $(OPEN_TITAN_BUILD)/src/lowrisc_ip_pwrmgr_pkg_0.1/rtl/pwrmgr_pkg.sv \
-    $(OPEN_TITAN_BUILD)/src/lowrisc_systems_alert_handler_reg_0.1/rtl/autogen/alert_handler_reg_pkg.sv \
-    $(OPEN_TITAN_BUILD)/src/lowrisc_ip_alert_handler_component_0.1/rtl/alert_pkg.sv \
-    $(OPEN_TITAN_BUILD)/src/lowrisc_ip_rv_core_ibex_pkg_0.1/rtl/rv_core_ibex_pkg.sv \
-    $(OPEN_TITAN_BUILD)/src/lowrisc_ip_lc_ctrl_pkg_0.1/rtl/lc_ctrl_pkg.sv \
-    $(OPEN_TITAN_BUILD)/src/lowrisc_prim_generic_flop_0/rtl/prim_generic_flop.sv \
-    $(OPEN_TITAN_BUILD)/src/lowrisc_prim_abstract_flop_0/prim_flop.sv \
-    $(OPEN_TITAN_BUILD)/src/lowrisc_prim_generic_flop_2sync_0/rtl/prim_generic_flop_2sync.sv \
-    $(OPEN_TITAN_BUILD)/src/lowrisc_prim_abstract_flop_2sync_0/prim_flop_2sync.sv \
-    $(OPEN_TITAN_BUILD)/src/lowrisc_prim_generic_buf_0/rtl/prim_generic_buf.sv \
-    $(OPEN_TITAN_BUILD)/src/lowrisc_prim_abstract_buf_0/prim_buf.sv \
-    $(OPEN_TITAN_BUILD)/src/lowrisc_prim_lc_sync_0.1/rtl/prim_lc_sync.sv \
-    $(OPEN_TITAN_BUILD)/src/lowrisc_ip_rstmgr_0.1/rtl/rstmgr_por.sv \
-    $(OPEN_TITAN_BUILD)/src/lowrisc_prim_generic_clock_mux2_0/rtl/prim_generic_clock_mux2.sv \
-    $(OPEN_TITAN_BUILD)/src/lowrisc_prim_abstract_clock_mux2_0/prim_clock_mux2.sv \
-    $(OPEN_TITAN_BUILD)/src/lowrisc_tlul_common_0.1/rtl/tlul_err.sv \
-    $(OPEN_TITAN_BUILD)/src/lowrisc_tlul_adapter_reg_0.1/rtl/tlul_adapter_reg.sv \
-    $(OPEN_TITAN_BUILD)/src/lowrisc_systems_rstmgr_reg_0.1/rtl/autogen/rstmgr_reg_top.sv \
-    $(OPEN_TITAN_BUILD)/src/lowrisc_ip_rstmgr_0.1/rtl/rstmgr_ctrl.sv \
-    $(OPEN_TITAN_BUILD)/src/lowrisc_prim_all_0.1/rtl/prim_subreg_arb.sv \
-    $(OPEN_TITAN_BUILD)/src/lowrisc_prim_all_0.1/rtl/prim_subreg_ext.sv \
-    $(OPEN_TITAN_BUILD)/src/lowrisc_prim_all_0.1/rtl/prim_subreg.sv \
-    $(OPEN_TITAN_BUILD)/src/lowrisc_ip_rstmgr_0.1/rtl/rstmgr_crash_info.sv \
-    $(OPEN_TITAN_BUILD)/src/lowrisc_systems_rstmgr_0.1/rtl/autogen/rstmgr.sv
+    $(OPENTITAN_BUILD)/src/lowrisc_systems_rstmgr_reg_0.1/rtl/autogen/rstmgr_reg_pkg.sv \
+    $(OPENTITAN_BUILD)/src/lowrisc_systems_rstmgr_pkg_0.1/rtl/autogen/rstmgr_pkg.sv \
+    $(OPENTITAN_BUILD)/src/lowrisc_constants_top_pkg_0/rtl/top_pkg.sv \
+    $(OPENTITAN_BUILD)/src/lowrisc_prim_abstract_prim_pkg_0.1/prim_pkg.sv \
+    $(OPENTITAN_BUILD)/src/lowrisc_prim_util_0.1/rtl/prim_util_pkg.sv \
+    $(OPENTITAN_BUILD)/src/lowrisc_ip_lc_ctrl_state_pkg_0.1/rtl/lc_ctrl_state_pkg.sv \
+    $(OPENTITAN_BUILD)/src/lowrisc_tlul_headers_0.1/rtl/tlul_pkg.sv \
+    $(OPENTITAN_BUILD)/src/lowrisc_systems_pwrmgr_reg_0.1/rtl/autogen/pwrmgr_reg_pkg.sv \
+    $(OPENTITAN_BUILD)/src/lowrisc_ip_pwrmgr_pkg_0.1/rtl/pwrmgr_pkg.sv \
+    $(OPENTITAN_BUILD)/src/lowrisc_systems_alert_handler_reg_0.1/rtl/autogen/alert_handler_reg_pkg.sv \
+    $(OPENTITAN_BUILD)/src/lowrisc_ip_alert_handler_component_0.1/rtl/alert_pkg.sv \
+    $(OPENTITAN_BUILD)/src/lowrisc_ip_rv_core_ibex_pkg_0.1/rtl/rv_core_ibex_pkg.sv \
+    $(OPENTITAN_BUILD)/src/lowrisc_ip_lc_ctrl_pkg_0.1/rtl/lc_ctrl_pkg.sv \
+    $(OPENTITAN_BUILD)/src/lowrisc_prim_generic_flop_0/rtl/prim_generic_flop.sv \
+    $(OPENTITAN_BUILD)/src/lowrisc_prim_abstract_flop_0/prim_flop.sv \
+    $(OPENTITAN_BUILD)/src/lowrisc_prim_generic_flop_2sync_0/rtl/prim_generic_flop_2sync.sv \
+    $(OPENTITAN_BUILD)/src/lowrisc_prim_abstract_flop_2sync_0/prim_flop_2sync.sv \
+    $(OPENTITAN_BUILD)/src/lowrisc_prim_generic_buf_0/rtl/prim_generic_buf.sv \
+    $(OPENTITAN_BUILD)/src/lowrisc_prim_abstract_buf_0/prim_buf.sv \
+    $(OPENTITAN_BUILD)/src/lowrisc_prim_lc_sync_0.1/rtl/prim_lc_sync.sv \
+    $(OPENTITAN_BUILD)/src/lowrisc_ip_rstmgr_0.1/rtl/rstmgr_por.sv \
+    $(OPENTITAN_BUILD)/src/lowrisc_prim_generic_clock_mux2_0/rtl/prim_generic_clock_mux2.sv \
+    $(OPENTITAN_BUILD)/src/lowrisc_prim_abstract_clock_mux2_0/prim_clock_mux2.sv \
+    $(OPENTITAN_BUILD)/src/lowrisc_tlul_common_0.1/rtl/tlul_err.sv \
+    $(OPENTITAN_BUILD)/src/lowrisc_tlul_adapter_reg_0.1/rtl/tlul_adapter_reg.sv \
+    $(OPENTITAN_BUILD)/src/lowrisc_systems_rstmgr_reg_0.1/rtl/autogen/rstmgr_reg_top.sv \
+    $(OPENTITAN_BUILD)/src/lowrisc_ip_rstmgr_0.1/rtl/rstmgr_ctrl.sv \
+    $(OPENTITAN_BUILD)/src/lowrisc_prim_all_0.1/rtl/prim_subreg_arb.sv \
+    $(OPENTITAN_BUILD)/src/lowrisc_prim_all_0.1/rtl/prim_subreg_ext.sv \
+    $(OPENTITAN_BUILD)/src/lowrisc_prim_all_0.1/rtl/prim_subreg.sv \
+    $(OPENTITAN_BUILD)/src/lowrisc_ip_rstmgr_0.1/rtl/rstmgr_crash_info.sv \
+    $(OPENTITAN_BUILD)/src/lowrisc_systems_rstmgr_0.1/rtl/autogen/rstmgr.sv
 
-INCLUDE := -I$(OPEN_TITAN_BUILD)/src/lowrisc_prim_assert_0.1/rtl/
+INCLUDE := -I$(OPENTITAN_BUILD)/src/lowrisc_prim_assert_0.1/rtl/
 
 TOP_MODULE := rstmgr
 
