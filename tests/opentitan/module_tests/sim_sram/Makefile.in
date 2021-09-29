@@ -2,8 +2,10 @@ include $(TEST_DIR)/../Makefile.in
 
 TOP_FILE := \
     $(OPENTITAN_BUILD)/src/lowrisc_constants_top_pkg_0/rtl/top_pkg.sv \
+    $(OPENTITAN_BUILD)/src/lowrisc_prim_secded_0.1/rtl/prim_secded_pkg.sv \
     $(OPENTITAN_BUILD)/src/lowrisc_tlul_headers_0.1/rtl/tlul_pkg.sv \
     $(OPENTITAN_BUILD)/src/lowrisc_prim_util_0.1/rtl/prim_util_pkg.sv \
+    $(OPENTITAN_BUILD)/src/lowrisc_prim_ram_1p_pkg_0/rtl/prim_ram_1p_pkg.sv \
     $(OPENTITAN_BUILD)/src/lowrisc_dv_sim_sram_0/sim_sram_if.sv \
     $(OPENTITAN_BUILD)/src/lowrisc_prim_generic_ram_1p_0/rtl/prim_generic_ram_1p.sv \
     $(OPENTITAN_BUILD)/src/lowrisc_prim_abstract_ram_1p_0/prim_ram_1p.sv \
