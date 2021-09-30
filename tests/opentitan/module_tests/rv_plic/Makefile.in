@@ -38,6 +38,4 @@ INCLUDE := -I$(OPENTITAN_BUILD)/src/lowrisc_prim_assert_0.1/rtl/
 
 TOP_MODULE := rv_plic
 
-SURELOG_FLAGS := --disable-feature=parametersubstitution
-
 VERILATOR_FLAGS := $(TEST_DIR)/rv_plic.vlt
