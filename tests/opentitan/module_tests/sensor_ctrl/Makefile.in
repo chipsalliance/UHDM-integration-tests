@@ -23,6 +23,14 @@ TOP_FILE := \
     $(OPENTITAN_BUILD)/src/lowrisc_prim_subreg_0/rtl/prim_subreg_arb.sv \
     $(OPENTITAN_BUILD)/src/lowrisc_prim_subreg_0/rtl/prim_subreg_ext.sv \
     $(OPENTITAN_BUILD)/src/lowrisc_prim_subreg_0/rtl/prim_subreg.sv \
+    $(OPENTITAN_BUILD)/src/lowrisc_tlul_trans_intg_0.1/rtl/tlul_data_integ_enc.sv \
+    $(OPENTITAN_BUILD)/src/lowrisc_tlul_trans_intg_0.1/rtl/tlul_data_integ_dec.sv \
+    $(OPENTITAN_BUILD)/src/lowrisc_prim_secded_0.1/rtl/prim_secded_39_32_enc.sv \
+    $(OPENTITAN_BUILD)/src/lowrisc_prim_secded_0.1/rtl/prim_secded_64_57_enc.sv \
+    $(OPENTITAN_BUILD)/src/lowrisc_prim_secded_0.1/rtl/prim_secded_39_32_dec.sv \
+    $(OPENTITAN_BUILD)/src/lowrisc_prim_secded_0.1/rtl/prim_secded_64_57_dec.sv \
+    $(OPENTITAN_BUILD)/src/lowrisc_tlul_trans_intg_0.1/rtl/tlul_rsp_intg_gen.sv \
+    $(OPENTITAN_BUILD)/src/lowrisc_tlul_trans_intg_0.1/rtl/tlul_cmd_intg_chk.sv \
     $(OPENTITAN_BUILD)/src/lowrisc_systems_sensor_ctrl_reg_0.1/rtl/sensor_ctrl_reg_top.sv \
     $(OPENTITAN_BUILD)/src/lowrisc_systems_sensor_ctrl_0.1/rtl/sensor_ctrl.sv
 
