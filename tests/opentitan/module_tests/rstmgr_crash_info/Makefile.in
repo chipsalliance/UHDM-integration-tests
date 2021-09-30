@@ -1,10 +1,10 @@
 include $(TEST_DIR)/../Makefile.in
 TOP_FILE := \
-    $(OPEN_TITAN_BUILD)/src/lowrisc_systems_rstmgr_reg_0.1/rtl/autogen/rstmgr_reg_pkg.sv \
-    $(OPEN_TITAN_BUILD)/src/lowrisc_systems_rstmgr_pkg_0.1/rtl/autogen/rstmgr_pkg.sv \
-    $(OPEN_TITAN_BUILD)/src/lowrisc_ip_rstmgr_0.1/rtl/rstmgr_crash_info.sv
+    $(OPENTITAN_BUILD)/src/lowrisc_systems_rstmgr_reg_0.1/rtl/autogen/rstmgr_reg_pkg.sv \
+    $(OPENTITAN_BUILD)/src/lowrisc_systems_rstmgr_pkg_0.1/rtl/autogen/rstmgr_pkg.sv \
+    $(OPENTITAN_BUILD)/src/lowrisc_ip_rstmgr_0.1/rtl/rstmgr_crash_info.sv
 
-INCLUDE := -I$(OPEN_TITAN_BUILD)/src/lowrisc_prim_assert_0.1/rtl/
+INCLUDE := -I$(OPENTITAN_BUILD)/src/lowrisc_prim_assert_0.1/rtl/
 
 TOP_MODULE := rstmgr_crash_info
 

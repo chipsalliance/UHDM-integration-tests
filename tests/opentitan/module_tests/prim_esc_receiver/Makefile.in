@@ -1,16 +1,16 @@
 include $(TEST_DIR)/../Makefile.in
 
 TOP_FILE := \
-    $(OPEN_TITAN_BUILD)/src/lowrisc_prim_abstract_prim_pkg_0.1/prim_pkg.sv \
-    $(OPEN_TITAN_BUILD)/src/lowrisc_prim_all_0.1/rtl/prim_esc_pkg.sv \
-    $(OPEN_TITAN_BUILD)/src/lowrisc_prim_all_0.1/rtl/prim_esc_receiver.sv \
-    $(OPEN_TITAN_BUILD)/src/lowrisc_prim_diff_decode_0/rtl/prim_diff_decode.sv \
-    $(OPEN_TITAN_BUILD)/src/lowrisc_prim_abstract_flop_2sync_0/prim_flop_2sync.sv \
-    $(OPEN_TITAN_BUILD)/src/lowrisc_prim_generic_flop_2sync_0/rtl/prim_generic_flop_2sync.sv \
-    $(OPEN_TITAN_BUILD)/src/lowrisc_prim_abstract_flop_0/prim_flop.sv \
-    $(OPEN_TITAN_BUILD)/src/lowrisc_prim_generic_buf_0/rtl/prim_generic_buf.sv \
-    $(OPEN_TITAN_BUILD)/src/lowrisc_prim_abstract_buf_0/prim_buf.sv
+    $(OPENTITAN_BUILD)/src/lowrisc_prim_abstract_prim_pkg_0.1/prim_pkg.sv \
+    $(OPENTITAN_BUILD)/src/lowrisc_prim_esc_0/rtl/prim_esc_pkg.sv \
+    $(OPENTITAN_BUILD)/src/lowrisc_prim_esc_0/rtl/prim_esc_receiver.sv \
+    $(OPENTITAN_BUILD)/src/lowrisc_prim_diff_decode_0/rtl/prim_diff_decode.sv \
+    $(OPENTITAN_BUILD)/src/lowrisc_prim_abstract_flop_2sync_0/prim_flop_2sync.sv \
+    $(OPENTITAN_BUILD)/src/lowrisc_prim_generic_flop_2sync_0/rtl/prim_generic_flop_2sync.sv \
+    $(OPENTITAN_BUILD)/src/lowrisc_prim_abstract_flop_0/prim_flop.sv \
+    $(OPENTITAN_BUILD)/src/lowrisc_prim_generic_buf_0/rtl/prim_generic_buf.sv \
+    $(OPENTITAN_BUILD)/src/lowrisc_prim_abstract_buf_0/prim_buf.sv
 
-INCLUDE := -I$(OPEN_TITAN_BUILD)/src/lowrisc_prim_assert_0.1/rtl/
+INCLUDE := -I$(OPENTITAN_BUILD)/src/lowrisc_prim_assert_0.1/rtl/
 
 TOP_MODULE := prim_esc_receiver
