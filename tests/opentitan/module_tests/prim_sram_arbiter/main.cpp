@@ -42,11 +42,11 @@ int main (int argc, char **argv) {
     }
 
     if (main_time > 50) {
-      top->req_write_i[0] = 1;
+      top->req_write_i = 1;
     }
 
     if (main_time > 70) {
-      top->req_write_i[0] = 0;
+      top->req_write_i = 0;
     }
 
     if (main_time > 80) {
@@ -55,7 +55,7 @@ int main (int argc, char **argv) {
     }
 
     if (main_time > 90) {
-      top->req_write_i[3] = 1;
+      top->req_write_i = 8;
     }
   }
   top->final();

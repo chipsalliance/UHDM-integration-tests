@@ -40,7 +40,7 @@ int main (int argc, char **argv) {
       << " clk_i: " << (top->clk_i ? 1 : 0)
       << " rst_ni: " << (top->rst_ni ? 1 : 0)
       << " esc_tx_i: " << std::bitset<2>(top->esc_tx_i)
-      << " esc_en_o: " << (top->esc_en_o ? 1 : 0)
+      << " esc_req_o: " << (top->esc_req_o ? 1 : 0)
       << " esc_rx_o: " << std::bitset<2>(top->esc_rx_o)
       << std::endl;
 
