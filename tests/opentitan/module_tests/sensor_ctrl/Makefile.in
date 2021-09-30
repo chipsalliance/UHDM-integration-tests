@@ -37,5 +37,3 @@ TOP_FILE := \
 INCLUDE := -I$(OPENTITAN_BUILD)/src/lowrisc_prim_assert_0.1/rtl/
 
 TOP_MODULE := sensor_ctrl
-
-SURELOG_FLAGS := --disable-feature=parametersubstitution
