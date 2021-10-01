@@ -8,6 +8,12 @@ lint_off -rule WIDTH -file "*" -match "Operator VAR 'RspDepth' expects 32 bits o
 
 lint_off -rule PINMISSING -file "*" -match "Cell has missing pin: 'en_ifetch_i'"
 
+lint_off -rule PINMISSING -file "*" -match "Cell has missing pin: 'req_type_o'"
+
+lint_off -rule PINMISSING -file "*" -match "Cell has missing pin: 'intg_error_o'"
+
+lint_off -rule PINMISSING -file "*" -match "Cell has missing pin: 'cfg_i'"
+
 // Warning that is thrown only by uhdm-verilator due to parameter substitution
 
 lint_off -rule WIDTH -file "*" -match "Operator VAR 'Depth' expects 32 bits on the Initial value, but Initial value's CONST '4'h0' generates 4 bits."
