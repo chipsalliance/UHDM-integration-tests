@@ -45,6 +45,12 @@ uhdm/verilator/test-ast: surelog/parse
 		 obj_dir/$(VERILATED_BIN))
 	mv $(root_dir)/build/dump.vcd $(root_dir)/dumps/dump_verilator.vcd
 
+uhdm/verilator/test-cmake: surelog/parse
+	(cd $(root_dir)/build && \
+		cmake -S ../$(TEST) -B . && \
+		make $(VERILATED_BIN) VERBOSE=1 && \
+		./$(VERILATED_BIN))
+
 uhdm/yosys/test-ast: surelog/parse
 	(cd $(root_dir)/build && ${YOSYS_BIN} -s $(YOSYS_SCRIPT))
 
