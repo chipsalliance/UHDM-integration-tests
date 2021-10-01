@@ -5,4 +5,10 @@ lint_off -rule WIDTH -file "*" -match "Operator ASSIGNW expects 4 bits on the As
 
 lint_off -rule WIDTH -file "*" -match "Operator EQ expects 32 bits on the LHS, but LHS's VARREF 'cnt' generates 6 bits."
 
+lint_off -rule WIDTH -file "*" -match "Operator ADD expects 32 bits on the RHS, but RHS's ENUMITEMREF 'IntReqLastIdx' generates 2 bits."
+
+lint_off -rule WIDTH -file "*" -match "Operator ADD expects 32 bits on the RHS, but RHS's ENUMITEMREF 'IntReqMainPwr' generates 2 bits."
+
+lint_off -rule WIDTH -file "*" -match "Operator ADD expects 32 bits on the RHS, but RHS's ENUMITEMREF 'IntReqEsc' generates 2 bits."
+
 lint_off -rule SYMRSVDWORD -file "*" -match "Symbol matches C++ common word: 'abort'"
