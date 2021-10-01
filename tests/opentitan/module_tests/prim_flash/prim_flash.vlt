@@ -31,3 +31,9 @@ lint_off -rule WIDTH -file "*" -match "Operator PATMEMBER expects 9 bits on the 
 lint_off -rule WIDTH -file "*" -match "Operator PATMEMBER expects 9 bits on the Pattern value, but Pattern value's CONST '128'h2' generates 128 bits."
 
 lint_off -rule WIDTH -file "*" -match "Operator PATMEMBER expects 9 bits on the Pattern value, but Pattern value's CONST '128'h3' generates 128 bits."
+
+lint_off -rule WIDTH -file "*" -match "Operator PATMEMBER expects 9 bits on the Pattern value, but Pattern value's CONST '65'h1' generates 65 bits."
+
+lint_off -rule WIDTH -file "*" -match "Operator PATMEMBER expects 9 bits on the Pattern value, but Pattern value's CONST '65'h2' generates 65 bits."
+
+lint_off -rule WIDTH -file "*" -match "Operator PATMEMBER expects 9 bits on the Pattern value, but Pattern value's CONST '65'h3' generates 65 bits."
