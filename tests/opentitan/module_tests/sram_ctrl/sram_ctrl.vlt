@@ -7,3 +7,7 @@ lint_off -rule WIDTH -file "*" -match "Operator COND expects 8 bits on the Condi
 lint_off -rule WIDTH -file "*" -match "Operator COND expects 8 bits on the Conditional False, but Conditional False's * generates 3 bits."
 
 lint_off -rule WIDTH -file "*" -match "Operator ASSIGNW expects 3 bits on the Assign RHS, but Assign RHS's COND generates 8 bits."
+
+lint_off -rule UNOPT -file "*" -match "Signal unoptimizable: Feedback to public clock or circular logic: 'ram_tl_o'"
+
+lint_off -rule UNOPTFLAT -file "*" -match "Signal unoptimizable: Feedback to clock or circular logic: 'sram_ctrl.u_tlul_adapter_sram.tl_i_int'"
