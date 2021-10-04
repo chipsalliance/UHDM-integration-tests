@@ -11,3 +11,8 @@ lint_off -rule WIDTH -file "*" -match "Operator ASSIGNW expects 3 bits on the As
 lint_off -rule UNOPT -file "*" -match "Signal unoptimizable: Feedback to public clock or circular logic: 'ram_tl_o'"
 
 lint_off -rule UNOPTFLAT -file "*" -match "Signal unoptimizable: Feedback to clock or circular logic: 'sram_ctrl.u_tlul_adapter_sram.tl_i_int'"
+
+// Rules from the test of prim_ram_1p_scr module
+lint_off -rule UNOPTFLAT -file "*" -match "Signal unoptimizable: Feedback to clock or circular logic: '*prim_ram_1p_scr*'"
+
+lint_off -rule ALWCOMBORDER -file "*" -match "Always_comb variable driven after use: 'data_state'"
