@@ -3,3 +3,4 @@ TOP_FILE := $(IBEX_BUILD)/src/lowrisc_ibex_ibex_pkg_0.1/rtl/ibex_pkg.sv \
     $(IBEX_BUILD)/src/lowrisc_ibex_ibex_core_0.1/rtl/ibex_fetch_fifo.sv \
     $(IBEX_BUILD)/src/lowrisc_ibex_ibex_core_0.1/rtl/ibex_prefetch_buffer.sv
 TOP_MODULE := ibex_prefetch_buffer
+INCLUDE := -I$(IBEX_BUILD)/src/lowrisc_prim_assert_0.1/rtl/
