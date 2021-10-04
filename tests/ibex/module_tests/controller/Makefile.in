@@ -3,4 +3,6 @@ TOP_FILE := $(IBEX_BUILD)/src/lowrisc_ibex_ibex_pkg_0.1/rtl/ibex_pkg.sv \
     $(IBEX_BUILD)/src/lowrisc_ibex_ibex_core_0.1/rtl/ibex_controller.sv
 TOP_MODULE := ibex_controller
 SURELOG_FLAGS := +define+SYNTHESIS
-INCLUDE := -I$(IBEX_BUILD)/src/lowrisc_prim_assert_0.1/rtl/
+VERILATOR_FLAGS := +define+SYNTHESIS
+INCLUDE := -I$(IBEX_BUILD)/src/lowrisc_prim_assert_0.1/rtl/ \
+    -I$(IBEX_BUILD)/src/lowrisc_dv_dv_fcov_macros_0/
