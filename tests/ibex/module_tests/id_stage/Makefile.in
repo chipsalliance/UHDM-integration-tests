@@ -7,3 +7,4 @@ TOP_MODULE := ibex_id_stage
 INCLUDE := -I$(IBEX_BUILD)/src/lowrisc_prim_assert_0.1/rtl/ \
     -I$(IBEX_BUILD)/src/lowrisc_dv_dv_fcov_macros_0/
 SURELOG_FLAGS := +define+SYNTHESIS
+VERILATOR_FLAGS := +define+SYNTHESIS
