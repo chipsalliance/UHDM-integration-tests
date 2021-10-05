@@ -34,7 +34,7 @@ cd uhdm-integration
 
 ## Running tests
 
-There are three main kinds of test cases:
+These are the main kinds of test cases:
 ### Surelog-UHDM-Verilator flow
 
 ```
@@ -62,6 +62,15 @@ make uhdm/vcddiff
 * Verilog output from Yosys is imported into Verilator and simulated.
 * Two VCD files from simulation (Surelog-UHDM-Verilator and Surelog-UHDM-Yosys-Verilator) are compared using `vcddiff` utility.
 
+### UHDM-Verilator cmake flow
+```
+make uhdm/verilator/test-cmake
+```
+
+This is the same flow as `uhdm/verilator/test-ast`, but makes use of Verilator's `cmake` functionality instead of default `make`. It allows bypassing some platform-specific quirks in Verilator makefiles and makes it easier to run tests on different platforms. Currently it is the only supported way to run tests on MacOS.
+
+Note that to run this flow the test needs to have a dedicated CMakeLists file. At this point only the ones in `tests/cmake` directory are supported.
+
 ## Test cases
 
 Available test cases are in the `tests` directory. They are chosen using `TEST_CASE` variable on make invocation, like so:
@@ -71,6 +80,9 @@ TEST=tests/OneNetModport make uhdm/verilator/test-ast
 Test results will be stored in `./build`.
 
 Tools are expected to be in `../images` folder. They can be built using `build_binaries.sh` found in Yosys/Verilator repository referenced in Setup.
+
+### Module tests
+`tests/ibex` and `tests/opentitan` contain special tests intended to test support for individual modules of [Ibex](https://github.com/lowRISC/ibex) and [OpenTitan](https://github.com/lowRISC/opentitan) designs. They make some assumptions regarding the location of the source files and so may need extra steps before running. Please refer to their makefiles for details.
 
 ## Integration details
 
