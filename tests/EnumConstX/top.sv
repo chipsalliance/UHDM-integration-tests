@@ -1,4 +1,4 @@
-module top(input logic clk, output logic[3:0] o);
+module top(input logic clk, output logic[3:0] out);
    typedef enum logic [3:0] {
         LMR      = 4'b0000,
         REF      = 4'b0001,
@@ -11,5 +11,5 @@ module top(input logic clk, output logic[3:0] o);
         DESELECT = 4'b1xxx
    } dfi_cmd_e;
 
-   assign o = DESELECT;
+   assign out = DESELECT;
 endmodule
