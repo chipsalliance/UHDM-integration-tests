@@ -1,0 +1,7 @@
+include $(TEST_DIR)/../Makefile.in
+TOP_FILE := \
+    $(OPENTITAN_BUILD)/src/lowrisc_systems_ast_pkg_0/rtl/ast_pkg.sv \
+    $(OPENTITAN_BUILD)/src/lowrisc_systems_ast_0.1/rtl/ast_pkg.sv \
+    $(TEST_DIR)/top.sv
+
+TOP_MODULE := top
