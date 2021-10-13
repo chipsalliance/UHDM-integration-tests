@@ -1,7 +1,7 @@
 package sw_test_status_pkg;
    typedef enum int {
       X = 10
-   } my_enum;
+   } my_enum_e;
 endpackage
 
 interface sw_test_status_if(output int x);
