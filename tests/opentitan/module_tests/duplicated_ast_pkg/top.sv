@@ -1,4 +1,4 @@
-// We are actually testing including dupliacated packages in Makefile,
+// We are actually testing including duplicated packages in Makefile,
 // not this module
 module top;
 endmodule
