@@ -30,7 +30,9 @@ int main (int argc, char **argv) {
     top->clk = !top->clk;
 
     std::cout << "time: " << main_time
-              << " o: " << (int)top->o
+              << " o1: " << top->o1
+              << " o2: " << top->o2
+              << " o3: " << top->o3
               << std::endl;
   }
   top->final();

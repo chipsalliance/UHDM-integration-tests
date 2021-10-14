@@ -1,12 +1,16 @@
-module top(input logic clk, output logic o);
-   real r;
-   int i;
-   string s;
+module top(input logic clk, output int o1, output int o2, output int o3);
+   real r = 0;
+   int i = 0;
+   string s = "";
    int fd;
 
    logic[7:0] M[4][4];
 
+   int mem1[16];
+   int mem2[16];
+
     `define TEST(x) if (!(x)) $stop
+
     always @(posedge clk or negedge clk) begin
         if (clk) begin
             `TEST($rose(clk));
@@ -18,25 +22,13 @@ module top(input logic clk, output logic o);
         end
         `TEST($changed(clk));
         `TEST(!$stable(clk));
-        r = $random;
-        i = $urandom;
+        o1 = $random;
+        o2 = $urandom;
+        o3 = $urandom_range(4, 8);
     end
 
-
     initial begin
-        //$bitstoreal
-        //$realtobits
-        //$urandom_range
-        //$timeformat
-        //$sformatf
-        //$sscanf
-        //$writememb
-        //$writememh
-        //$readmemh
-        //$fread
-        //$fseek
-        //$fstrobe
-        
+        `TEST(mem1 == mem2);
         `TEST($asin($sin(0)) == 0);
         `TEST($acos($cos(0)) == 0);
         `TEST($atan($tan(0)) == 0);
@@ -66,6 +58,7 @@ module top(input logic clk, output logic o);
         `TEST($isunknown('x));
         `TEST($size(i) == 32);
         `TEST($typename(i) == "int");
+        `TEST($bitstoreal($realtobits(6.28)) == 6.28);
 
         $display("zero = %0d", 0);
         $displayb("one = %0d", 1);
@@ -90,22 +83,29 @@ module top(input logic clk, output logic o);
         $dumpoff;
 
         fd = $fopen("file.txt", "r+");
-        $fdisplay(fd, "four = %0d", 4);
-        $fdisplayb(fd, "five = %0d", 5);
-        $fdisplayh(fd, "six = %0d", 6);
-        $fdisplayo(fd, "seven = %0d", 7);
+        $fdisplay(fd, "zero = %0d", 0);
+        $fdisplayb(fd, "one = %0d", 1);
+        $fdisplayh(fd, "two = %0d", 2);
+        $fdisplayo(fd, "three = %0d", 3);
+        $fmonitor(fd, "r=%0f, i=%0d, clk=%0d", r, i, clk);
+        $fstrobe(fd, "r=%0f, i=%0d", r, i);
+        $fstrobeb(fd, "r=%0f, i=%0d", r, i);
+        $fstrobeh(fd, "r=%0f, i=%0d", r, i);
+        $fstrobeo(fd, "r=%0f, i=%0d", r, i);
+        $fwrite(fd, "i=%0d\n", i);
+        $fwriteb(fd, "i=%0d\n", i);
+        $fwriteh(fd, "i=%0d\n", i);
+        $fwriteo(fd, "i=%0d\n", i);
         $rewind(fd);
         $frewind(fd);
+        $fseek(fd, 0, 0);
+        $fread(i, fd);
         $feof(fd);
         $ferror(fd, s);
         $ungetc(0, fd);
         $fgetc(fd);
         $fgets(s, fd);
         $ftell(fd);
-        $fwrite(fd, "eight = %0d\n", 8);
-        $fwriteb(fd, "nine = %0d\n", 9);
-        $fwriteh(fd, "ten = %0d\n", 10);
-        $fwriteo(fd, "eleven = %0d\n", 11);
         $fclose(fd);
 
         `TEST($dimensions(M) == 3);
@@ -123,6 +123,16 @@ module top(input logic clk, output logic o);
         `TEST($left(M, 1) == 0);
         `TEST($left(M, 3) == 7);
         
+        for (int i = 0; i < 16; i++)
+            mem1[i] = $random;
+        $writememb("memb.txt", mem1);
+        $readmemb("memb.txt", mem2);
+        `TEST(mem1 == mem2);
+        $writememh("memh.txt", mem1);
+        $readmemh("memh.txt", mem2);
+
+        $timeformat(-1, 3, "ns", 0);
+        `TEST($sformatf("Time is %0t", $time) == "Time is 0.000ns");
         $printtimescale;
         `TEST($time == 0);
         `TEST($realtime == 0.0);
