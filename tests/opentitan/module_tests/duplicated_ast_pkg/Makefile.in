@@ -5,3 +5,8 @@ TOP_FILE := \
     $(TEST_DIR)/top.sv
 
 TOP_MODULE := top
+
+# Current Surelog can't handle include directives properly
+# due to cache issue
+# https://github.com/chipsalliance/Surelog/issues/2063
+SURELOG_FLAGS := -nocache
