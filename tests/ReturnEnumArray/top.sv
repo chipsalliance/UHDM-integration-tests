@@ -9,6 +9,6 @@ module top(output int o);
       out[0] = B;
       return out;
    endfunction
-   
+
    assign o = int'(get_BA());
 endmodule
