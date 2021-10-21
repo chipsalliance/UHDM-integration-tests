@@ -1,0 +1,16 @@
+include $(TEST_DIR)/../Makefile.in
+TOP_FILE := \
+    $(OPENTITAN_BUILD)/src/lowrisc_prim_util_0.1/rtl/prim_util_pkg.sv \
+    $(OPENTITAN_BUILD)/src/lowrisc_ip_lc_ctrl_state_pkg_0.1/rtl/lc_ctrl_state_pkg.sv \
+    $(OPENTITAN_BUILD)/src/lowrisc_ip_lc_ctrl_pkg_0.1/rtl/lc_ctrl_pkg.sv \
+    $(OPENTITAN_BUILD)/src/lowrisc_prim_mubi_0.1/rtl/prim_mubi_pkg.sv \
+    $(OPENTITAN_BUILD)/src/lowrisc_ip_otp_ctrl_pkg_0.1/rtl/otp_ctrl_reg_pkg.sv \
+    $(OPENTITAN_BUILD)/src/lowrisc_ip_otp_ctrl_pkg_0.1/rtl/otp_ctrl_pkg.sv \
+    $(OPENTITAN_BUILD)/src/lowrisc_ip_otbn_pkg_0.1/rtl/otbn_pkg.sv \
+    $(OPENTITAN_BUILD)/src/lowrisc_prim_cipher_pkg_0.1/rtl/prim_cipher_pkg.sv \
+    $(OPENTITAN_BUILD)/src/lowrisc_prim_lfsr_0.1/rtl/prim_lfsr.sv \
+    $(OPENTITAN_BUILD)/src/lowrisc_ip_otbn_0.1/rtl/otbn_rnd.sv
+
+INCLUDE := -I$(OPENTITAN_BUILD)/src/lowrisc_prim_assert_0.1/rtl/
+
+TOP_MODULE := otbn_rnd
