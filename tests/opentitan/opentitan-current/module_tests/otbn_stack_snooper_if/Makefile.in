@@ -1,0 +1,8 @@
+include $(TEST_DIR)/../Makefile.in
+TOP_FILE := \
+    $(OPENTITAN_BUILD)/src/lowrisc_prim_abstract_prim_pkg_0.1/prim_pkg.sv \
+    $(OPENTITAN_BUILD)/src/lowrisc_prim_util_0.1/rtl/prim_util_pkg.sv \
+    $(OPENTITAN_BUILD)/src/lowrisc_dv_otbn_model_0.1/otbn_stack_snooper_if.sv \
+    $(TEST_DIR)/top.sv
+
+TOP_MODULE := top
