@@ -1,0 +1,20 @@
+include $(TEST_DIR)/../Makefile.in
+TOP_FILE := \
+    $(OPENTITAN_BUILD)/src/lowrisc_prim_abstract_prim_pkg_0.1/prim_pkg.sv \
+    $(OPENTITAN_BUILD)/src/lowrisc_constants_top_pkg_0/rtl/top_pkg.sv \
+    $(OPENTITAN_BUILD)/src/lowrisc_prim_secded_0.1/rtl/prim_secded_pkg.sv \
+    $(OPENTITAN_BUILD)/src/lowrisc_tlul_headers_0.1/rtl/tlul_pkg.sv \
+    $(OPENTITAN_BUILD)/src/lowrisc_prim_util_0.1/rtl/prim_util_pkg.sv \
+    $(OPENTITAN_BUILD)/src/lowrisc_ip_entropy_src_pkg_0.1/rtl/entropy_src_pkg.sv \
+    $(OPENTITAN_BUILD)/src/lowrisc_ip_edn_pkg_0.1/rtl/edn_pkg.sv \
+    $(OPENTITAN_BUILD)/src/lowrisc_ip_jtag_pkg_0.1/rtl/jtag_pkg.sv \
+    $(OPENTITAN_BUILD)/src/lowrisc_ip_lc_ctrl_state_pkg_0.1/rtl/lc_ctrl_state_pkg.sv \
+    $(OPENTITAN_BUILD)/src/lowrisc_ip_lc_ctrl_pkg_0.1/rtl/lc_ctrl_pkg.sv \
+    $(OPENTITAN_BUILD)/src/lowrisc_systems_flash_ctrl_pkg_0.1/rtl/autogen/flash_ctrl_reg_pkg.sv \
+    $(OPENTITAN_BUILD)/src/lowrisc_systems_flash_ctrl_pkg_0.1/rtl/autogen/flash_ctrl_pkg.sv \
+    $(OPENTITAN_BUILD)/src/lowrisc_ip_flash_ctrl_0.1/rtl/flash_ctrl_erase.sv
+
+INCLUDE := \
+    -I$(OPENTITAN_BUILD)/src/lowrisc_prim_assert_0.1/rtl/
+
+TOP_MODULE := flash_ctrl_erase
