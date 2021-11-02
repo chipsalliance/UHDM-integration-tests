@@ -1,0 +1,13 @@
+`verilator_config
+
+// Warnings that are thrown by original verilator
+
+lint_off -rule WIDTH -file "*" -match "Operator SHIFTL expects 64 bits on the LHS, but LHS's CONST '1'h1' generates 1 bits."
+
+lint_off -rule WIDTH -file "*" -match "Operator EQ expects 32 bits on the LHS, but LHS's VARREF 'cnt' generates 1 bits."
+
+lint_off -rule WIDTH -file "*" -match "Operator LT expects 32 bits on the LHS, but LHS's VARREF 'cnt' generates 1 bits."
+
+lint_off -rule WIDTH -file "*" -match "Operator EQ expects 32 bits on the LHS, but LHS's VARREF 'idx' generates 1 bits."
+
+lint_off -rule UNOPTFLAT -file "*" -match "*"
