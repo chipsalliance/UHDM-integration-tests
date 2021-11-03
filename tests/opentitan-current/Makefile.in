@@ -1,0 +1,6 @@
+OPENTITAN_VERSION = opentitan-current
+TOP_TARGET_NAME = dv_chip_verilator_sim
+TOP_MODULE_NAME = chip_sim_tb
+FUSESOC_SETUP_TARGET = lowrisc:dv:chip_verilator_sim
+
+include $(root_dir)/../uhdm-tests/opentitan/Makefile.in

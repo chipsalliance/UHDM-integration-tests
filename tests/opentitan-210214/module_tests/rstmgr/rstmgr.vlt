@@ -1,0 +1,8 @@
+`verilator_config
+
+// Warning thrown by original verilator
+lint_off -rule WIDTH -file "*" -match "Operator ASSIGNW expects 4 bits on the Assign RHS, but Assign RHS's VARREF 'CrashStoreSlot' generates 32 bits."
+
+lint_off -rule WIDTH -file "*" -match "Operator EQ expects 32 bits on the LHS, but LHS's VARREF 'cnt' generates 6 bits."
+
+lint_off -rule SYMRSVDWORD -file "*" -match "Symbol matches C++ common word: 'abort'"

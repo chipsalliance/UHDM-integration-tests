@@ -1,0 +1,4 @@
+OPENTITAN_VERSION = opentitan-210214
+TOP_TARGET_NAME = systems_top_earlgrey_verilator
+OPENTITAN =$(root_dir)/../uhdm-tests/opentitan/${OPENTITAN_VERSION}
+OPENTITAN_BUILD = ${OPENTITAN}/build/lowrisc_$(TOP_TARGET_NAME)_0.1

@@ -1,0 +1,33 @@
+`verilator_config
+
+// Warnings that are thrown by original verilator
+
+lint_off -rule WIDTH -file "*" -match "Operator VAR 'DataPartitionEndAddr' expects 8 bits on the Initial value, but Initial value's SUB generates 32 bits."
+
+lint_off -rule WIDTH -file "*" -match "Operator PATMEMBER expects 8 bits on the Pattern value, but Pattern value's SUB generates 32 bits."
+
+lint_off -rule WIDTH -file "*" -match "Operator PATMEMBER expects 2 bits on the Pattern value, but Pattern value's VARREF 'SeedInfoSel' generates 32 bits."
+
+lint_off -rule WIDTH -file "*" -match "Operator PATMEMBER expects 9 bits on the Pattern value, but Pattern value's REPLICATE generates 64 bits."
+
+lint_off -rule WIDTH -file "*" -match "Operator PATMEMBER expects 1 bits on the Pattern value, but Pattern value's VARREF 'SeedBank' generates 32 bits."
+
+lint_off -rule WIDTH -file "*" -match "Operator PATMEMBER expects 9 bits on the Pattern value, but Pattern value's VARREF 'OwnerInfoPage' generates 32 bits."
+
+lint_off -rule WIDTH -file "*" -match "Operator PATMEMBER expects 9 bits on the Pattern value, but Pattern value's VARREF 'PagesPerBank' generates 32 bits."
+
+lint_off -rule WIDTH -file "*" -match "Input port connection 'info_sel_i' expects 1 bits on the pin connection, but pin connection's SEL generates 2 bits."
+
+lint_off -rule WIDTH -file "*" -match "Input port connection 'prog_data_i' expects 32 bits on the pin connection, but pin connection's SEL generates 76 bits."
+
+lint_off -rule WIDTH -file "*" -match "Output port connection 'rd_data_o' expects 32 bits on the pin connection, but pin connection's SEL generates 76 bits."
+
+lint_off -rule WIDTHCONCAT -file "*" -match "Unsized numbers/parameters not allowed in concatenations."
+
+// Warnings that are thrown by uhdm-verilator
+
+lint_off -rule WIDTH -file "*" -match "Operator PATMEMBER expects 9 bits on the Pattern value, but Pattern value's CONST '128'h1' generates 128 bits."
+
+lint_off -rule WIDTH -file "*" -match "Operator PATMEMBER expects 9 bits on the Pattern value, but Pattern value's CONST '128'h2' generates 128 bits."
+
+lint_off -rule WIDTH -file "*" -match "Operator PATMEMBER expects 9 bits on the Pattern value, but Pattern value's CONST '128'h3' generates 128 bits."

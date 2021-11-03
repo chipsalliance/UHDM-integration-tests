@@ -1,0 +1,44 @@
+include $(TEST_DIR)/../Makefile.in
+TOP_FILE := \
+    $(OPENTITAN_BUILD)/src/lowrisc_prim_abstract_prim_pkg_0.1/prim_pkg.sv \
+    $(OPENTITAN_BUILD)/src/lowrisc_prim_util_0.1/rtl/prim_util_pkg.sv \
+    $(OPENTITAN_BUILD)/src/lowrisc_ip_entropy_src_pkg_0.1/rtl/entropy_src_pkg.sv \
+    $(OPENTITAN_BUILD)/src/lowrisc_ip_csrng_pkg_0.1/rtl/csrng_reg_pkg.sv \
+    $(OPENTITAN_BUILD)/src/lowrisc_ip_csrng_pkg_0.1/rtl/csrng_pkg.sv \
+    $(OPENTITAN_BUILD)/src/lowrisc_ip_aes_0.6/rtl/aes_pkg.sv \
+    $(OPENTITAN_BUILD)/src/lowrisc_ip_lc_ctrl_state_pkg_0.1/rtl/lc_ctrl_state_pkg.sv \
+    $(OPENTITAN_BUILD)/src/lowrisc_ip_lc_ctrl_pkg_0.1/rtl/lc_ctrl_pkg.sv \
+    $(OPENTITAN_BUILD)/src/lowrisc_prim_all_0.1/rtl/prim_fifo_sync.sv \
+    $(OPENTITAN_BUILD)/src/lowrisc_prim_generic_flop_0/rtl/prim_generic_flop.sv \
+    $(OPENTITAN_BUILD)/src/lowrisc_prim_abstract_flop_0/prim_flop.sv \
+    $(OPENTITAN_BUILD)/src/lowrisc_prim_generic_buf_0/rtl/prim_generic_buf.sv \
+    $(OPENTITAN_BUILD)/src/lowrisc_prim_abstract_buf_0/prim_buf.sv \
+    $(OPENTITAN_BUILD)/src/lowrisc_prim_generic_flop_2sync_0/rtl/prim_generic_flop_2sync.sv \
+    $(OPENTITAN_BUILD)/src/lowrisc_prim_abstract_flop_2sync_0/prim_flop_2sync.sv \
+    $(OPENTITAN_BUILD)/src/lowrisc_ip_aes_0.6/rtl/aes_sub_bytes.sv \
+    $(OPENTITAN_BUILD)/src/lowrisc_ip_aes_0.6/rtl/aes_shift_rows.sv \
+    $(OPENTITAN_BUILD)/src/lowrisc_ip_aes_0.6/rtl/aes_key_expand.sv \
+    $(OPENTITAN_BUILD)/src/lowrisc_ip_aes_0.6/rtl/aes_mix_columns.sv \
+    $(OPENTITAN_BUILD)/src/lowrisc_ip_aes_0.6/rtl/aes_cipher_control.sv \
+    $(OPENTITAN_BUILD)/src/lowrisc_ip_aes_0.6/rtl/aes_sel_buf_chk.sv \
+    $(OPENTITAN_BUILD)/src/lowrisc_ip_aes_0.6/rtl/aes_sbox.sv \
+    $(OPENTITAN_BUILD)/src/lowrisc_ip_aes_0.6/rtl/aes_mix_single_column.sv \
+    $(OPENTITAN_BUILD)/src/lowrisc_ip_aes_0.6/rtl/aes_sbox_lut.sv \
+    $(OPENTITAN_BUILD)/src/lowrisc_ip_aes_0.6/rtl/aes_cipher_core.sv \
+    $(OPENTITAN_BUILD)/src/lowrisc_prim_all_0.1/rtl/prim_intr_hw.sv \
+    $(OPENTITAN_BUILD)/src/lowrisc_ip_csrng_0.1/rtl/csrng_cmd_stage.sv \
+    $(OPENTITAN_BUILD)/src/lowrisc_prim_all_0.1/rtl/prim_packer_fifo.sv \
+    $(OPENTITAN_BUILD)/src/lowrisc_ip_csrng_0.1/rtl/csrng_main_sm.sv \
+    $(OPENTITAN_BUILD)/src/lowrisc_ip_csrng_0.1/rtl/csrng_state_db.sv \
+    $(OPENTITAN_BUILD)/src/lowrisc_ip_csrng_0.1/rtl/csrng_ctr_drbg_cmd.sv \
+    $(OPENTITAN_BUILD)/src/lowrisc_ip_csrng_0.1/rtl/csrng_ctr_drbg_upd.sv \
+    $(OPENTITAN_BUILD)/src/lowrisc_prim_lc_sync_0.1/rtl/prim_lc_sync.sv \
+    $(OPENTITAN_BUILD)/src/lowrisc_ip_csrng_0.1/rtl/csrng_block_encrypt.sv \
+    $(OPENTITAN_BUILD)/src/lowrisc_ip_csrng_0.1/rtl/csrng_ctr_drbg_gen.sv \
+    $(OPENTITAN_BUILD)/src/lowrisc_prim_all_0.1/rtl/prim_arbiter_ppc.sv \
+    $(OPENTITAN_BUILD)/src/lowrisc_ip_csrng_0.1/rtl/csrng_core.sv
+
+INCLUDE := -I$(OPENTITAN_BUILD)/src/lowrisc_prim_assert_0.1/rtl/
+
+TOP_MODULE := csrng_core
+VERILATOR_FLAGS := -Wno-UNOPTFLAT -Wno-ALWCOMBORDER $(TEST_DIR)/csrng_core.vlt

@@ -1,0 +1,8 @@
+include $(TEST_DIR)/../Makefile.in
+TOP_FILE := \
+    $(OPENTITAN_BUILD)/src/lowrisc_prim_prim_dom_and_2share_0.1/rtl/prim_dom_and_2share.sv \
+    $(OPENTITAN_BUILD)/src/lowrisc_ip_sha3_0.1/rtl/keccak_2share.sv
+
+INCLUDE := -I$(OPENTITAN_BUILD)/src/lowrisc_prim_assert_0.1/rtl/
+
+TOP_MODULE := keccak_2share

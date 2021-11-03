@@ -1,0 +1,13 @@
+include $(TEST_DIR)/../Makefile.in
+TOP_FILE := \
+    $(OPENTITAN_BUILD)/src/lowrisc_systems_rstmgr_reg_0.1/rtl/autogen/rstmgr_reg_pkg.sv \
+    $(OPENTITAN_BUILD)/src/lowrisc_systems_rstmgr_pkg_0.1/rtl/autogen/rstmgr_pkg.sv \
+    $(OPENTITAN_BUILD)/src/lowrisc_ip_rstmgr_0.1/rtl/rstmgr_crash_info.sv
+
+INCLUDE := -I$(OPENTITAN_BUILD)/src/lowrisc_prim_assert_0.1/rtl/
+
+TOP_MODULE := rstmgr_crash_info
+
+SURELOG_FLAGS := --disable-feature=parametersubstitution -PCrashDumpWidth=128
+
+VERILATOR_FLAGS := -GCrashDumpWidth=128 $(TEST_DIR)/rstmgr_crash_info.vlt
