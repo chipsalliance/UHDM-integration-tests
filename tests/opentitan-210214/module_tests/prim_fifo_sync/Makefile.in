@@ -2,7 +2,7 @@ include $(TEST_DIR)/../Makefile.in
 TOP_FILE := \
     $(OPENTITAN_BUILD)/src/lowrisc_prim_abstract_prim_pkg_0.1/prim_pkg.sv \
     $(OPENTITAN_BUILD)/src/lowrisc_prim_util_0.1/rtl/prim_util_pkg.sv \
-    $(OPENTITAN_BUILD)/src/lowrisc_prim_fifo_0/rtl/prim_fifo_sync.sv
+    $(OPENTITAN_BUILD)/src/lowrisc_prim_all_0.1/rtl/prim_fifo_sync.sv
 
 INCLUDE := -I$(OPENTITAN_BUILD)/src/lowrisc_prim_assert_0.1/rtl/ -I$(OPENTITAN_BUILD)/src/lowrisc_prim_util_0.1/rtl/
 
