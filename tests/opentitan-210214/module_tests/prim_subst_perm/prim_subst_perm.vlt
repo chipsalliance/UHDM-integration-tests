@@ -1,0 +1,5 @@
+`verilator_config
+
+lint_off -rule UNOPTFLAT -file "*" -match "Signal unoptimizable: Feedback to clock or circular logic: 'prim_subst_perm.*'"
+
+lint_off -rule ALWCOMBORDER -file "*" -match "Always_comb variable driven after use: 'data_state'"

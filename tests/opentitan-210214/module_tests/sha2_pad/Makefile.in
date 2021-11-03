@@ -1,0 +1,8 @@
+include $(TEST_DIR)/../Makefile.in
+TOP_FILE := \
+    $(OPENTITAN_BUILD)/src/lowrisc_ip_hmac_0.1/rtl/hmac_pkg.sv \
+    $(OPENTITAN_BUILD)/src/lowrisc_ip_hmac_0.1/rtl/sha2_pad.sv
+
+INCLUDE := -I$(OPENTITAN_BUILD)/src/lowrisc_prim_assert_0.1/rtl/
+
+TOP_MODULE := sha2_pad

@@ -1,0 +1,9 @@
+`verilator_config
+
+// Warnings that are thrown by original verilator
+
+lint_off -rule UNOPTFLAT -file "*" -match "Signal unoptimizable: Feedback to clock or circular logic: 'rv_plic.gen_target[0].u_target.is_tree'"
+
+lint_off -rule UNOPTFLAT -file "*" -match "Signal unoptimizable: Feedback to clock or circular logic: 'rv_plic.gen_target[0].u_target.max_tree'"
+
+lint_off -rule UNOPTFLAT -file "*" -match "Signal unoptimizable: Feedback to clock or circular logic: 'rv_plic.gen_target[0].u_target.id_tree'"

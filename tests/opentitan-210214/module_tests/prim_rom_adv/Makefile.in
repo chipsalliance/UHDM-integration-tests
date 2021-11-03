@@ -1,0 +1,10 @@
+include $(TEST_DIR)/../Makefile.in
+TOP_FILE := \
+   $(OPENTITAN_BUILD)/src/lowrisc_prim_generic_rom_0/rtl/prim_generic_rom.sv \
+   $(OPENTITAN_BUILD)/src/lowrisc_prim_abstract_rom_0/prim_rom.sv \
+   $(OPENTITAN_BUILD)/src/lowrisc_prim_rom_adv_0.1/rtl/prim_rom_adv.sv
+
+INCLUDE := -I$(OPENTITAN_BUILD)/src/lowrisc_prim_assert_0.1/rtl/ \
+   -I$(OPENTITAN_BUILD)/src/lowrisc_prim_util_memload_0/rtl/
+
+TOP_MODULE := prim_rom_adv

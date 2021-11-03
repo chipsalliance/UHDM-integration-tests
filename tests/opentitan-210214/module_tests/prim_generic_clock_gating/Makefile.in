@@ -1,0 +1,7 @@
+include $(TEST_DIR)/../Makefile.in
+TOP_FILE := \
+    $(OPENTITAN_BUILD)/src/lowrisc_prim_abstract_prim_pkg_0.1/prim_pkg.sv \
+    $(OPENTITAN_BUILD)/src/lowrisc_prim_generic_clock_gating_0/rtl/prim_generic_clock_gating.sv \
+    $(OPENTITAN_BUILD)/src/lowrisc_prim_abstract_clock_gating_0/prim_clock_gating.sv
+
+TOP_MODULE := prim_clock_gating

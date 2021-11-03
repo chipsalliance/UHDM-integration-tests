@@ -1,0 +1,7 @@
+`verilator_config
+
+// Warnings that are thrown by original verilator
+
+lint_off -rule WIDTH -file "*" -match "Operator ASSIGNW expects 3 bits on the Assign RHS, but Assign RHS's DIVS generates 32 * bits."
+
+lint_off -rule WIDTH -file "*" -match "Operator ASSIGNW expects 1 bits on the Assign RHS, but Assign RHS's DIVS generates 32 * bits."

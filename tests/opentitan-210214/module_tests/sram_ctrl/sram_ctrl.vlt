@@ -1,0 +1,9 @@
+`verilator_config
+
+// Warnings that are thrown by original verilator
+
+lint_off -rule WIDTH -file "*" -match "Operator COND expects 8 bits on the Conditional True, but Conditional True's * generates 3 bits."
+
+lint_off -rule WIDTH -file "*" -match "Operator COND expects 8 bits on the Conditional False, but Conditional False's * generates 3 bits."
+
+lint_off -rule WIDTH -file "*" -match "Operator ASSIGNW expects 3 bits on the Assign RHS, but Assign RHS's COND generates 8 bits."

@@ -1,0 +1,5 @@
+`verilator_config
+
+// Warnings that are thrown by original verilator
+
+lint_off -rule WIDTH -file "*" -match "Operator EQ expects 6 bits on the RHS, but RHS's CONST '5'h0' generates 5 bits."
