@@ -1,1 +1,4 @@
-include ${root_dir}/../uhdm-tests/opentitan/module_tests/Makefile.in
+OPENTITAN_VERSION = opentitan-current
+TOP_TARGET_NAME = dv_chip_verilator_sim
+OPENTITAN =$(root_dir)/../uhdm-tests/opentitan/${OPENTITAN_VERSION}
+OPENTITAN_BUILD = ${OPENTITAN}/build/lowrisc_$(TOP_TARGET_NAME)_0.1
