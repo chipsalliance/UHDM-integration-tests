@@ -25,11 +25,11 @@ cd uhdm-integration
 ### Yosys setup:
 
 ```
-git clone https://github.com/antmicro/yosys.git -b uhdm-yosys
-cd yosys
+git clone https://github.com/antmicro/yosys-uhdm-plugin-integration.git
+cd yosys-uhdm-plugin-integration
 git submodule update --init --recursive
 ./build_binaries.sh
-cd uhdm-integration
+cd UHDM-integration-tests
 ```
 
 ## Running tests
