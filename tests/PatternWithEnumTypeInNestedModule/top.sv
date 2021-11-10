@@ -7,13 +7,13 @@ module prim_subreg_shadow(output int b);
    typedef struct packed {
       logic [2:0] a;
       logic [1:0] b;
-   } struct_ab;
+   } struct_t;
 
    typedef enum logic [2:0] {
       ENUM_ITEM = 3'b000
    } enum_t;
 
-   parameter struct_ab RESVAL = '{
+   parameter struct_t RESVAL = '{
       a: ENUM_ITEM,
       b: '1
    };
@@ -27,13 +27,13 @@ module top(output int o);
    typedef struct packed {
       logic [1:0] a;
       logic [2:0] b;
-   } struct_ab;
+   } struct_t;
 
    typedef enum logic [1:0] {
       ENUM_ITEM = 2'b11
    } enum_t;
 
-   parameter struct_ab CTRL_RESET = '{
+   parameter struct_t CTRL_RESET = '{
       a: ENUM_ITEM,
       b: '0
    };
