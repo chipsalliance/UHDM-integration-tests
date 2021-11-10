@@ -1,6 +1,0 @@
-OPENTITAN_VERSION = opentitan-210214
-TOP_TARGET_NAME = systems_top_earlgrey_verilator
-TOP_MODULE_NAME = top_earlgrey_verilator
-FUSESOC_SETUP_TARGET = lowrisc:systems:top_earlgrey_verilator
-
-include $(root_dir)/../uhdm-tests/opentitan/Makefile.in
