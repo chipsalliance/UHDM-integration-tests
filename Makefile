@@ -30,7 +30,8 @@ list:
 # ------------ Test targets ------------
 
 uhdm/vcddiff: $(root_dir)/dumps/dump_yosys.vcd $(root_dir)/dumps/dump_verilator.vcd
-	$(VCDDIFF_BIN) $(root_dir)/dumps/dump_yosys.vcd $(root_dir)/dumps/dump_verilator.vcd
+	$(VCDDIFF_BIN) $(root_dir)/dumps/dump_yosys.vcd $(root_dir)/dumps/dump_verilator.vcd | tee vcddiff_output.txt
+	@(! grep differs vcddiff_output.txt)
 
 uhdm/verilator/test-ast: surelog/parse
 	mkdir -p $(root_dir)/dumps
