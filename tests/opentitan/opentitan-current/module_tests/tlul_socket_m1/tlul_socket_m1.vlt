@@ -1,0 +1,21 @@
+`verilator_config
+
+// Warnings that are thrown by original verilator
+
+lint_off -rule WIDTH -file "*" -match "Operator VAR 'ReqDepth' expects 32 bits on the Initial value, but Initial value's CONST '4'h0' generates 4 bits."
+
+lint_off -rule WIDTH -file "*" -match "Operator VAR 'RspDepth' expects 32 bits on the Initial value, but Initial value's CONST '4'h0' generates 4 bits."
+
+lint_off -rule WIDTH -file "*" -match "Operator VAR 'ReqDepth' expects 32 bits on the Initial value, but Initial value's CONST '4'h2' generates 4 bits."
+
+lint_off -rule WIDTH -file "*" -match "Operator VAR 'RspDepth' expects 32 bits on the Initial value, but Initial value's CONST '4'h2' generates 4 bits."
+
+lint_off -rule ALWCOMBORDER -file "*" -match "Always_comb variable driven after use: 'ppc_out'"
+
+// Warning that is thrown only by uhdm-verilator due to parameter substitution
+
+lint_off -rule WIDTH -file "*" -match "Operator VAR 'Depth' expects 32 bits on the Initial value, but Initial value's CONST '4'h0' generates 4 bits."
+
+lint_off -rule WIDTH -file "*" -match "Operator VAR 'Depth' expects 32 bits on the Initial value, but Initial value's CONST '4'h2' generates 4 bits."
+
+lint_off -rule WIDTH -file "*" -match "Operator SUB expects 32 bits on the LHS, but LHS's CONST '4'h2' generates 4 bits."
