@@ -1,0 +1,14 @@
+include $(TEST_DIR)/../Makefile.in
+TOP_FILE := \
+   $(OPENTITAN_BUILD)/src/lowrisc_dv_dpi_uartdpi_0.1/uartdpi.sv
+
+INCLUDE := -I$(OPENTITAN_BUILD)/src/lowrisc_dv_dpi_uartdpi_0.1/
+
+TOP_MODULE := uartdpi
+
+SURELOG_FLAGS := -PBAUD=\'d7_200 -PFREQ=\'d500_000
+VERILATOR_FLAGS := \
+   $(OPENTITAN_BUILD)/src/lowrisc_dv_dpi_uartdpi_0.1/uartdpi.c \
+   $(TEST_DIR)/uartdpi.vlt \
+   -GBAUD=\'d7_200 -GFREQ=\'d500_000 \
+   -LDFLAGS -lutil

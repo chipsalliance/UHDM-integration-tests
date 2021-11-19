@@ -1,0 +1,13 @@
+`verilator_config
+
+// Warnings thrown by original verilator
+
+lint_off -rule WIDTH -file "*" -match "Operator DIV expects 32 bits on the LHS, but LHS's VARREF 'FREQ' generates 1 bits."
+
+lint_off -rule WIDTH -file "*" -match "Operator DIV expects 32 bits on the RHS, but RHS's VARREF 'BAUD' generates 1 bits."
+
+lint_off -rule WIDTH -file "*" -match "Operator ASSIGN expects 32 bits on the Assign RHS, but Assign RHS's FUNCREF 'uartdpi_read' generates 8 bits."
+
+lint_off -rule WIDTH -file "*" -match "Logical operator IF expects 1 bit on the If, but If's FUNCREF 'uartdpi_can_read' generates 32 bits."
+
+lint_off -rule WIDTH -file "*" -match "Operator TASKREF 'uartdpi_write' expects 32 bits on the Function Argument, but Function Argument's VARREF 'rxsymbol' generates 8 bits."
