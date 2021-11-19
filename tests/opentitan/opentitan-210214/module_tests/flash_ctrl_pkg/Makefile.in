@@ -11,5 +11,6 @@ TOP_FILE := \
     $(OPENTITAN_BUILD)/src/lowrisc_systems_flash_ctrl_pkg_0.1/rtl/autogen/flash_ctrl_pkg.sv \
     $(TEST_DIR)/top.sv
 
-INCLUDE := -I$(OPENTITAN_BUILD)/src/lowrisc_constants_top_pkg_0.1/rtl/
+INCLUDE := -I$(OPENTITAN_BUILD)/src/lowrisc_constants_top_pkg_0/rtl/
 TOP_MODULE := top
+VERILATOR_FLAGS := $(TEST_DIR)/flash_ctrl_pkg.vlt
