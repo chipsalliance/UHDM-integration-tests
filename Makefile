@@ -10,7 +10,7 @@ VCDDIFF_BIN = ${root_dir}/../image/bin/vcddiff
 COVARAGE_REPORT = ${root_dir}/build/coverage
 
 TEST_DIR := $(root_dir)/$(TEST)
-MAIN_FILE := $(TEST_DIR)/main.cpp
+MAIN_FILE ?= $(TEST_DIR)/main.cpp
 YOSYS_SCRIPT := $(TEST_DIR)/yosys_script
 
 # this include should set $(TOP_FILE) and $(TOP_MODULE) variables
@@ -43,7 +43,7 @@ uhdm/verilator/test-ast: surelog/parse
 			--dump-uhdm \
 			--exe $(MAIN_FILE) --trace && \
 		 make -j -C obj_dir -f $(TOP_MAKEFILE) $(VERILATED_BIN) && \
-		 obj_dir/$(VERILATED_BIN))
+		 obj_dir/$(VERILATED_BIN) $(VERILATED_FLAGS))
 	mv $(root_dir)/build/dump.vcd $(root_dir)/dumps/dump_verilator.vcd
 
 uhdm/verilator/test-cmake: surelog/parse
@@ -142,7 +142,7 @@ verilator/test-ast: clean-build
 			--top-module ${TOP_MODULE} \
 			--exe $(MAIN_FILE) --trace && \
 		 make -j -C obj_dir -f $(TOP_MAKEFILE) $(VERILATED_BIN) && \
-		 obj_dir/$(VERILATED_BIN))
+		 obj_dir/$(VERILATED_BIN) $(VERILATED_FLAGS))
 	mv $(root_dir)/build/dump.vcd $(root_dir)/dumps/dump_vanilla.vcd
 
 uhdm/verilator/vcddiff: verilator/test-ast uhdm/verilator/test-ast
