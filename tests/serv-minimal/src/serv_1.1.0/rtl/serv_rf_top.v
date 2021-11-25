@@ -2,11 +2,11 @@
 
 module serv_rf_top
   (
-   input wire 	      clk,
-   input wire 	      i_rst,
-   output wire 	      o_ibus_cyc,
+   input wire         clk,
+   input wire         i_rst,
+   output wire         o_ibus_cyc,
    input wire [31:0]  i_ibus_rdt,
-   input wire 	      i_ibus_ack);
+   input wire         i_ibus_ack);
    
 
    wire [4+1:0] wreg0;

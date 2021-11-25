@@ -2,32 +2,32 @@
 
 module serv_top
    (
-   input wire 		      clk,
-   input wire 		      i_rst,
+   input wire           clk,
+   input wire           i_rst,
    //RF Interface
    output wire [4+1:0] o_wreg0,
    output wire [4+1:0] o_wreg1,
    output wire [4+1:0] o_rreg0,
    output wire [4+1:0] o_rreg1,
 
-   output wire 		      o_ibus_cyc,
-   input wire [31:0] 	      i_ibus_rdt,
-   input wire 		      i_ibus_ack);
+   output wire           o_ibus_cyc,
+   input wire [31:0]         i_ibus_rdt,
+   input wire           i_ibus_ack);
 
    wire          jump;
    reg          utype;
    wire          imm;
 
-   wire 	 bufreg_q;
-   wire 	 ctrl_rd;
+   wire    bufreg_q;
+   wire    ctrl_rd;
    
-   reg 	     ibus_cyc;
+   reg        ibus_cyc;
 
 
    assign o_ibus_cyc = ibus_cyc & !i_rst;
    always @(posedge clk) begin
       if (i_ibus_ack | i_rst)
-	ibus_cyc <= i_rst;
+  ibus_cyc <= i_rst;
    end
 
    reg [4:0] opcode;

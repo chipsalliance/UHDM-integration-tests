@@ -11,9 +11,9 @@ module servant
    parameter sim = 0;
    parameter with_csr = 1;
 
-   wire [31:0] 	wb_mem_rdt;
-   wire 	wb_mem_ack;
-   reg [31:0] 		mem [0:memsize/4-1] /* verilator public */;
+   wire [31:0]   wb_mem_rdt;
+   wire   wb_mem_ack;
+   reg [31:0]     mem [0:memsize/4-1] /* verilator public */;
 
    serv_rf_top
    cpu
