@@ -28,8 +28,4 @@ lint_off -rule SELRANGE -file "*" -match "Selection index out of range: 63:0 out
 
 lint_off -rule UNSIGNED -file "*" -match "Comparison is constant due to unsigned arithmetic"
 
-// Warning that is thrown only by uhdm-verilator due to parameter substitution
-
-
-// Warning that is thrown only by uhdm-verilator, because original verilator omits assert sentences
-
+lint_off -rule LITENDIAN -file "*" -match "Little bit endian vector: left < right of bit range: [-1:0]"

@@ -21,4 +21,4 @@ TOP_FILE := \
 INCLUDE := -I$(OPENTITAN_BUILD)/src/lowrisc_prim_assert_0.1/rtl/
 
 TOP_MODULE := otp_ctrl_part_buf
-VERILATOR_FLAGS := -Wno-UNOPTFLAT -Wno-LITENDIAN $(TEST_DIR)/otp_ctrl_part_buf.vlt
+VERILATOR_FLAGS := -Wno-UNOPTFLAT $(TEST_DIR)/otp_ctrl_part_buf.vlt
