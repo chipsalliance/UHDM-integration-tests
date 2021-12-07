@@ -30,6 +30,7 @@ int main (int argc, char **argv) {
 
     std::cout << "time: " << main_time
               << " o: " << (int)top->o
+              << " p: " << (int)top->p
               << std::endl;
   }
   top->final();
