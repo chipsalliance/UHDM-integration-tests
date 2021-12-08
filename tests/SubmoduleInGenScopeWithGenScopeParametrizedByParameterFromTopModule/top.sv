@@ -15,11 +15,11 @@ module prim_generic_pad_attr(output logic o);
    import prim_pad_wrapper_pkg::*;
    parameter pad_type_e PadTypeInGeneric = 0;
    if (PadTypeInGeneric == 1)
-     begin: inner_if_true
+     begin: gen_inner_if_true
         assign o = 1;
       end
    else
-     begin: inner_if_false
+     begin: gen_inner_if_false
         assign o = 0;
      end
 endmodule : prim_generic_pad_attr
@@ -28,7 +28,7 @@ module prim_pad_attr(output logic o);
    import prim_pad_wrapper_pkg::*;
    parameter pad_type_e PadType = 0;
 
-   if (1) begin : outer_if
+   if (1) begin : gen_outer_if
        prim_generic_pad_attr #(
           .PadTypeInGeneric(PadType)
        ) u_impl_generic(
