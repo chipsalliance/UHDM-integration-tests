@@ -56,9 +56,5 @@ module top(output int o);
    import pinmux_pkg::*;
    parameter struct2_t TargetCfg = 2;
 
-   almost_top
-
-     u_top(
-      .o(o)
-   );
+   almost_top u_almost_top(.o(o));
 endmodule
