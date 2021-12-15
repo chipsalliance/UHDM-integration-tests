@@ -1,0 +1,31 @@
+`verilator_config
+
+// Warnings that are thrown by original verilator
+
+lint_off -rule WIDTH -file "*" -match "Operator * expects 32 bits on the *HS, but *HS's SEL generates 11 bits."
+
+lint_off -rule WIDTH -file "*" -match "Operator SUB expects 32 or 7 bits on the RHS, but RHS's VARREF 'addr_i' generates 2 bits."
+
+lint_off -rule WIDTH -file "*" -match "Operator EQ expects 32 bits on the LHS, but LHS's VARREF 'cnt_q' generates 2 bits."
+
+lint_off -rule WIDTH -file "*" -match "Operator SUB expects 32 or 4 bits on the RHS, but RHS's VARREF 'addr_i' generates 2 bits."
+
+lint_off -rule WIDTH -file "*" -match "Logical operator LOGNOT expects 1 bit on the LHS, but LHS's VARREF 'error_q' generates 3 bits."
+
+lint_off -rule WIDTH -file "*" -match "Operator COND expects 32 bits on the Conditional False, but Conditional False's SEL generates 11 bits."
+
+lint_off -rule WIDTH -file "*" -match "Operator ASSIGNW expects 11 bits on the Assign RHS, but Assign RHS's COND generates 32 bits."
+
+lint_off -rule WIDTH -file "*" -match "Operator ASSIGNW expects 10 bits on the Assign RHS, but Assign RHS's SHIFTR generates 11 bits."
+
+lint_off -rule WIDTH -file "*" -match "Operator SUB expects 32 bits on the RHS, but RHS's CONCAT generates 8 bits."
+
+lint_off -rule WIDTH -file "*" -match "Output port connection 'data_o' expects 128 bits on the pin connection, but pin connection's VARREF 'data' generates 2 bits."
+
+lint_off -rule SELRANGE -file "*" -match "Extracting 64 bits from only 2 bit number"
+
+lint_off -rule SELRANGE -file "*" -match "Selection index out of range: 63:0 outside 1:0 (adjusted +1 to account for negative lsb)"
+
+lint_off -rule UNSIGNED -file "*" -match "Comparison is constant due to unsigned arithmetic"
+
+lint_off -rule LITENDIAN -file "*" -match "Little bit endian vector: left < right of bit range: [-1:0]"
