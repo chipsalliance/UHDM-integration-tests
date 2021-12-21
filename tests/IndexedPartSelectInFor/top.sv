@@ -7,7 +7,7 @@ package my_pkg;
       logic [Shares-1:0][KeyWidth-1:0] key;
    } hw_key_req_t;
 endpackage // my_pkg
-   
+
 module top(output int o);
    import my_pkg::*;
    hw_key_req_t keymgr_key_i = 128'h123456789abcdef;
