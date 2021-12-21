@@ -1,5 +1,5 @@
 package tl_main_pkg;
-   localparam int ADDR_SPACE_DEBUG_MEM = 1;
+   localparam int AddrSpace = 1;
 endpackage
 
 package dm;
@@ -11,7 +11,7 @@ module top(output int o);
    import tl_main_pkg::*;
 
    rv_core_ibex #(
-      .DmExceptionAddr(ADDR_SPACE_DEBUG_MEM + dm::ExceptionAddress)
+      .DmExceptionAddr(AddrSpace + dm::ExceptionAddress)
    ) u_rv_core_ibex(.a(o));
 endmodule
 
