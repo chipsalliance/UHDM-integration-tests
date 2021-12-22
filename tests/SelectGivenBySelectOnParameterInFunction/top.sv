@@ -7,4 +7,8 @@ module top(output logic o);
    endfunction : theta
 
    assign o = theta();
+
+   final begin
+      assert(o == 1);
+   end
 endmodule
