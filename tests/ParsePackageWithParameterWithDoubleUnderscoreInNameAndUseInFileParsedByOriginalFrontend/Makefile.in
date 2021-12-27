@@ -1,0 +1,4 @@
+TOP_FILE := $(TEST_DIR)/my_pkg.sv
+TOP_MODULE := top
+
+VERILATOR_FLAGS := $(TEST_DIR)/top.sv
