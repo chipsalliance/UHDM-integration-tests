@@ -1,0 +1,37 @@
+include $(TEST_DIR)/../Makefile.in
+TOP_FILE := \
+    $(OPENTITAN_BUILD)/src/lowrisc_prim_abstract_prim_pkg_0.1/prim_pkg.sv \
+    $(OPENTITAN_BUILD)/src/lowrisc_prim_util_0.1/rtl/prim_util_pkg.sv \
+    $(OPENTITAN_BUILD)/src/lowrisc_ip_entropy_src_pkg_0.1/rtl/entropy_src_pkg.sv \
+    $(OPENTITAN_BUILD)/src/lowrisc_ip_entropy_src_0.1/rtl/entropy_src_reg_pkg.sv \
+    $(OPENTITAN_BUILD)/src/lowrisc_ip_sha3_0.1/rtl/sha3_pkg.sv \
+    $(OPENTITAN_BUILD)/src/lowrisc_prim_cipher_pkg_0.1/rtl/prim_cipher_pkg.sv \
+    $(OPENTITAN_BUILD)/src/lowrisc_prim_fifo_0/rtl/prim_fifo_sync.sv \
+    $(OPENTITAN_BUILD)/src/lowrisc_prim_all_0.1/rtl/prim_packer_fifo.sv \
+    $(OPENTITAN_BUILD)/src/lowrisc_prim_all_0.1/rtl/prim_intr_hw.sv \
+    $(OPENTITAN_BUILD)/src/lowrisc_prim_lfsr_0.1/rtl/prim_lfsr.sv \
+    $(OPENTITAN_BUILD)/src/lowrisc_ip_entropy_src_0.1/rtl/entropy_src_watermark_reg.sv \
+    $(OPENTITAN_BUILD)/src/lowrisc_ip_entropy_src_0.1/rtl/entropy_src_repcnts_ht.sv \
+    $(OPENTITAN_BUILD)/src/lowrisc_ip_entropy_src_0.1/rtl/entropy_src_repcnt_ht.sv \
+    $(OPENTITAN_BUILD)/src/lowrisc_ip_entropy_src_0.1/rtl/entropy_src_cntr_reg.sv \
+    $(OPENTITAN_BUILD)/src/lowrisc_ip_entropy_src_0.1/rtl/entropy_src_adaptp_ht.sv \
+    $(OPENTITAN_BUILD)/src/lowrisc_ip_entropy_src_0.1/rtl/entropy_src_bucket_ht.sv \
+    $(OPENTITAN_BUILD)/src/lowrisc_ip_entropy_src_0.1/rtl/entropy_src_markov_ht.sv \
+    $(OPENTITAN_BUILD)/src/lowrisc_prim_prim_dom_and_2share_0.1/rtl/prim_dom_and_2share.sv \
+    $(OPENTITAN_BUILD)/src/lowrisc_ip_sha3_0.1/rtl/keccak_2share.sv \
+    $(OPENTITAN_BUILD)/src/lowrisc_ip_sha3_0.1/rtl/keccak_round.sv \
+    $(OPENTITAN_BUILD)/src/lowrisc_prim_all_0.1/rtl/prim_slicer.sv \
+    $(OPENTITAN_BUILD)/src/lowrisc_ip_sha3_0.1/rtl/sha3pad.sv \
+    $(OPENTITAN_BUILD)/src/lowrisc_ip_sha3_0.1/rtl/sha3.sv \
+    $(OPENTITAN_BUILD)/src/lowrisc_prim_generic_flop_0/rtl/prim_generic_flop.sv \
+    $(OPENTITAN_BUILD)/src/lowrisc_prim_xilinx_flop_0/rtl/prim_xilinx_flop.sv \
+    $(OPENTITAN_BUILD)/src/lowrisc_prim_abstract_flop_0/prim_flop.sv \
+    $(OPENTITAN_BUILD)/src/lowrisc_ip_entropy_src_0.1/rtl/entropy_src_main_sm.sv \
+    $(OPENTITAN_BUILD)/src/lowrisc_ip_entropy_src_0.1/rtl/entropy_src_ack_sm.sv \
+    $(OPENTITAN_BUILD)/src/lowrisc_ip_entropy_src_0.1/rtl/entropy_src_core.sv
+
+INCLUDE := \
+    -I$(OPENTITAN_BUILD)/src/lowrisc_prim_assert_0.1/rtl/ \
+    -I$(OPENTITAN_BUILD)/src/lowrisc_prim_util_0.1/rtl/
+
+TOP_MODULE := entropy_src_core
