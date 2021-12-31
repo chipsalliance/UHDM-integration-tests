@@ -11,10 +11,8 @@ endpackage : prim_esc_pkg
 
 module nmi_gen
    import prim_esc_pkg::*;
-#(
-   localparam int unsigned LP = 3
-) (
-   input esc_tx_t [LP-1:0] a,
+(
+   input esc_tx_t [2:0] a,
    output int x
 );
    assign x = int'(a);
