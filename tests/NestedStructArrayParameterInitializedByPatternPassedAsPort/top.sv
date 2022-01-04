@@ -26,7 +26,7 @@ module flash_mp_data_region_sel import flash_ctrl_pkg::*; (
 endmodule
 
 module top(output logic o);
-   import flash_ctrl_pkg::*; 
+   import flash_ctrl_pkg::*;
    flash_mp_data_region_sel u_hw_sel (
       .region_attrs_i(HwDataAttr),
       .x(o)
