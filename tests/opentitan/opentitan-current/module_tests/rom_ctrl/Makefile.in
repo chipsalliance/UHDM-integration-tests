@@ -57,3 +57,5 @@ INCLUDE := -I$(OPENTITAN_BUILD)/src/lowrisc_prim_assert_0.1/rtl/ \
     -I$(OPENTITAN_BUILD)/src/lowrisc_prim_util_memload_0/rtl/
 
 TOP_MODULE := rom_ctrl
+
+VERILATOR_FLAGS := $(TEST_DIR)/rom_ctrl.vlt
