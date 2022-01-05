@@ -1,5 +1,10 @@
 `verilator_config
 
+// Warnings are thrown only by uhdm-verilator
+// because Surelog ignores "verilator split_var" comment
+// in declaration of data_state variable 
+// https://verilator.org/guide/latest/extensions.html#cmdoption-verilator-split_var
+
 lint_off -rule UNOPTFLAT -file "*" -match "Signal unoptimizable: Feedback to clock or circular logic: 'prim_subst_perm.*'"
 
 lint_off -rule ALWCOMBORDER -file "*" -match "Always_comb variable driven after use: 'data_state'"
