@@ -1,0 +1,8 @@
+`verilator_config
+
+split_var -module "prim_arbiter_tree" -var "idx_tree"
+split_var -module "prim_arbiter_tree" -var "mask_tree"
+split_var -module "prim_arbiter_tree" -var "sel_tree"
+split_var -module "prim_arbiter_tree" -var "data_tree"
+split_var -module "prim_arbiter_tree" -var "req_tree"
+split_var -module "prim_arbiter_tree" -var "prio_tree"
