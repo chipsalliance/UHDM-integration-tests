@@ -35,3 +35,7 @@ lint_off -rule WIDTH -file "*" -match "Operator PATMEMBER expects 9 bits on the 
 lint_off -rule WIDTHCONCAT -file "*" -match "Unsized numbers/parameters not allowed in replications."
 
 lint_off -rule WIDTH -file "*" -match "Operator VAR 'DataPartitionEndAddr' expects 8 bits on the Initial value, but Initial value's SUB generates 32 or 9 bits."
+
+// Surelog parses genvars as local parameters of type int, which results in this warning
+
+lint_off -rule WIDTH -file "*" -match "Operator EQ expects 32 bits on the LHS, but LHS's VARREF 'mem_info_sel' generates 1 bits."

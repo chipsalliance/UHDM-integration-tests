@@ -67,3 +67,5 @@ INCLUDE := \
     -I$(OPENTITAN_BUILD)/src/lowrisc_prim_util_0.1/rtl/
 
 TOP_MODULE := entropy_src
+
+VERILATOR_FLAGS := $(TEST_DIR)/entropy_src.vlt
