@@ -17,9 +17,9 @@ module top(output logic o);
       .region_attrs_i(
          '{
             '{
-              phase: 1'b1
-              }
-           }),
+               phase: 1'b1
+             }
+          }),
       .x(o)
    );
 endmodule
