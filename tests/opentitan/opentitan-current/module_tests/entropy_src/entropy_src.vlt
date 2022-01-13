@@ -1,0 +1,7 @@
+`verilator_config
+
+// Surelog parses genvars as local parameters of type int, which results in this warning
+
+lint_off -rule WIDTH -file "*" -match "Operator EQ expects 32 bits on the LHS, but LHS's VARREF 'entropy_bit_i' generates 4 bits."
+
+lint_off -rule WIDTH -file "*" -match "Operator EQ expects 32 bits on the LHS, but LHS's SEL generates 5 bits."

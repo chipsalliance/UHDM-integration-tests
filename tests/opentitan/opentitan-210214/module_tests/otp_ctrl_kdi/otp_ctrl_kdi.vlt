@@ -1,0 +1,5 @@
+`verilator_config
+
+// Surelog parses genvars as local parameters of type int, which results in this warning
+
+lint_off -rule WIDTH -file "*" -match "Operator ASSIGNW expects 3 bits on the Assign RHS, but Assign RHS's VARREF 'offset' generates 32 bits."

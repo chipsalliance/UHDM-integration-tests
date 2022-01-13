@@ -7,3 +7,7 @@ lint_off -rule WIDTH -file "*" -match "Operator EQ expects 32 bits on the *HS, b
 lint_off -rule ALWCOMBORDER -file "*" -match "Always_comb variable driven after use: '*_tree'"
 
 lint_off -rule UNOPTFLAT -file "*" -match "Signal unoptimizable: Feedback to clock or circular logic: 'kmac_app.u_appid_arb.gen_normal_case.*_tree'"
+
+// Surelog parses genvars as local parameters of type int, which results in this warning
+
+lint_off -rule WIDTH -file "*" -match "Operator ASSIGNW expects 2 bits on the Assign RHS, but Assign RHS's VARREF 'offset' generates 32 bits."

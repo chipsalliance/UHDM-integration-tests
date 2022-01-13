@@ -10,3 +10,21 @@ lint_off -rule WIDTH -file "*" -match "Operator ASSIGNW expects 3 bits on the As
 lint_off -rule WIDTH -file "*" -match "Operator SHIFTL expects 384 bits on the LHS, but LHS's VARREF 'wdata_i' generates 32 bits."
 lint_off -rule WIDTH -file "*" -match "Operator EQ expects 32* bits on the LHS, but LHS's VARREF 'depth_q' generates 5 bits."
 lint_off -rule WIDTH -file "*" -match "Operator ASSIGNW expects 4 bits on the Assign RHS, but Assign RHS's SUB generates 32 bits."
+
+// Surelog parses genvars as local parameters of type int, which results in this warning
+
+lint_off -rule WIDTH -file "*" -match "Operator EQ expects 32 bits on the LHS, but LHS's VARREF 'state_db_rd_inst_id_i' generates 4 bits."
+
+lint_off -rule WIDTH -file "*" -match "Operator EQ expects 32 bits on the LHS, but LHS's VARREF 'state_db_reg_rd_id_i' generates 4 bits."
+
+lint_off -rule WIDTH -file "*" -match "Operator EQ expects 32 bits on the LHS, but LHS's VARREF 'state_db_id' generates 4 bits."
+
+lint_off -rule WIDTH -file "*" -match "Operator EQ expects 32 bits on the LHS, but LHS's SEL generates 5 bits."
+
+lint_off -rule WIDTH -file "*" -match "Operator EQ expects 32 bits on the LHS, but LHS's VARREF 'state_db_id' generates 4 bits."
+
+lint_off -rule WIDTH -file "*" -match "Operator ASSIGNW expects 4 bits on the Assign RHS, but Assign RHS's VARREF 'hai' generates 32 bits."
+
+lint_off -rule WIDTH -file "*" -match "Operator EQ expects 32 bits on the LHS, but LHS's VARREF 'state_db_sts_id' generates 4 bits."
+
+lint_off -rule WIDTH -file "*" -match "Operator EQ expects 32 bits on the LHS, but LHS's VARREF 'gen_result_inst_id' generates 4 bits."
