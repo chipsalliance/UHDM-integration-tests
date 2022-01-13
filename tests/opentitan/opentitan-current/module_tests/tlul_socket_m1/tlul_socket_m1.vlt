@@ -19,3 +19,9 @@ lint_off -rule WIDTH -file "*" -match "Operator VAR 'Depth' expects 32 bits on t
 lint_off -rule WIDTH -file "*" -match "Operator VAR 'Depth' expects 32 bits on the Initial value, but Initial value's CONST '4'h2' generates 4 bits."
 
 lint_off -rule WIDTH -file "*" -match "Operator SUB expects 32 bits on the LHS, but LHS's CONST '4'h2' generates 4 bits."
+
+// Surelog parses genvars as local parameters of type int, which results in this warning
+
+lint_off -rule WIDTH -file "*" -match "Operator ASSIGNW expects 2 bits on the Assign RHS, but Assign RHS's VARREF 'i' generates 32 bits."
+
+lint_off -rule WIDTH -file "*" -match "Operator EQ expects 32 bits on the LHS, but LHS's SEL generates 2 bits."
