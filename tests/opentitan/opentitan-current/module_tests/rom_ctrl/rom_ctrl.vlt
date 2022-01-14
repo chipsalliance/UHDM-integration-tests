@@ -3,6 +3,8 @@
 split_var -module "prim_subst_perm*" -var "data_state"
 split_var -module "prim_prince*" -var "data_state"
 
+lint_off -rule ALWCOMBORDER -file "*" -match "Always_comb variable driven after use: 'data_state'"
+
 // Warnings caused by parameter substitution
 
 lint_off -rule WIDTH -file "*" -match "Operator VAR 'EndAddr' expects 3 bits on the Initial value, but Initial value's CONST '?32?sh8' generates 32 or 4 bits."
