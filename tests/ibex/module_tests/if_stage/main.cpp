@@ -32,7 +32,6 @@ int main(int argc, char* argv[])
       top->instr_rvalid_i = 1;
       top->id_in_ready_i = 1;
       top->pc_set_i = 0;
-      top->pc_set_spec_i = 0;
       break;
 
     default: break;
