@@ -167,13 +167,6 @@ parameter int unsigned CSR_MEIX_BIT      = 11;
 parameter int unsigned CSR_MFIX_BIT_LOW  = 16;
 parameter int unsigned CSR_MFIX_BIT_HIGH = 30;
 
-// CSR interrupt pending/enable bits
-parameter int unsigned CSR_MSIX_BIT      = 3;
-parameter int unsigned CSR_MTIX_BIT      = 7;
-parameter int unsigned CSR_MEIX_BIT      = 11;
-parameter int unsigned CSR_MFIX_BIT_LOW  = 16;
-parameter int unsigned CSR_MFIX_BIT_HIGH = 30;
-
 // Privileged mode
 typedef enum logic[1:0] {
   PRIV_LVL_M = 2'b11,
