@@ -15,8 +15,6 @@ module top(output [3:0] b);
         fourth: 1
     };
 
-   reg [3:0] b;
-
     assign b = '{
         1'd0,
         1'd1,
