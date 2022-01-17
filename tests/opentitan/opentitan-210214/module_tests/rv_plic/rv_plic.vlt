@@ -7,3 +7,7 @@ lint_off -rule UNOPTFLAT -file "*" -match "Signal unoptimizable: Feedback to clo
 lint_off -rule UNOPTFLAT -file "*" -match "Signal unoptimizable: Feedback to clock or circular logic: 'rv_plic.gen_target[0].u_target.max_tree'"
 
 lint_off -rule UNOPTFLAT -file "*" -match "Signal unoptimizable: Feedback to clock or circular logic: 'rv_plic.gen_target[0].u_target.id_tree'"
+
+// Surelog parses genvars as local parameters of type int, which results in this warning
+
+lint_off -rule WIDTH -file "*" -match "Operator ASSIGNW expects 8 bits on the Assign RHS, but Assign RHS's VARREF 'offset' generates 32 bits."

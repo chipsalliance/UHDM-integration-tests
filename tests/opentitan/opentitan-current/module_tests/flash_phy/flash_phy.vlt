@@ -11,3 +11,13 @@ lint_off -rule WIDTH -file "*" -match "Operator LT expects 32 *bits on the LHS, 
 lint_off -rule WIDTH -file "*" -match "Operator EQ expects 32 bits on the LHS, but LHS's VARREF 'idx' generates 1 bits."
 
 lint_off -rule UNOPTFLAT -file "*" -match "*"
+
+// Surelog parses genvars as local parameters of type int, which results in this warning
+
+lint_off -rule WIDTH -file "*" -match "Operator EQ expects 32 bits on the LHS, but LHS's VARREF 'mem_info_sel' generates 2 bits."
+
+lint_off -rule WIDTH -file "*" -match "Operator ASSIGNW expects 2 bits on the Assign RHS, but Assign RHS's VARREF 'offset' generates 32 bits."
+
+lint_off -rule WIDTH -file "*" -match "Operator EQ expects 32 bits on the LHS, but LHS's VARREF '*_bank_sel' generates 1 bits."
+
+lint_off -rule WIDTH -file "*" -match "Operator ASSIGNW expects 1 bits on the Assign RHS, but Assign RHS's VARREF 'bank' generates 32 bits."

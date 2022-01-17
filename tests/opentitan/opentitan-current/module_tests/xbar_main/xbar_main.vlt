@@ -25,3 +25,13 @@ lint_off -rule WIDTH -file "*" -match "Operator SUB expects 32 bits on the LHS, 
 // Warning that is thrown only by uhdm-verilator, because original verilator omits assert sentences
 
 lint_off -rule WIDTH -file "*" -match "Operator LTE expects 32 bits on the LHS, but LHS's VARREF 'num_req_outstanding' generates 9 bits."
+
+// Surelog parses genvars as local parameters of type int, which results in this warning
+
+lint_off -rule WIDTH -file "*" -match "Operator ASSIGNW expects 1 bits on the Assign RHS, but Assign RHS's VARREF 'i' generates 32 bits."
+
+lint_off -rule WIDTH -file "*" -match "Operator EQ expects 32 bits on the LHS, but LHS's SEL generates 1 bits."
+
+lint_off -rule WIDTH -file "*" -match "Operator ASSIGNW expects 2 bits on the Assign RHS, but Assign RHS's VARREF 'i' generates 32 bits."
+
+lint_off -rule WIDTH -file "*" -match "Operator EQ expects 32 bits on the LHS, but LHS's SEL generates 2 bits."
