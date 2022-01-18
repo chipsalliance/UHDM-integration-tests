@@ -26,6 +26,7 @@ int main (int argc, char **argv) {
   top->rst_ni = 0;
   top->rnd_i = 0;
   top->rand_valid_i = 1;
+  top->s_i[0][0] = 0x1234ABCD;
 
   while (!Verilated::gotFinish() && (main_time < 100)) {
     top->eval();
@@ -35,6 +36,7 @@ int main (int argc, char **argv) {
               << " clk_i: " << (top->clk_i ? 1 : 0)
               << " rst_ni: " << (top->rst_ni ? 1 : 0)
               << " rnd_i: " << (int) top->rnd_i
+              << " s_o[0][0]: " << (int) top->s_o[0][0]
               << std::endl;
 
     main_time += 1;
