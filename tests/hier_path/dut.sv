@@ -87,11 +87,11 @@ assign pmp_req_addr_i[1] = 34'h111111111;
 
 assign priv_mode_i[0] = PRIV_LVL_M;
 assign priv_mode_i[1] = PRIV_LVL_H;
-for (genvar r = 0; r < PMPNumRegions; r++) begin : g_addr_exp
+for (genvar r = 0; r < PMPNumRegions; r++) begin : g_addr_exp1
   assign region_start_addr[r] = (csr_pmp_cfg_i[r].mode == PMP_MODE_TOR) ? 34'h000000000 : csr_pmp_addr_i[r];
 end
 
-for (genvar r = 0; r < PMPNumRegions; r++) begin : g_addr_exp
+for (genvar r = 0; r < PMPNumRegions; r++) begin : g_addr_exp2
   if (r == 0) begin : g_entry0
     assign region_start_addr[r] = (csr_pmp_cfg_i[r].mode == PMP_MODE_TOR) ? 34'h000000000 :
                                                                             csr_pmp_addr_i[r];
