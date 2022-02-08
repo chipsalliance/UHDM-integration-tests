@@ -1,0 +1,3 @@
+TOP_FILE := $(TEST_DIR)/dut.v
+TOP_MODULE := dut
+SURELOG_FLAGS := --disable-feature=parametersubstitution
