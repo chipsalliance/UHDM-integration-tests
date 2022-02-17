@@ -9,7 +9,7 @@ VERILATOR_BIN = ${root_dir}/../image/bin/verilator
 VCDDIFF_BIN = ${root_dir}/../image/bin/vcddiff
 COVARAGE_REPORT = ${root_dir}/build/coverage
 
-TEST_DIR := $(root_dir)/$(TEST)
+TEST_DIR := $(realpath $(root_dir)/$(TEST))
 MAIN_FILE ?= $(TEST_DIR)/main.cpp
 YOSYS_SCRIPT := $(TEST_DIR)/yosys_script
 
