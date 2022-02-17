@@ -1,0 +1,9 @@
+`verilator_config
+
+// Warnings that are thrown by original Verilator
+
+lint_off -rule ALWCOMBORDER -file "*" -match "Always_comb variable driven after use: 'ppc_out'"
+
+// Warnings that are thrown by UHDM Verilator due to localparam handling in Surelog
+lint_off -rule WIDTH -file "*" -match "Operator EQ expects 32 bits on the LHS, but LHS's SEL generates 5 bits."
+
