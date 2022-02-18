@@ -31,7 +31,7 @@ int main (int argc, char **argv) {
   }
   top->final();
   tfp->close();
-    delete top;
+  delete top;
 
   return 0;
 }
