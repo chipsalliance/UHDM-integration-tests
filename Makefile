@@ -60,7 +60,9 @@ uhdm/verilator/test-cmake: surelog/parse
 		./$(VERILATED_BIN))
 
 uhdm/yosys/test-ast: $(if $(USE_YOSYS_SURELOG_FRONTEND),clean-build,surelog/parse)
-	(cd $(root_dir)/build && ${YOSYS_BIN} -s $(YOSYS_SCRIPT))
+	(cd $(root_dir)/build && \
+		echo 'yosys $$env(YOSYS_READ_COMMAND)' > read.tcl && \
+		${YOSYS_BIN} -s $(YOSYS_SCRIPT))
 
 # ------------ Test helper targets ------------
 

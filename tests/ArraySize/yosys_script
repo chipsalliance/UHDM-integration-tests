@@ -1,5 +1,5 @@
 plugin -i uhdm
-tcl ../tests/ArraySize/read.tcl
+tcl read.tcl
 prep -top \top
 write_verilog
 write_verilog yosys.sv
