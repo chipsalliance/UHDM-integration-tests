@@ -22,6 +22,13 @@ TOP_UHDM = ${root_dir}/build/$(TOP_MODULE).uhdm
 TOP_MAKEFILE := V$(TOP_MODULE).mk
 # SURELOG_FLAGS are empty by default, unless set in Makefile.in
 
+ifneq ($(USE_YOSYS_SURELOG_FRONTEND),)
+YOSYS_READ_COMMAND = read_verilog_with_uhdm -parse -debug $(TOP_FILE)
+else
+YOSYS_READ_COMMAND = read_uhdm -debug $(TOP_UHDM)
+endif
+export YOSYS_READ_COMMAND
+
 list:
 	@echo "Available tests:"
 	@for TEST in $(TESTS); do echo "- tests/$$TEST"; done
@@ -52,8 +59,10 @@ uhdm/verilator/test-cmake: surelog/parse
 		make $(VERILATED_BIN) VERBOSE=1 && \
 		./$(VERILATED_BIN))
 
-uhdm/yosys/test-ast: surelog/parse
-	(cd $(root_dir)/build && ${YOSYS_BIN} -s $(YOSYS_SCRIPT))
+uhdm/yosys/test-ast: $(if $(USE_YOSYS_SURELOG_FRONTEND),clean-build,surelog/parse)
+	(cd $(root_dir)/build && \
+		echo 'yosys $$env(YOSYS_READ_COMMAND)' > read.tcl && \
+		${YOSYS_BIN} -s $(YOSYS_SCRIPT))
 
 # ------------ Test helper targets ------------
 
