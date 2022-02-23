@@ -134,7 +134,7 @@ uhdm/verilator/get-ast: clean-build
 
 uhdm/verilator/ast-xml: surelog/parse
 	(cd $(root_dir)/build && \
-		$(VERILATOR_BIN) --uhdm-ast --cc $(TOP_UHDM) \
+		$(VERILATOR_BIN) --uhdm-ast-sv --cc $(TOP_UHDM) \
 			$(VERILATOR_FLAGS) \
 			--top-module ${TOP_MODULE} \
 			--dump-uhdm \
