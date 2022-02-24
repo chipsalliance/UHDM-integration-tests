@@ -26,11 +26,11 @@ lint_off -rule WIDTHCONCAT -file "*" -match "Unsized numbers/parameters not allo
 
 // Warnings that are thrown by uhdm-verilator
 
-lint_off -rule WIDTH -file "*" -match "Operator PATMEMBER expects 9 bits on the Pattern value, but Pattern value's CONST '128'h1' generates 128 bits."
+lint_off -rule WIDTH -file "*" -match "Operator PATMEMBER expects 9 bits on the Pattern value, but Pattern value's CONST '64'h1' generates 64 bits."
 
-lint_off -rule WIDTH -file "*" -match "Operator PATMEMBER expects 9 bits on the Pattern value, but Pattern value's CONST '128'h2' generates 128 bits."
+lint_off -rule WIDTH -file "*" -match "Operator PATMEMBER expects 9 bits on the Pattern value, but Pattern value's CONST '64'h2' generates 64 bits."
 
-lint_off -rule WIDTH -file "*" -match "Operator PATMEMBER expects 9 bits on the Pattern value, but Pattern value's CONST '128'h3' generates 128 bits."
+lint_off -rule WIDTH -file "*" -match "Operator PATMEMBER expects 9 bits on the Pattern value, but Pattern value's CONST '64'h3' generates 64 bits."
 
 lint_off -rule WIDTHCONCAT -file "*" -match "Unsized numbers/parameters not allowed in replications."
 
