@@ -1,0 +1,6 @@
+plugin -i uhdm
+read_uhdm -debug dut.uhdm
+prep -top \dut
+write_verilog
+write_verilog yosys.sv
+#sim -clock clk -rstlen 10 -vcd dump.vcd

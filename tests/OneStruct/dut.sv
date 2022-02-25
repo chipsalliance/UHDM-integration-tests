@@ -2,7 +2,7 @@ module dut (a, b);
   input a;
   output [16:0] b;
 
-  typedef struct {
+  typedef struct packed {
     logic [7:0] addr;
     logic [7:0] data;
     logic wr;

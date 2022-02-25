@@ -1,0 +1,28 @@
+include $(TEST_DIR)/../Makefile.in
+TOP_FILE := \
+    $(OPENTITAN_BUILD)/src/lowrisc_constants_top_pkg_0/rtl/top_pkg.sv \
+    $(OPENTITAN_BUILD)/src/lowrisc_prim_secded_0.1/rtl/prim_secded_pkg.sv \
+    $(OPENTITAN_BUILD)/src/lowrisc_tlul_headers_0.1/rtl/tlul_pkg.sv \
+    $(OPENTITAN_BUILD)/src/lowrisc_prim_subreg_0/rtl/prim_subreg_pkg.sv \
+    $(OPENTITAN_BUILD)/src/lowrisc_ip_entropy_src_pkg_0.1/rtl/entropy_src_pkg.sv \
+    $(OPENTITAN_BUILD)/src/lowrisc_ip_edn_pkg_0.1/rtl/edn_pkg.sv \
+    $(OPENTITAN_BUILD)/src/lowrisc_ip_edn_pkg_0.1/rtl/edn_reg_pkg.sv \
+    $(OPENTITAN_BUILD)/src/lowrisc_prim_util_0.1/rtl/prim_util_pkg.sv \
+    $(OPENTITAN_BUILD)/src/lowrisc_prim_subreg_0/rtl/prim_subreg.sv \
+    $(OPENTITAN_BUILD)/src/lowrisc_prim_subreg_0/rtl/prim_subreg_ext.sv \
+    $(OPENTITAN_BUILD)/src/lowrisc_prim_subreg_0/rtl/prim_subreg_arb.sv \
+    $(OPENTITAN_BUILD)/src/lowrisc_prim_secded_0.1/rtl/prim_secded_39_32_enc.sv \
+    $(OPENTITAN_BUILD)/src/lowrisc_prim_secded_0.1/rtl/prim_secded_39_32_dec.sv \
+    $(OPENTITAN_BUILD)/src/lowrisc_prim_secded_0.1/rtl/prim_secded_64_57_enc.sv \
+    $(OPENTITAN_BUILD)/src/lowrisc_prim_secded_0.1/rtl/prim_secded_64_57_dec.sv \
+    $(OPENTITAN_BUILD)/src/lowrisc_tlul_common_0.1/rtl/tlul_err.sv \
+    $(OPENTITAN_BUILD)/src/lowrisc_tlul_trans_intg_0.1/rtl/tlul_data_integ_enc.sv \
+    $(OPENTITAN_BUILD)/src/lowrisc_tlul_trans_intg_0.1/rtl/tlul_data_integ_dec.sv \
+    $(OPENTITAN_BUILD)/src/lowrisc_tlul_trans_intg_0.1/rtl/tlul_cmd_intg_chk.sv \
+    $(OPENTITAN_BUILD)/src/lowrisc_tlul_trans_intg_0.1/rtl/tlul_rsp_intg_gen.sv \
+    $(OPENTITAN_BUILD)/src/lowrisc_tlul_adapter_reg_0.1/rtl/tlul_adapter_reg.sv \
+    $(OPENTITAN_BUILD)/src/lowrisc_ip_edn_0.1/rtl/edn_reg_top.sv
+
+INCLUDE := -I$(OPENTITAN_BUILD)/src/lowrisc_prim_assert_0.1/rtl/
+
+TOP_MODULE := edn_reg_top
