@@ -4,7 +4,7 @@ module top(output logic [3:0] o);
       bit [3:0] v2;
    } my_union_t;
 
-   initial begin
+   initial begin : init_blk
       my_union_t un [9:0];
       un[5].v1 = 8'hAB;
       o = un[5].v2;
