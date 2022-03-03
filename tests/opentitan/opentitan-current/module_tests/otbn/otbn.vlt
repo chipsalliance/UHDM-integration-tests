@@ -1,0 +1,20 @@
+`verilator_config
+
+split_var -module "prim_subst_perm*" -var "data_state"
+split_var -module "prim_prince*" -var "data_state"
+
+//Warnings thrown by original Verilator
+
+lint_off -rule WIDTH -file "*" -match "Operator VAR 'ReqDepth' expects 32 bits on the Initial value, but Initial value's CONST '4'h0' generates 4 bits."
+
+lint_off -rule WIDTH -file "*" -match "Operator VAR 'RspDepth' expects 32 bits on the Initial value, but Initial value's CONST '4'h0' generates 4 bits."
+
+lint_off -rule WIDTH -file "*" -match "Operator EQ expects 32 bits on the LHS, but LHS's VARREF 'addr' generates 3 bits."
+
+// Warnings thrown only by uhdm-verilator
+
+lint_off -rule ALWCOMBORDER -file "*" -match "Always_comb variable driven after use: 'data_state'"
+
+lint_off -rule WIDTH -file "*" -match "Operator VAR 'Depth' expects 32 bits on the Initial value, but Initial value's CONST '4'h0' generates 4 bits."
+
+lint_off -rule WIDTH -file "*" -match "Operator LTE expects 32 bits on the LHS, but LHS's VARREF 'num_req_outstanding' generates 9 bits."
