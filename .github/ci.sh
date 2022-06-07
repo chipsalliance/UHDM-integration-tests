@@ -14,7 +14,7 @@ case $MODE in
 	;;
 
     test)
-	make -j $(nproc) ENABLE_READLINE=0 PRETTY=0 TEST=$TEST_CASE $TARGET
+	make -j $(nproc) ENABLE_READLINE=0 PRETTY=0 PARSER=$PARSER TEST=$TEST_CASE $TARGET
 	;;
 
     *)
