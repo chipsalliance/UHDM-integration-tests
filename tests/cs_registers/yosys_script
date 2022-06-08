@@ -1,6 +1,0 @@
-plugin -i uhdm
-read_uhdm -debug dut.uhdm
-prep -top \dut
-write_verilog
-write_verilog yosys.sv
-sat -verify -seq 100 -tempinduct -prove-asserts -show-all

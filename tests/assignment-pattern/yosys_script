@@ -1,6 +1,0 @@
-plugin -i uhdm
-read_uhdm -debug top.uhdm
-hierarchy
-proc
-opt
-sat -verify -seq 1 -tempinduct -prove-asserts -show-all
