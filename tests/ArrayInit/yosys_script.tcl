@@ -16,6 +16,6 @@ if {$::env(PARSER) == "surelog" } {
 }
 
 hierarchy
-proc
+procs
 opt
 sat -verify -seq 1 -tempinduct -prove-asserts -show-all
