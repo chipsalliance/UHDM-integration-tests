@@ -1,3 +1,4 @@
+plugin -i systemverilog
 read_uhdm -debug top.uhdm
 write_json
 prep -top \top
