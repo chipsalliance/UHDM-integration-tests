@@ -15,7 +15,7 @@ if {$::env(PARSER) == "surelog" } {
 	error "Invalid PARSER"
 }
 
-hierarchy -check -top \top
+hierarchy -check -top \\top
 proc_clean
 proc_rmdead
 proc_prune

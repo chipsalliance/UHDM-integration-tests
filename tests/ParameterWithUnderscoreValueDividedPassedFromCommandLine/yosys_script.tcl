@@ -7,7 +7,7 @@ if {$::env(PARSER) == "surelog" } {
 	read_uhdm -debug top.uhdm
 } elseif {$::env(PARSER) == "yosys-plugin" } {
 	puts "Using Yosys read_systemverilog command"
-	read_systemverilog -debug $::env(TOP_FILE)
+	read_systemverilog -debug -PA=\'d7_200 -PB=\'d1_800 $::env(TOP_FILE)
 } elseif {$::env(PARSER) == "yosys" } {
 	puts "Using Yosys read_verilog command"
 	read_verilog -debug $::env(TOP_FILE)
