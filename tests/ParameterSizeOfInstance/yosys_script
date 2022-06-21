@@ -1,5 +1,0 @@
-plugin -i uhdm
-read_uhdm -debug top.uhdm
-hierarchy
-proc
-opt

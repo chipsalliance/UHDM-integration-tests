@@ -11,7 +11,8 @@ COVARAGE_REPORT = ${root_dir}/build/coverage
 
 TEST_DIR := $(realpath $(root_dir)/$(TEST))
 MAIN_FILE ?= $(TEST_DIR)/main.cpp
-YOSYS_SCRIPT := $(TEST_DIR)/yosys_script
+YOSYS_TCL := $(TEST_DIR)/yosys_script.tcl
+PARSER ?= surelog
 
 # this include should set $(TOP_FILE) and $(TOP_MODULE) variables
 include $(TEST)/Makefile.in
@@ -21,13 +22,6 @@ VERILATED_BIN := V$(TOP_MODULE)
 TOP_UHDM = ${root_dir}/build/$(TOP_MODULE).uhdm
 TOP_MAKEFILE := V$(TOP_MODULE).mk
 # SURELOG_FLAGS are empty by default, unless set in Makefile.in
-
-ifneq ($(USE_YOSYS_SURELOG_FRONTEND),)
-YOSYS_READ_COMMAND = read_verilog_with_uhdm -parse -debug $(TOP_FILE)
-else
-YOSYS_READ_COMMAND = read_uhdm -debug $(TOP_UHDM)
-endif
-export YOSYS_READ_COMMAND
 
 list:
 	@echo "Available tests:"
@@ -59,10 +53,13 @@ uhdm/verilator/test-cmake: surelog/parse
 		make $(VERILATED_BIN) VERBOSE=1 && \
 		./$(VERILATED_BIN))
 
-uhdm/yosys/test-ast: $(if $(USE_YOSYS_SURELOG_FRONTEND),clean-build,surelog/parse)
-	(cd $(root_dir)/build && \
-		echo 'yosys $$env(YOSYS_READ_COMMAND)' > read.tcl && \
-		${YOSYS_BIN} -s $(YOSYS_SCRIPT))
+ifeq ($(PARSER),surelog)
+uhdm/yosys/test-ast: clean-build surelog/parse
+else
+uhdm/yosys/test-ast: clean-build
+endif
+	(export TOP_FILE="${TOP_FILE}" TOP_MODULE="${TOP_MODULE}" PARSER=${PARSER} && \
+	cd $(root_dir)/build && ${YOSYS_BIN} -c $(YOSYS_TCL))
 
 # ------------ Test helper targets ------------
 
