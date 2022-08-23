@@ -25,8 +25,8 @@ cd uhdm-integration
 ### Yosys setup:
 
 ```
-git clone https://github.com/antmicro/yosys-uhdm-plugin-integration.git
-cd yosys-uhdm-plugin-integration
+git clone https://github.com/antmicro/yosys-systemverilog.git
+cd yosys-systemverilog
 git submodule update --init --recursive
 ./build_binaries.sh
 cd UHDM-integration-tests
