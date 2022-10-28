@@ -1,6 +1,13 @@
-module dut (output logic[63:0] a, output logic[63:0] b, output logic[63:0] c, output logic[63:0] d);
+module dut (output logic[63:0] a, output logic[63:0] b, output logic[63:0] c, output logic[63:0] d,
+            output logic[63:0] e, output logic[63:0] f, output logic[63:0] g, output logic[63:0] h,
+            output logic[63:0] i);
    assign a = 64'd7698294523898761276;
    assign b = 7698294523898761276;
    assign c = 64'b1010110110110101001010101100101010101010101010101010101010101110;
    assign d = 64'hACBF74CFA4B5A09B;
+   assign e = 2147483528;
+   assign f = 4273735593;
+   assign g = 8547471186;
+   assign h = 4611686018427387904;
+   assign i = 18446612958979913719;
 endmodule
