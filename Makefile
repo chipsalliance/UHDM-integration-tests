@@ -58,7 +58,7 @@ uhdm/yosys/test-ast: clean-build surelog/parse
 else
 uhdm/yosys/test-ast: clean-build
 endif
-	(export TOP_FILE="${TOP_FILE}" TOP_MODULE="${TOP_MODULE}" PARSER=${PARSER} && \
+	(export TOP_FILE="${TOP_FILE}" TOP_MODULE="${TOP_MODULE}" PARSER=${PARSER} SURELOG_FLAGS="${SURELOG_FLAGS}" && \
 	cd $(root_dir)/build && ${YOSYS_BIN} -c $(YOSYS_TCL))
 
 # ------------ Test helper targets ------------
