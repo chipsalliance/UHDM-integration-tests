@@ -159,10 +159,6 @@ Type DFF mismatched in Impl (dut.v) at shift_counter_r_reg[4]
 Type DFF mismatched in Impl (dut.v) at shift_counter_r_reg[5]
 Type DFF mismatched in Impl (dut.v) at signed_opA_r_reg
 Type DFF mismatched in Impl (dut.v) at signed_opB_r_reg
-Mismatch issue: compare points    
-Instances in gold.v: 76
-Instances in dut.v:  79
-
 
 **** Verification Report ****
 

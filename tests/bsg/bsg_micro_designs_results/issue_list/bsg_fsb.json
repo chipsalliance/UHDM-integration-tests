@@ -180,10 +180,6 @@ Type DFFX mismatched in Impl (dut.v) at nz.mem[1]_reg[0]
 Type DFFX mismatched in Impl (dut.v) at nz.mem[1]_reg[1]
 Type DFF mismatched in Impl (dut.v) at nz.mem[0]_reg[0]
 Type DFF mismatched in Impl (dut.v) at nz.mem[0]_reg[1]
-Mismatch issue: compare points    
-Instances in gold.v: 88
-Instances in dut.v:  88
-
 
 **** Verification Report ****
 

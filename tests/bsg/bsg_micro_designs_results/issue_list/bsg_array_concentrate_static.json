@@ -7,12 +7,6 @@ Mismatch issue: unread points
 Instances in dut.v:  512
 
 Type BBNet mismatched in Impl (dut.v) at i[240]
-Mismatch issue: compare points    
-Instances in dut.v:  1
-
-Mismatch issue: unread points    
-Instances in dut.v:  512
-
 
 **** Verification Report ****
 

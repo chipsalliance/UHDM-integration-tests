@@ -56,10 +56,6 @@ Type DFF mismatched in Impl (dut.v) at nz.mem[2]_reg[1]
 Type DFF mismatched in Impl (dut.v) at nz.mem[2]_reg[3]
 Type DFF mismatched in Impl (dut.v) at nz.mem[2]_reg[4]
 Type DFF mismatched in Impl (dut.v) at nz.mem[3]_reg[0]
-Mismatch issue: compare points    
-Instances in gold.v: 26
-Instances in dut.v:  26
-
 
 **** Verification Report ****
 

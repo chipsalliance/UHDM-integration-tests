@@ -8,10 +8,6 @@ Type DFF mismatched in Ref (gold.v) at sbox_1_.fi1hot.fwd_sel_one_hot_r_1__0__sv
 Type DFF mismatched in Ref (gold.v) at sbox_2_.fi1hot.fwd_sel_one_hot_r_2__0__sv2v_reg_reg
 Type DFF0X mismatched in Impl (dut.v) at sbox_reg[1].fi1hot.fwd_sel_one_hot_r[4]_reg
 Type DFF0X mismatched in Impl (dut.v) at sbox_reg[2].fi1hot.fwd_sel_one_hot_r[8]_reg
-Mismatch issue: compare points    
-Instances in gold.v: 2
-Instances in dut.v:  2
-
 
 **** Verification Report ****
 
