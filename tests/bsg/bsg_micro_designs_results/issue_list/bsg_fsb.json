@@ -1,0 +1,210 @@
+****** Matching Report ******
+
+Mismatch issue: compare points    
+Instances in gold.v: 88
+Instances in dut.v:  88
+
+Type DFF mismatched in Ref (gold.v) at nz.mem_18_sv2v_reg_reg
+Type DFF mismatched in Ref (gold.v) at nz.mem_2_sv2v_reg_reg
+Type DFF mismatched in Ref (gold.v) at nz.mem_16_sv2v_reg_reg
+Type DFF mismatched in Ref (gold.v) at nz.mem_17_sv2v_reg_reg
+Type DFF mismatched in Ref (gold.v) at nz.mem_18_sv2v_reg_reg
+Type DFF mismatched in Ref (gold.v) at nz.mem_2_sv2v_reg_reg
+Type DFF mismatched in Ref (gold.v) at nz.mem_16_sv2v_reg_reg
+Type DFF mismatched in Ref (gold.v) at nz.mem_17_sv2v_reg_reg
+Type DFF mismatched in Ref (gold.v) at nz.mem_18_sv2v_reg_reg
+Type DFF mismatched in Ref (gold.v) at nz.mem_19_sv2v_reg_reg
+Type DFF mismatched in Ref (gold.v) at nz.mem_20_sv2v_reg_reg
+Type DFF mismatched in Ref (gold.v) at nz.mem_21_sv2v_reg_reg
+Type DFF mismatched in Ref (gold.v) at nz.mem_22_sv2v_reg_reg
+Type DFF mismatched in Ref (gold.v) at nz.mem_23_sv2v_reg_reg
+Type DFF mismatched in Ref (gold.v) at nz.mem_24_sv2v_reg_reg
+Type DFF mismatched in Ref (gold.v) at nz.mem_25_sv2v_reg_reg
+Type DFF mismatched in Ref (gold.v) at nz.mem_26_sv2v_reg_reg
+Type DFF mismatched in Ref (gold.v) at nz.mem_27_sv2v_reg_reg
+Type DFF mismatched in Ref (gold.v) at nz.mem_28_sv2v_reg_reg
+Type DFF mismatched in Ref (gold.v) at nz.mem_29_sv2v_reg_reg
+Type DFF mismatched in Ref (gold.v) at nz.mem_2_sv2v_reg_reg
+Type DFF mismatched in Ref (gold.v) at nz.mem_30_sv2v_reg_reg
+Type DFF mismatched in Ref (gold.v) at nz.mem_31_sv2v_reg_reg
+Type DFF mismatched in Ref (gold.v) at nz.mem_16_sv2v_reg_reg
+Type DFF mismatched in Ref (gold.v) at nz.mem_17_sv2v_reg_reg
+Type DFF mismatched in Ref (gold.v) at nz.mem_18_sv2v_reg_reg
+Type DFF mismatched in Ref (gold.v) at nz.mem_2_sv2v_reg_reg
+Type DFF mismatched in Ref (gold.v) at nz.mem_16_sv2v_reg_reg
+Type DFF mismatched in Ref (gold.v) at nz.mem_17_sv2v_reg_reg
+Type DFF mismatched in Ref (gold.v) at nz.mem_18_sv2v_reg_reg
+Type DFF mismatched in Ref (gold.v) at nz.mem_19_sv2v_reg_reg
+Type DFF mismatched in Ref (gold.v) at nz.mem_20_sv2v_reg_reg
+Type DFF mismatched in Ref (gold.v) at nz.mem_21_sv2v_reg_reg
+Type DFF mismatched in Ref (gold.v) at nz.mem_22_sv2v_reg_reg
+Type DFF mismatched in Ref (gold.v) at nz.mem_23_sv2v_reg_reg
+Type DFF mismatched in Ref (gold.v) at nz.mem_24_sv2v_reg_reg
+Type DFF mismatched in Ref (gold.v) at nz.mem_25_sv2v_reg_reg
+Type DFF mismatched in Ref (gold.v) at nz.mem_26_sv2v_reg_reg
+Type DFF mismatched in Ref (gold.v) at nz.mem_27_sv2v_reg_reg
+Type DFF mismatched in Ref (gold.v) at nz.mem_28_sv2v_reg_reg
+Type DFF mismatched in Ref (gold.v) at nz.mem_29_sv2v_reg_reg
+Type DFF mismatched in Ref (gold.v) at nz.mem_2_sv2v_reg_reg
+Type DFF mismatched in Ref (gold.v) at nz.mem_30_sv2v_reg_reg
+Type DFF mismatched in Ref (gold.v) at nz.mem_31_sv2v_reg_reg
+Type DFF mismatched in Ref (gold.v) at nz.mem_16_sv2v_reg_reg
+Type DFF mismatched in Ref (gold.v) at nz.mem_17_sv2v_reg_reg
+Type DFF mismatched in Ref (gold.v) at nz.mem_18_sv2v_reg_reg
+Type DFF mismatched in Ref (gold.v) at nz.mem_2_sv2v_reg_reg
+Type DFF mismatched in Ref (gold.v) at nz.mem_16_sv2v_reg_reg
+Type DFF mismatched in Ref (gold.v) at nz.mem_17_sv2v_reg_reg
+Type DFF mismatched in Ref (gold.v) at nz.mem_18_sv2v_reg_reg
+Type DFF mismatched in Ref (gold.v) at nz.mem_19_sv2v_reg_reg
+Type DFF mismatched in Ref (gold.v) at nz.mem_20_sv2v_reg_reg
+Type DFF mismatched in Ref (gold.v) at nz.mem_21_sv2v_reg_reg
+Type DFF mismatched in Ref (gold.v) at nz.mem_22_sv2v_reg_reg
+Type DFF mismatched in Ref (gold.v) at nz.mem_23_sv2v_reg_reg
+Type DFF mismatched in Ref (gold.v) at nz.mem_24_sv2v_reg_reg
+Type DFF mismatched in Ref (gold.v) at nz.mem_25_sv2v_reg_reg
+Type DFF mismatched in Ref (gold.v) at nz.mem_26_sv2v_reg_reg
+Type DFF mismatched in Ref (gold.v) at nz.mem_27_sv2v_reg_reg
+Type DFF mismatched in Ref (gold.v) at nz.mem_28_sv2v_reg_reg
+Type DFF mismatched in Ref (gold.v) at nz.mem_29_sv2v_reg_reg
+Type DFF mismatched in Ref (gold.v) at nz.mem_2_sv2v_reg_reg
+Type DFF mismatched in Ref (gold.v) at nz.mem_30_sv2v_reg_reg
+Type DFF mismatched in Ref (gold.v) at nz.mem_31_sv2v_reg_reg
+Type DFF mismatched in Ref (gold.v) at nz.mem_16_sv2v_reg_reg
+Type DFF mismatched in Ref (gold.v) at nz.mem_17_sv2v_reg_reg
+Type DFF mismatched in Ref (gold.v) at nz.mem_18_sv2v_reg_reg
+Type DFF mismatched in Ref (gold.v) at nz.mem_2_sv2v_reg_reg
+Type DFF mismatched in Ref (gold.v) at nz.mem_16_sv2v_reg_reg
+Type DFF mismatched in Ref (gold.v) at nz.mem_17_sv2v_reg_reg
+Type DFF mismatched in Ref (gold.v) at nz.mem_18_sv2v_reg_reg
+Type DFF mismatched in Ref (gold.v) at nz.mem_19_sv2v_reg_reg
+Type DFF mismatched in Ref (gold.v) at nz.mem_20_sv2v_reg_reg
+Type DFF mismatched in Ref (gold.v) at nz.mem_21_sv2v_reg_reg
+Type DFF mismatched in Ref (gold.v) at nz.mem_22_sv2v_reg_reg
+Type DFF mismatched in Ref (gold.v) at nz.mem_23_sv2v_reg_reg
+Type DFF mismatched in Ref (gold.v) at nz.mem_24_sv2v_reg_reg
+Type DFF mismatched in Ref (gold.v) at nz.mem_25_sv2v_reg_reg
+Type DFF mismatched in Ref (gold.v) at nz.mem_26_sv2v_reg_reg
+Type DFF mismatched in Ref (gold.v) at nz.mem_27_sv2v_reg_reg
+Type DFF mismatched in Ref (gold.v) at nz.mem_28_sv2v_reg_reg
+Type DFF mismatched in Ref (gold.v) at nz.mem_29_sv2v_reg_reg
+Type DFF mismatched in Ref (gold.v) at nz.mem_2_sv2v_reg_reg
+Type DFF mismatched in Ref (gold.v) at nz.mem_30_sv2v_reg_reg
+Type DFF mismatched in Ref (gold.v) at nz.mem_31_sv2v_reg_reg
+Type DFF mismatched in Ref (gold.v) at nz.mem_18_sv2v_reg_reg
+Type DFF mismatched in Ref (gold.v) at nz.mem_2_sv2v_reg_reg
+Type DFF mismatched in Impl (dut.v) at nz.mem[0]_reg[0]
+Type DFF mismatched in Impl (dut.v) at nz.mem[0]_reg[1]
+Type DFF mismatched in Impl (dut.v) at nz.mem[0]_reg[0]
+Type DFF mismatched in Impl (dut.v) at nz.mem[0]_reg[1]
+Type DFF mismatched in Impl (dut.v) at nz.mem[1]_reg[0]
+Type DFF mismatched in Impl (dut.v) at nz.mem[1]_reg[1]
+Type DFFX mismatched in Impl (dut.v) at nz.mem[0]_reg[0]
+Type DFFX mismatched in Impl (dut.v) at nz.mem[0]_reg[10]
+Type DFFX mismatched in Impl (dut.v) at nz.mem[0]_reg[11]
+Type DFFX mismatched in Impl (dut.v) at nz.mem[0]_reg[12]
+Type DFFX mismatched in Impl (dut.v) at nz.mem[0]_reg[13]
+Type DFFX mismatched in Impl (dut.v) at nz.mem[0]_reg[14]
+Type DFFX mismatched in Impl (dut.v) at nz.mem[0]_reg[15]
+Type DFFX mismatched in Impl (dut.v) at nz.mem[0]_reg[1]
+Type DFFX mismatched in Impl (dut.v) at nz.mem[0]_reg[3]
+Type DFFX mismatched in Impl (dut.v) at nz.mem[0]_reg[4]
+Type DFFX mismatched in Impl (dut.v) at nz.mem[0]_reg[5]
+Type DFFX mismatched in Impl (dut.v) at nz.mem[0]_reg[6]
+Type DFFX mismatched in Impl (dut.v) at nz.mem[0]_reg[7]
+Type DFFX mismatched in Impl (dut.v) at nz.mem[0]_reg[8]
+Type DFFX mismatched in Impl (dut.v) at nz.mem[0]_reg[9]
+Type DFFX mismatched in Impl (dut.v) at nz.mem[1]_reg[0]
+Type DFFX mismatched in Impl (dut.v) at nz.mem[1]_reg[1]
+Type DFF mismatched in Impl (dut.v) at nz.mem[0]_reg[0]
+Type DFF mismatched in Impl (dut.v) at nz.mem[0]_reg[1]
+Type DFF mismatched in Impl (dut.v) at nz.mem[1]_reg[0]
+Type DFF mismatched in Impl (dut.v) at nz.mem[1]_reg[1]
+Type DFFX mismatched in Impl (dut.v) at nz.mem[0]_reg[0]
+Type DFFX mismatched in Impl (dut.v) at nz.mem[0]_reg[10]
+Type DFFX mismatched in Impl (dut.v) at nz.mem[0]_reg[11]
+Type DFFX mismatched in Impl (dut.v) at nz.mem[0]_reg[12]
+Type DFFX mismatched in Impl (dut.v) at nz.mem[0]_reg[13]
+Type DFFX mismatched in Impl (dut.v) at nz.mem[0]_reg[14]
+Type DFFX mismatched in Impl (dut.v) at nz.mem[0]_reg[15]
+Type DFFX mismatched in Impl (dut.v) at nz.mem[0]_reg[1]
+Type DFFX mismatched in Impl (dut.v) at nz.mem[0]_reg[3]
+Type DFFX mismatched in Impl (dut.v) at nz.mem[0]_reg[4]
+Type DFFX mismatched in Impl (dut.v) at nz.mem[0]_reg[5]
+Type DFFX mismatched in Impl (dut.v) at nz.mem[0]_reg[6]
+Type DFFX mismatched in Impl (dut.v) at nz.mem[0]_reg[7]
+Type DFFX mismatched in Impl (dut.v) at nz.mem[0]_reg[8]
+Type DFFX mismatched in Impl (dut.v) at nz.mem[0]_reg[9]
+Type DFFX mismatched in Impl (dut.v) at nz.mem[1]_reg[0]
+Type DFFX mismatched in Impl (dut.v) at nz.mem[1]_reg[1]
+Type DFF mismatched in Impl (dut.v) at nz.mem[0]_reg[0]
+Type DFF mismatched in Impl (dut.v) at nz.mem[0]_reg[1]
+Type DFF mismatched in Impl (dut.v) at nz.mem[1]_reg[0]
+Type DFF mismatched in Impl (dut.v) at nz.mem[1]_reg[1]
+Type DFFX mismatched in Impl (dut.v) at nz.mem[0]_reg[0]
+Type DFFX mismatched in Impl (dut.v) at nz.mem[0]_reg[10]
+Type DFFX mismatched in Impl (dut.v) at nz.mem[0]_reg[11]
+Type DFFX mismatched in Impl (dut.v) at nz.mem[0]_reg[12]
+Type DFFX mismatched in Impl (dut.v) at nz.mem[0]_reg[13]
+Type DFFX mismatched in Impl (dut.v) at nz.mem[0]_reg[14]
+Type DFFX mismatched in Impl (dut.v) at nz.mem[0]_reg[15]
+Type DFFX mismatched in Impl (dut.v) at nz.mem[0]_reg[1]
+Type DFFX mismatched in Impl (dut.v) at nz.mem[0]_reg[3]
+Type DFFX mismatched in Impl (dut.v) at nz.mem[0]_reg[4]
+Type DFFX mismatched in Impl (dut.v) at nz.mem[0]_reg[5]
+Type DFFX mismatched in Impl (dut.v) at nz.mem[0]_reg[6]
+Type DFFX mismatched in Impl (dut.v) at nz.mem[0]_reg[7]
+Type DFFX mismatched in Impl (dut.v) at nz.mem[0]_reg[8]
+Type DFFX mismatched in Impl (dut.v) at nz.mem[0]_reg[9]
+Type DFFX mismatched in Impl (dut.v) at nz.mem[1]_reg[0]
+Type DFFX mismatched in Impl (dut.v) at nz.mem[1]_reg[1]
+Type DFF mismatched in Impl (dut.v) at nz.mem[0]_reg[0]
+Type DFF mismatched in Impl (dut.v) at nz.mem[0]_reg[1]
+Type DFF mismatched in Impl (dut.v) at nz.mem[1]_reg[0]
+Type DFF mismatched in Impl (dut.v) at nz.mem[1]_reg[1]
+Type DFFX mismatched in Impl (dut.v) at nz.mem[0]_reg[0]
+Type DFFX mismatched in Impl (dut.v) at nz.mem[0]_reg[10]
+Type DFFX mismatched in Impl (dut.v) at nz.mem[0]_reg[11]
+Type DFFX mismatched in Impl (dut.v) at nz.mem[0]_reg[12]
+Type DFFX mismatched in Impl (dut.v) at nz.mem[0]_reg[13]
+Type DFFX mismatched in Impl (dut.v) at nz.mem[0]_reg[14]
+Type DFFX mismatched in Impl (dut.v) at nz.mem[0]_reg[15]
+Type DFFX mismatched in Impl (dut.v) at nz.mem[0]_reg[1]
+Type DFFX mismatched in Impl (dut.v) at nz.mem[0]_reg[3]
+Type DFFX mismatched in Impl (dut.v) at nz.mem[0]_reg[4]
+Type DFFX mismatched in Impl (dut.v) at nz.mem[0]_reg[5]
+Type DFFX mismatched in Impl (dut.v) at nz.mem[0]_reg[6]
+Type DFFX mismatched in Impl (dut.v) at nz.mem[0]_reg[7]
+Type DFFX mismatched in Impl (dut.v) at nz.mem[0]_reg[8]
+Type DFFX mismatched in Impl (dut.v) at nz.mem[0]_reg[9]
+Type DFFX mismatched in Impl (dut.v) at nz.mem[1]_reg[0]
+Type DFFX mismatched in Impl (dut.v) at nz.mem[1]_reg[1]
+Type DFF mismatched in Impl (dut.v) at nz.mem[0]_reg[0]
+Type DFF mismatched in Impl (dut.v) at nz.mem[0]_reg[1]
+Mismatch issue: compare points    
+Instances in gold.v: 88
+Instances in dut.v:  88
+
+
+**** Verification Report ****
+
+Non-Equivalent Points:
+fsb_node[2].hopin/fifo/empty_r_reg
+fsb_node[3].hopin/fifo/full_r_reg
+fsb_node[4].hopin/fifo/full_r_reg
+fsb_node[1].murn_gateway/genblk1.node_en_r_reg
+fsb_node[2].murn_gateway/genblk1.node_en_r_reg
+fsb_node[3].murn_gateway/genblk1.node_en_r_reg
+fsb_node[4].murn_gateway/genblk1.node_en_r_reg
+fsb_node[2].murn_gateway/genblk1.node_reset_r_reg
+fsb_node[4].murn_gateway/genblk1.node_reset_r_reg
+fsb_node[2].hopin/fifo/head_r_reg
+fsb_node[3].hopin/fifo/head_r_reg
+fsb_node[4].hopin/fifo/head_r_reg
+fsb_node[0].hopin/fifo/mem_1r1w/synth/nz.mem[0]_reg[10]
+fsb_node[0].hopout/fifo/mem_1r1w/synth/nz.mem[0]_reg[10]
+fsb_node[1].hopout/fifo/mem_1r1w/synth/nz.mem[0]_reg[10]
+fsb_node[2].hopout/fifo/mem_1r1w/synth/nz.mem[0]_reg[10]
+fsb_node[3].hopout/fifo/mem_1r1w/synth/nz.mem[0]_reg[10]
+fsb_node[4].hopout/fifo/mem_1r1w/synth/nz.mem[0]_reg[10]
+fsb_node[0].hopin/fifo/mem_1r1w/synth/nz.mem[0]_reg[11]
+fsb_node[0].hopout/fifo/mem_1r1w/synth/nz.mem[0]_reg[11]

@@ -1,0 +1,86 @@
+****** Matching Report ******
+
+Mismatch issue: compare points    
+Instances in gold.v: 26
+Instances in dut.v:  26
+
+Type DFF mismatched in Ref (gold.v) at nz.mem_17_sv2v_reg_reg
+Type DFF mismatched in Ref (gold.v) at nz.mem_22_sv2v_reg_reg
+Type DFF mismatched in Ref (gold.v) at nz.mem_27_sv2v_reg_reg
+Type DFF mismatched in Ref (gold.v) at nz.mem_32_sv2v_reg_reg
+Type DFF mismatched in Ref (gold.v) at nz.mem_37_sv2v_reg_reg
+Type DFF mismatched in Ref (gold.v) at nz.mem_42_sv2v_reg_reg
+Type DFF mismatched in Ref (gold.v) at nz.mem_47_sv2v_reg_reg
+Type DFF mismatched in Ref (gold.v) at nz.mem_52_sv2v_reg_reg
+Type DFF mismatched in Ref (gold.v) at nz.mem_57_sv2v_reg_reg
+Type DFF mismatched in Ref (gold.v) at nz.mem_62_sv2v_reg_reg
+Type DFF mismatched in Ref (gold.v) at nz.mem_67_sv2v_reg_reg
+Type DFF mismatched in Ref (gold.v) at nz.mem_72_sv2v_reg_reg
+Type DFF mismatched in Ref (gold.v) at nz.mem_77_sv2v_reg_reg
+Type DFF mismatched in Ref (gold.v) at nz.mem_17_sv2v_reg_reg
+Type DFF mismatched in Ref (gold.v) at nz.mem_22_sv2v_reg_reg
+Type DFF mismatched in Ref (gold.v) at nz.mem_27_sv2v_reg_reg
+Type DFF mismatched in Ref (gold.v) at nz.mem_32_sv2v_reg_reg
+Type DFF mismatched in Ref (gold.v) at nz.mem_37_sv2v_reg_reg
+Type DFF mismatched in Ref (gold.v) at nz.mem_42_sv2v_reg_reg
+Type DFF mismatched in Ref (gold.v) at nz.mem_47_sv2v_reg_reg
+Type DFF mismatched in Ref (gold.v) at nz.mem_52_sv2v_reg_reg
+Type DFF mismatched in Ref (gold.v) at nz.mem_57_sv2v_reg_reg
+Type DFF mismatched in Ref (gold.v) at nz.mem_62_sv2v_reg_reg
+Type DFF mismatched in Ref (gold.v) at nz.mem_67_sv2v_reg_reg
+Type DFF mismatched in Ref (gold.v) at nz.mem_72_sv2v_reg_reg
+Type DFF mismatched in Ref (gold.v) at nz.mem_77_sv2v_reg_reg
+Type DFF mismatched in Impl (dut.v) at nz.mem[0]_reg[0]
+Type DFF mismatched in Impl (dut.v) at nz.mem[0]_reg[1]
+Type DFF mismatched in Impl (dut.v) at nz.mem[0]_reg[3]
+Type DFF mismatched in Impl (dut.v) at nz.mem[0]_reg[4]
+Type DFF mismatched in Impl (dut.v) at nz.mem[1]_reg[0]
+Type DFF mismatched in Impl (dut.v) at nz.mem[1]_reg[1]
+Type DFF mismatched in Impl (dut.v) at nz.mem[1]_reg[3]
+Type DFF mismatched in Impl (dut.v) at nz.mem[1]_reg[4]
+Type DFF mismatched in Impl (dut.v) at nz.mem[2]_reg[0]
+Type DFF mismatched in Impl (dut.v) at nz.mem[2]_reg[1]
+Type DFF mismatched in Impl (dut.v) at nz.mem[2]_reg[3]
+Type DFF mismatched in Impl (dut.v) at nz.mem[2]_reg[4]
+Type DFF mismatched in Impl (dut.v) at nz.mem[3]_reg[0]
+Type DFF mismatched in Impl (dut.v) at nz.mem[0]_reg[0]
+Type DFF mismatched in Impl (dut.v) at nz.mem[0]_reg[1]
+Type DFF mismatched in Impl (dut.v) at nz.mem[0]_reg[3]
+Type DFF mismatched in Impl (dut.v) at nz.mem[0]_reg[4]
+Type DFF mismatched in Impl (dut.v) at nz.mem[1]_reg[0]
+Type DFF mismatched in Impl (dut.v) at nz.mem[1]_reg[1]
+Type DFF mismatched in Impl (dut.v) at nz.mem[1]_reg[3]
+Type DFF mismatched in Impl (dut.v) at nz.mem[1]_reg[4]
+Type DFF mismatched in Impl (dut.v) at nz.mem[2]_reg[0]
+Type DFF mismatched in Impl (dut.v) at nz.mem[2]_reg[1]
+Type DFF mismatched in Impl (dut.v) at nz.mem[2]_reg[3]
+Type DFF mismatched in Impl (dut.v) at nz.mem[2]_reg[4]
+Type DFF mismatched in Impl (dut.v) at nz.mem[3]_reg[0]
+Mismatch issue: compare points    
+Instances in gold.v: 26
+Instances in dut.v:  26
+
+
+**** Verification Report ****
+
+Non-Equivalent Points:
+l2r_fifo/MSYNC_1r1w/synth/nz.mem[0]_reg[2]
+l2r_fifo/MSYNC_1r1w/synth/nz.mem[10]_reg[2]
+l2r_fifo/MSYNC_1r1w/synth/nz.mem[11]_reg[2]
+l2r_fifo/MSYNC_1r1w/synth/nz.mem[12]_reg[2]
+r2l_fifo/MSYNC_1r1w/synth/nz.mem[12]_reg[2]
+l2r_fifo/MSYNC_1r1w/synth/nz.mem[13]_reg[2]
+r2l_fifo/MSYNC_1r1w/synth/nz.mem[13]_reg[2]
+l2r_fifo/MSYNC_1r1w/synth/nz.mem[14]_reg[2]
+l2r_fifo/MSYNC_1r1w/synth/nz.mem[15]_reg[2]
+r2l_fifo/MSYNC_1r1w/synth/nz.mem[15]_reg[2]
+r2l_fifo/MSYNC_1r1w/synth/nz.mem[1]_reg[2]
+l2r_fifo/MSYNC_1r1w/synth/nz.mem[2]_reg[2]
+l2r_fifo/MSYNC_1r1w/synth/nz.mem[4]_reg[2]
+l2r_fifo/MSYNC_1r1w/synth/nz.mem[6]_reg[2]
+r2l_fifo/MSYNC_1r1w/synth/nz.mem[6]_reg[2]
+l2r_fifo/MSYNC_1r1w/synth/nz.mem[7]_reg[2]
+l2r_fifo/MSYNC_1r1w/synth/nz.mem[8]_reg[2]
+r2l_fifo/MSYNC_1r1w/synth/nz.mem[8]_reg[2]
+l2r_fifo/MSYNC_1r1w/synth/nz.mem[9]_reg[2]
+r2l_fifo/MSYNC_1r1w/synth/nz.mem[9]_reg[2]

@@ -1,0 +1,189 @@
+****** Matching Report ******
+
+Mismatch issue: compare points    
+Instances in gold.v: 76
+Instances in dut.v:  79
+
+Type DFF mismatched in Ref (gold.v) at all_sh_lsb_zero_r_sv2v_reg_reg
+Type DFF mismatched in Ref (gold.v) at curr_state_r_0_sv2v_reg_reg
+Type DFF mismatched in Ref (gold.v) at curr_state_r_1_sv2v_reg_reg
+Type DFF mismatched in Ref (gold.v) at gets_high_part_r_sv2v_reg_reg
+Type DFF mismatched in Ref (gold.v) at opA_r_0_sv2v_reg_reg
+Type DFF mismatched in Ref (gold.v) at opA_r_10_sv2v_reg_reg
+Type DFF mismatched in Ref (gold.v) at opA_r_11_sv2v_reg_reg
+Type DFF mismatched in Ref (gold.v) at opA_r_12_sv2v_reg_reg
+Type DFF mismatched in Ref (gold.v) at opA_r_13_sv2v_reg_reg
+Type DFF mismatched in Ref (gold.v) at opA_r_14_sv2v_reg_reg
+Type DFF mismatched in Ref (gold.v) at opA_r_15_sv2v_reg_reg
+Type DFF mismatched in Ref (gold.v) at opA_r_16_sv2v_reg_reg
+Type DFF mismatched in Ref (gold.v) at opA_r_17_sv2v_reg_reg
+Type DFF mismatched in Ref (gold.v) at opA_r_18_sv2v_reg_reg
+Type DFF mismatched in Ref (gold.v) at opA_r_19_sv2v_reg_reg
+Type DFF mismatched in Ref (gold.v) at opA_r_1_sv2v_reg_reg
+Type DFF mismatched in Ref (gold.v) at opA_r_20_sv2v_reg_reg
+Type DFF mismatched in Ref (gold.v) at opA_r_21_sv2v_reg_reg
+Type DFF mismatched in Ref (gold.v) at opA_r_22_sv2v_reg_reg
+Type DFF mismatched in Ref (gold.v) at opA_r_23_sv2v_reg_reg
+Type DFF mismatched in Ref (gold.v) at opA_r_24_sv2v_reg_reg
+Type DFF mismatched in Ref (gold.v) at opA_r_25_sv2v_reg_reg
+Type DFF mismatched in Ref (gold.v) at opA_r_26_sv2v_reg_reg
+Type DFF mismatched in Ref (gold.v) at opA_r_27_sv2v_reg_reg
+Type DFF mismatched in Ref (gold.v) at opA_r_28_sv2v_reg_reg
+Type DFF mismatched in Ref (gold.v) at opA_r_29_sv2v_reg_reg
+Type DFF mismatched in Ref (gold.v) at opA_r_2_sv2v_reg_reg
+Type DFF mismatched in Ref (gold.v) at opA_r_30_sv2v_reg_reg
+Type DFF mismatched in Ref (gold.v) at opA_r_31_sv2v_reg_reg
+Type DFF mismatched in Ref (gold.v) at opA_r_3_sv2v_reg_reg
+Type DFF mismatched in Ref (gold.v) at opA_r_4_sv2v_reg_reg
+Type DFF mismatched in Ref (gold.v) at opA_r_5_sv2v_reg_reg
+Type DFF mismatched in Ref (gold.v) at opA_r_6_sv2v_reg_reg
+Type DFF mismatched in Ref (gold.v) at opA_r_7_sv2v_reg_reg
+Type DFF mismatched in Ref (gold.v) at opA_r_8_sv2v_reg_reg
+Type DFF mismatched in Ref (gold.v) at opA_r_9_sv2v_reg_reg
+Type DFF mismatched in Ref (gold.v) at opB_r_0_sv2v_reg_reg
+Type DFF mismatched in Ref (gold.v) at opB_r_10_sv2v_reg_reg
+Type DFF mismatched in Ref (gold.v) at opB_r_11_sv2v_reg_reg
+Type DFF mismatched in Ref (gold.v) at opB_r_12_sv2v_reg_reg
+Type DFF mismatched in Ref (gold.v) at opB_r_13_sv2v_reg_reg
+Type DFF mismatched in Ref (gold.v) at opB_r_14_sv2v_reg_reg
+Type DFF mismatched in Ref (gold.v) at opB_r_15_sv2v_reg_reg
+Type DFF mismatched in Ref (gold.v) at opB_r_16_sv2v_reg_reg
+Type DFF mismatched in Ref (gold.v) at opB_r_17_sv2v_reg_reg
+Type DFF mismatched in Ref (gold.v) at opB_r_18_sv2v_reg_reg
+Type DFF mismatched in Ref (gold.v) at opB_r_19_sv2v_reg_reg
+Type DFF mismatched in Ref (gold.v) at opB_r_1_sv2v_reg_reg
+Type DFF mismatched in Ref (gold.v) at opB_r_20_sv2v_reg_reg
+Type DFF mismatched in Ref (gold.v) at opB_r_21_sv2v_reg_reg
+Type DFF mismatched in Ref (gold.v) at opB_r_22_sv2v_reg_reg
+Type DFF mismatched in Ref (gold.v) at opB_r_23_sv2v_reg_reg
+Type DFF mismatched in Ref (gold.v) at opB_r_24_sv2v_reg_reg
+Type DFF mismatched in Ref (gold.v) at opB_r_25_sv2v_reg_reg
+Type DFF mismatched in Ref (gold.v) at opB_r_26_sv2v_reg_reg
+Type DFF mismatched in Ref (gold.v) at opB_r_27_sv2v_reg_reg
+Type DFF mismatched in Ref (gold.v) at opB_r_28_sv2v_reg_reg
+Type DFF mismatched in Ref (gold.v) at opB_r_29_sv2v_reg_reg
+Type DFF mismatched in Ref (gold.v) at opB_r_2_sv2v_reg_reg
+Type DFF mismatched in Ref (gold.v) at opB_r_30_sv2v_reg_reg
+Type DFF mismatched in Ref (gold.v) at opB_r_31_sv2v_reg_reg
+Type DFF mismatched in Ref (gold.v) at opB_r_3_sv2v_reg_reg
+Type DFF mismatched in Ref (gold.v) at opB_r_4_sv2v_reg_reg
+Type DFF mismatched in Ref (gold.v) at opB_r_5_sv2v_reg_reg
+Type DFF mismatched in Ref (gold.v) at opB_r_6_sv2v_reg_reg
+Type DFF mismatched in Ref (gold.v) at opB_r_7_sv2v_reg_reg
+Type DFF mismatched in Ref (gold.v) at opB_r_8_sv2v_reg_reg
+Type DFF mismatched in Ref (gold.v) at opB_r_9_sv2v_reg_reg
+Type DFF mismatched in Ref (gold.v) at shift_counter_r_0_sv2v_reg_reg
+Type DFF mismatched in Ref (gold.v) at shift_counter_r_1_sv2v_reg_reg
+Type DFF mismatched in Ref (gold.v) at shift_counter_r_2_sv2v_reg_reg
+Type DFF mismatched in Ref (gold.v) at shift_counter_r_3_sv2v_reg_reg
+Type DFF mismatched in Ref (gold.v) at shift_counter_r_4_sv2v_reg_reg
+Type DFF mismatched in Ref (gold.v) at shift_counter_r_5_sv2v_reg_reg
+Type DFF mismatched in Ref (gold.v) at signed_opA_r_sv2v_reg_reg
+Type DFF mismatched in Ref (gold.v) at signed_opB_r_sv2v_reg_reg
+Type DFF mismatched in Impl (dut.v) at all_sh_lsb_zero_r_reg
+Type DFF mismatched in Impl (dut.v) at curr_state_r_reg[0]
+Type DFF mismatched in Impl (dut.v) at curr_state_r_reg[2]
+Type DFF mismatched in Impl (dut.v) at curr_state_r_reg[3]
+Type DFF mismatched in Impl (dut.v) at curr_state_r_reg[4]
+Type DFF mismatched in Impl (dut.v) at gets_high_part_r_reg
+Type DFF mismatched in Impl (dut.v) at need_neg_result_r_reg
+Type DFF mismatched in Impl (dut.v) at opA_r_reg[0]
+Type DFF mismatched in Impl (dut.v) at opA_r_reg[10]
+Type DFF mismatched in Impl (dut.v) at opA_r_reg[11]
+Type DFF mismatched in Impl (dut.v) at opA_r_reg[12]
+Type DFF mismatched in Impl (dut.v) at opA_r_reg[13]
+Type DFF mismatched in Impl (dut.v) at opA_r_reg[14]
+Type DFF mismatched in Impl (dut.v) at opA_r_reg[15]
+Type DFF mismatched in Impl (dut.v) at opA_r_reg[16]
+Type DFF mismatched in Impl (dut.v) at opA_r_reg[17]
+Type DFF mismatched in Impl (dut.v) at opA_r_reg[18]
+Type DFF mismatched in Impl (dut.v) at opA_r_reg[19]
+Type DFF mismatched in Impl (dut.v) at opA_r_reg[1]
+Type DFF mismatched in Impl (dut.v) at opA_r_reg[20]
+Type DFF mismatched in Impl (dut.v) at opA_r_reg[21]
+Type DFF mismatched in Impl (dut.v) at opA_r_reg[22]
+Type DFF mismatched in Impl (dut.v) at opA_r_reg[23]
+Type DFF mismatched in Impl (dut.v) at opA_r_reg[24]
+Type DFF mismatched in Impl (dut.v) at opA_r_reg[25]
+Type DFF mismatched in Impl (dut.v) at opA_r_reg[26]
+Type DFF mismatched in Impl (dut.v) at opA_r_reg[27]
+Type DFF mismatched in Impl (dut.v) at opA_r_reg[28]
+Type DFF mismatched in Impl (dut.v) at opA_r_reg[29]
+Type DFF mismatched in Impl (dut.v) at opA_r_reg[2]
+Type DFF mismatched in Impl (dut.v) at opA_r_reg[30]
+Type DFF mismatched in Impl (dut.v) at opA_r_reg[31]
+Type DFF mismatched in Impl (dut.v) at opA_r_reg[3]
+Type DFF mismatched in Impl (dut.v) at opA_r_reg[4]
+Type DFF mismatched in Impl (dut.v) at opA_r_reg[5]
+Type DFF mismatched in Impl (dut.v) at opA_r_reg[6]
+Type DFF mismatched in Impl (dut.v) at opA_r_reg[7]
+Type DFF mismatched in Impl (dut.v) at opA_r_reg[8]
+Type DFF mismatched in Impl (dut.v) at opA_r_reg[9]
+Type DFF mismatched in Impl (dut.v) at opB_r_reg[0]
+Type DFF mismatched in Impl (dut.v) at opB_r_reg[10]
+Type DFF mismatched in Impl (dut.v) at opB_r_reg[11]
+Type DFF mismatched in Impl (dut.v) at opB_r_reg[12]
+Type DFF mismatched in Impl (dut.v) at opB_r_reg[13]
+Type DFF mismatched in Impl (dut.v) at opB_r_reg[14]
+Type DFF mismatched in Impl (dut.v) at opB_r_reg[15]
+Type DFF mismatched in Impl (dut.v) at opB_r_reg[16]
+Type DFF mismatched in Impl (dut.v) at opB_r_reg[17]
+Type DFF mismatched in Impl (dut.v) at opB_r_reg[18]
+Type DFF mismatched in Impl (dut.v) at opB_r_reg[19]
+Type DFF mismatched in Impl (dut.v) at opB_r_reg[1]
+Type DFF mismatched in Impl (dut.v) at opB_r_reg[20]
+Type DFF mismatched in Impl (dut.v) at opB_r_reg[21]
+Type DFF mismatched in Impl (dut.v) at opB_r_reg[22]
+Type DFF mismatched in Impl (dut.v) at opB_r_reg[23]
+Type DFF mismatched in Impl (dut.v) at opB_r_reg[24]
+Type DFF mismatched in Impl (dut.v) at opB_r_reg[25]
+Type DFF mismatched in Impl (dut.v) at opB_r_reg[26]
+Type DFF mismatched in Impl (dut.v) at opB_r_reg[27]
+Type DFF mismatched in Impl (dut.v) at opB_r_reg[28]
+Type DFF mismatched in Impl (dut.v) at opB_r_reg[29]
+Type DFF mismatched in Impl (dut.v) at opB_r_reg[2]
+Type DFF mismatched in Impl (dut.v) at opB_r_reg[30]
+Type DFF mismatched in Impl (dut.v) at opB_r_reg[31]
+Type DFF mismatched in Impl (dut.v) at opB_r_reg[3]
+Type DFF mismatched in Impl (dut.v) at opB_r_reg[4]
+Type DFF mismatched in Impl (dut.v) at opB_r_reg[5]
+Type DFF mismatched in Impl (dut.v) at opB_r_reg[6]
+Type DFF mismatched in Impl (dut.v) at opB_r_reg[7]
+Type DFF mismatched in Impl (dut.v) at opB_r_reg[8]
+Type DFF mismatched in Impl (dut.v) at opB_r_reg[9]
+Type DFF mismatched in Impl (dut.v) at shift_counter_r_reg[0]
+Type DFF mismatched in Impl (dut.v) at shift_counter_r_reg[1]
+Type DFF mismatched in Impl (dut.v) at shift_counter_r_reg[2]
+Type DFF mismatched in Impl (dut.v) at shift_counter_r_reg[3]
+Type DFF mismatched in Impl (dut.v) at shift_counter_r_reg[4]
+Type DFF mismatched in Impl (dut.v) at shift_counter_r_reg[5]
+Type DFF mismatched in Impl (dut.v) at signed_opA_r_reg
+Type DFF mismatched in Impl (dut.v) at signed_opB_r_reg
+Mismatch issue: compare points    
+Instances in gold.v: 76
+Instances in dut.v:  79
+
+
+**** Verification Report ****
+
+Non-Equivalent Points:
+curr_state_r_reg[5]
+result_r_reg[0]
+result_r_reg[10]
+result_r_reg[11]
+result_r_reg[12]
+result_r_reg[13]
+result_r_reg[14]
+result_r_reg[15]
+result_r_reg[16]
+result_r_reg[17]
+result_r_reg[18]
+result_r_reg[19]
+result_r_reg[1]
+result_r_reg[20]
+result_r_reg[21]
+result_r_reg[22]
+result_r_reg[23]
+result_r_reg[24]
+result_r_reg[25]
+result_r_reg[26]
