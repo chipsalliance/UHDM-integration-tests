@@ -1,5 +1,4 @@
-yosys -import
-plugin -i systemverilog
+yosys plugin -i systemverilog
 yosys -import
 
 if {$::env(PARSER) == "surelog" } {
