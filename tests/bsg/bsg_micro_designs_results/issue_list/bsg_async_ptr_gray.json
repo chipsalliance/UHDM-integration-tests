@@ -1,0 +1,18 @@
+****** Matching Report ******
+
+Mismatch issue: compare points    
+Instances in gold.v: 2
+Type DFF mismatched in Ref (gold.v) at iclk_data_o_4_sv2v_reg_reg
+Type DFF mismatched in Ref (gold.v) at w_ptr_p1_r_1_sv2v_reg_reg
+
+**** Verification Report ****
+
+Non-Equivalent Points:
+ptr_sync.sync.p.z.blss.bsg_SYNC_1_r_reg[4]
+ptr_sync.sync.p.z.blss.bsg_SYNC_LNCH_r_reg[0]_reg
+ptr_sync.sync.p.z.blss.bsg_SYNC_LNCH_r_reg[1]_reg
+w_ptr_p1_r_reg[2]_reg
+w_ptr_r_reg[1]
+w_ptr_gray_r_o[4]
+w_ptr_p1_r_reg[3]_reg
+w_ptr_p1_r_reg[4]_reg

@@ -1,0 +1,33 @@
+****** Matching Report ******
+
+Mismatch issue: compare points    
+Instances in gold.v: 1
+Instances in dut.v:  2
+
+Type DFF mismatched in Ref (gold.v) at head_r_sv2v_reg_reg
+Type DFF mismatched in Impl (dut.v) at _000__reg
+Type DFF mismatched in Impl (dut.v) at fifo.head_r_reg
+
+**** Verification Report ****
+
+Non-Equivalent Points:
+data_o[0]
+data_o[10]
+data_o[11]
+data_o[12]
+data_o[13]
+data_o[14]
+data_o[15]
+data_o[16]
+data_o[17]
+data_o[18]
+data_o[19]
+data_o[1]
+data_o[20]
+data_o[21]
+data_o[22]
+data_o[23]
+data_o[24]
+data_o[25]
+data_o[26]
+data_o[27]

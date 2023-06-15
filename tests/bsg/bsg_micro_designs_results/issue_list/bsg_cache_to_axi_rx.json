@@ -1,0 +1,37 @@
+****** Matching Report ******
+
+Mismatch issue: compare points    
+Instances in gold.v: 3
+Instances in dut.v:  2
+
+Mismatch issue: unread points    
+Instances in gold.v: 1
+Type DFF mismatched in Ref (gold.v) at head_r_sv2v_reg_reg
+Type DFF0X mismatched in Ref (gold.v) at o_0_sv2v_reg_reg
+Type DFF0X mismatched in Ref (gold.v) at o_0_sv2v_reg_reg
+Type DFF mismatched in Impl (dut.v) at _000__reg
+Type DFF mismatched in Impl (dut.v) at piso.two_fifo.fifo0.head_r_reg
+
+**** Verification Report ****
+
+Non-Equivalent Points:
+dma_data_o[0]
+dma_data_o[10]
+dma_data_o[11]
+dma_data_o[12]
+dma_data_o[13]
+dma_data_o[14]
+dma_data_o[15]
+dma_data_o[16]
+dma_data_o[17]
+dma_data_o[18]
+dma_data_o[19]
+dma_data_o[1]
+dma_data_o[20]
+dma_data_o[21]
+dma_data_o[22]
+dma_data_o[23]
+dma_data_o[24]
+dma_data_o[25]
+dma_data_o[26]
+dma_data_o[27]
