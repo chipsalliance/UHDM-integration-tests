@@ -65,7 +65,7 @@ endif
 
 surelog/parse: clean-build
 	(cd ${root_dir}/build && \
-		${SURELOG_BIN} -parse -sverilog -d coveruhdm ${SURELOG_FLAGS} $(INCLUDE) $(TOP_FILE))
+		${SURELOG_BIN} -parse -sverilog -d coveruhdm -elabuhdm ${SURELOG_FLAGS} $(INCLUDE) $(TOP_FILE))
 	cp ${root_dir}/build/slpp_all/surelog.uhdm ${TOP_UHDM}
 
 uhdm/yosys/verilate-ast:
