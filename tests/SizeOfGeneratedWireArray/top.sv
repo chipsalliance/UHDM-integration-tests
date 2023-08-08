@@ -6,5 +6,5 @@ module top(output int o);
       end
    endgenerate
 
-   assign o = $bits(blk[0].z);
+   assign o = $bits(gen_blk[0].z);
 endmodule
