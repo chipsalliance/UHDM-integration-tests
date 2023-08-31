@@ -1,2 +1,2 @@
-TOP_FILE := $(root_dir)/../Surelog/$(TEST)/dut.v
+TOP_FILE := $(root_dir)/../third_party/surelog/$(TEST)/dut.v
 TOP_MODULE := dut

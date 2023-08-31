@@ -68,11 +68,11 @@ cmake-src/.install: cmake-src/.build
 # ---------------------------------- CMAKE ---------------------------------
 
 # --------------------------------- SURELOG --------------------------------
-$(PWD)/../../Surelog/CMakeLists.txt:
+$(PWD)/../../third_party/surelog/CMakeLists.txt:
 	(cd ../../ && git submodule update --init --recursive Surelog && touch $@)
 
-.surelog: $(PWD)/../../Surelog/CMakeLists.txt .cmake
-	PATH="$(PWD)/../../image/bin:$$PATH" make -C ../../Surelog \
+.surelog: $(PWD)/../../third_party/surelog/CMakeLists.txt .cmake
+	PATH="$(PWD)/../../image/bin:$$PATH" make -C ../../third_party/surelog \
 		PREFIX=$(PWD)/../../image release install -j`nproc` && touch $@
 # --------------------------------- SURELOG --------------------------------
 

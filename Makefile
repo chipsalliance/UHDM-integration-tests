@@ -104,15 +104,15 @@ clean:: clean-build
 # ------------ Other targets ------------
 
 surelog/parse-earlgrey: clean-build
-	(cd ${root_dir}/Surelog/third_party/tests/Earlgrey_0_1/sim-icarus && \
+	(cd ${root_dir}/third_party/surelog/third_party/tests/Earlgrey_0_1/sim-icarus && \
 		${SURELOG_BIN} -f Earlgrey_0_1.sl \
 	)
-	cp ${root_dir}/Surelog/third_party/tests/Earlgrey_0_1/sim-icarus/slpp_all/surelog.uhdm ${TOP_UHDM}
+	cp ${root_dir}/third_party/surelog/third_party/tests/Earlgrey_0_1/sim-icarus/slpp_all/surelog.uhdm ${TOP_UHDM}
 
 surelog/ibex-verilator: clean-build
-	(cd ${root_dir}/Surelog/third_party/tests/Earlgrey_Verilator_0_1/sim-verilator && \
+	(cd ${root_dir}/third_party/surelog/third_party/tests/Earlgrey_Verilator_0_1/sim-verilator && \
 		${SURELOG_BIN} -f Earlgrey_Verilator_0_1.sl)
-	cp ${root_dir}/Surelog/third_party/tests/Earlgrey_Verilator_0_1/sim-verilator/slpp_all/surelog.uhdm ${TOP_UHDM}
+	cp ${root_dir}/third_party/surelog/third_party/tests/Earlgrey_Verilator_0_1/sim-verilator/slpp_all/surelog.uhdm ${TOP_UHDM}
 
 surelog/ibex-simplesystem: clean-build
 	(cd ${root_dir}/tests/ibex/ibex/build/lowrisc_ibex_ibex_simple_system_0/sim-verilator && \
