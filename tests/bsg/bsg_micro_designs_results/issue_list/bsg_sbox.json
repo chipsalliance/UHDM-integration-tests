@@ -1,0 +1,30 @@
+****** Matching Report ******
+
+Mismatch issue: compare points    
+Instances in gold.v: 2
+Type DFF mismatched in Ref (gold.v) at bk_sel_r_0_sv2v_reg_reg
+Type DFF mismatched in Ref (gold.v) at fwd_dpath_sel_r_2_sv2v_reg_reg
+
+**** Verification Report ****
+
+Non-Equivalent Points:
+in_data_o[16]
+in_data_o[17]
+in_data_o[18]
+in_data_o[19]
+in_data_o[20]
+in_data_o[21]
+in_data_o[22]
+in_data_o[23]
+in_data_o[24]
+in_data_o[25]
+in_data_o[26]
+in_data_o[27]
+in_data_o[28]
+in_data_o[29]
+in_data_o[30]
+in_data_o[31]
+in_yumi_o[0]
+out_me_data_o[32]
+out_me_data_o[33]
+out_me_data_o[34]

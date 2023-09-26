@@ -1,0 +1,12 @@
+****** Matching Report ******
+
+Mismatch issue: compare points    
+Instances in gold.v: 2
+Type DFF mismatched in Ref (gold.v) at node_en_r_o_sv2v_reg_reg
+Type DFF mismatched in Ref (gold.v) at node_reset_r_o_sv2v_reg_reg
+
+**** Verification Report ****
+
+Non-Equivalent Points:
+node_en_r_o
+node_reset_r_o

@@ -1,0 +1,12 @@
+****** Matching Report ******
+
+Mismatch issue: compare points    
+Instances in gold.v: 1
+Instances in dut.v:  1
+
+Type Port mismatched in Ref (gold.v) at tag_o[0]
+Type Port mismatched in Impl (dut.v) at tag_o
+
+**** Verification Report ****
+
+Non-Equivalent Points:
