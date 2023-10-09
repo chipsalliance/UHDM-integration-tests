@@ -1,0 +1,3 @@
+TOP_FILE := $(TEST_DIR)/top.sv
+SURELOG_FLAGS := --top-module dut
+TOP_MODULE := top
